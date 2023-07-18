@@ -1,0 +1,20 @@
+{
+    "name": "orangepix/opxcatalogseo",
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Orangepix\\Opxcatalogseo\\": "src/"
+        },
+        "classmap": [
+            "classes/"
+        ],
+        "exclude-from-classmap": []
+    },
+    "config": {
+        "preferred-install": "dist",
+        "prepend-autoloader": false
+    },
+    "type": "prestashop-module"
+}

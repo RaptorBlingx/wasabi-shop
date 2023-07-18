@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>opxblocks</name>
+    <displayName><![CDATA[HTML Blocks]]></displayName>
+    <version><![CDATA[1.3.1]]></version>
+    <description><![CDATA[Custom HTML Blocks for Frontend]]></description>
+    <author><![CDATA[OrangePix Srl]]></author>
+    <tab><![CDATA[AdminParentThemes]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+	<limited_countries></limited_countries>
+</module>

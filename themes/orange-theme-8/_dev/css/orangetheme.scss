@@ -1,0 +1,443 @@
+/* 
+Orange-theme-8
+Author: OrangePix, Davide Mazzonetto
+
+Comandi:
+cd themes/orange-theme-8/_dev/
+npm run sass
+
+Configurazione:
+orangetheme-configuration.css
+
+Esclusioni ricerca: 
+.css, .md, .csv, .log, .json, .css.map, _dev/node_modules
+*/
+
+/* Indice: */
+/* 1. Generale */
+/* 1.1 Colori */
+/* 2. Font e titoli */
+/* 3. Menu e Header */
+/* 4. Wrapper */
+/* 5. Bottoni */
+/* 6. Prodotto */
+/* 6.1. Miniatura prodotto */
+/* 6.2 Pagina prodotto */
+/* 7. Footer */
+/* 8. Listing prodotti - Categorie */
+/* 9. Checkout */
+/* 10. Login e Registrati */
+/* 11. CMS */
+
+/* 1. Generale */
+html,
+body {
+	width: 100vw;
+	max-width: 100%;
+	overflow-x: hidden;
+	background-color: #ffffff;
+}
+
+.page-home>* {
+	margin: 0;
+}
+
+.section-padding {
+	padding-top: $section-padding-sm;
+	padding-bottom: $section-padding-sm;
+	@include media-breakpoint-up(lg) { 
+		padding-top: $section-padding;
+		padding-bottom: $section-padding;
+	}
+}
+
+.container-fluid,
+.layout-container {
+	padding-left: 15px;
+	padding-right: 15px;
+
+	@include media-breakpoint-up(xl) {
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+
+	@media screen and (min-width: 1600px) {
+		padding-left: 100px;
+		padding-right: 100px;
+	}
+
+	@media screen and (min-width: 2000px) {
+		padding-left: 200px;
+		padding-right: 200px;
+		max-width: 2000px;
+		margin: 0 auto;
+	}
+}
+
+#index {
+	.layout-container {
+		max-width: 100%;
+		padding: 0 !important;
+		margin: 0 !important;
+	}
+}
+
+/* 1.1 Colori */
+.bg-light-medium {
+	background-color: $gray-300;
+}
+
+.bg-black {
+	background-color: black;
+}
+
+/* 2. Font e titoli */
+.h1 {
+	font-size: 28px !important;
+	@media screen and (min-width: 758px) {
+		font-size: 32px !important;
+	}
+	line-height: normal;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.h2 {
+	font-size: 24px !important;
+	@media screen and (min-width: 758px) {
+		font-size: 28px !important;
+	}
+	line-height: normal;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.h3 {
+	font-size: 21px !important;
+	line-height: normal;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+/* 3. Menu e Header */
+
+/* 3.1 Menu */
+.l-header {
+	margin: 0;
+	box-shadow: none;
+}
+
+.header-top{
+	padding-top: 0.9rem;
+	padding-bottom: 0.9rem;
+}
+
+.header__logo {
+	.logo {
+		width: 100%;
+		max-width: 200px;
+	}
+}
+
+.menu-sub{	
+	.menu-sub__content{
+		ul{
+			border-radius: $border-radius;
+			@include media-breakpoint-up(xl) {
+				padding: 20px;
+			}
+		}		
+	}
+}
+
+/* 3.2 Bredcrumbs */
+.breadcrumbs-nav{
+	background:  $light;	
+	.breadcrumb {
+		margin: 0;
+		justify-content: center;
+		.breadcrumb-item{
+			a, span{
+				font-size: $small-font-size;
+				text-transform: uppercase;				
+			}
+			& + .breadcrumb-item::before {
+				content: '|';
+				opacity: .75;
+			}
+		}
+	}
+}
+
+
+/* 4. Wrapper */
+.page-wrapper{
+	border: none;
+}
+.l-wrapper {
+	width: 100%;
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+/* 5. Bottoni */
+.btn:not(.search-widget__btn):not(.js-touchspin) {
+	padding: 14px 20px;
+	border-radius: $border-radius;
+	text-transform: uppercase;
+	font-size: $small-font-size;
+	font-weight: bold;
+	min-width: 120px;
+
+	&.btn-primary {
+		background-color: $primary;
+		color: #ffffff;
+		border: 1px solid $primary;
+
+		&:hover {
+			background-color: transparent;
+			color: $primary;
+			border: 1px solid $primary;
+		}
+	}
+
+	&.btn-white {
+		background-color: #ffffff;
+		color: $primary;
+		border: 1px solid #ffffff;
+
+		&:hover {
+			background-color: transparent;
+			color: #ffffff;
+			border: 1px solid #ffffff;
+		}
+	}
+
+	&.focus, &:focus{
+		box-shadow: none!important;
+		outline: none!important;
+	}
+}
+
+/* 6. Prodotto */
+.product-flag {
+	margin: 0 5px 5px 0;
+	border-radius: $border-radius;
+	font-size: 12px;
+	padding: 4px 6px;
+}
+
+/* 6.1. Miniatura prodotto */
+.product-miniature {
+	.product-flags {
+		margin-left: 15px;
+		margin-top: 15px;
+	}
+
+	.product__card-desc {
+		justify-content: inherit;
+	}
+}
+
+/* 6.2 Pagina prodotto */
+#product {
+	.product-flags {
+		margin-left: 30px;
+		margin-top: 20px;
+	}
+}
+
+/* 7. Footer */
+#footer {
+	padding: 0;
+	margin: 0;
+}
+
+.footer-payment-section {
+	.footer-payment {
+		width: 45px;
+		height: 25px;
+	}
+
+	img {
+		transform: all .5s;
+
+		&:hover {
+			opacity: .7;
+		}
+	}
+}
+
+.legal-information {
+	color: #9f9f9f;
+
+	p,
+	a {
+		color: #9f9f9f;
+		transition: all .5s;
+	}
+
+	a:hover {
+		color: #ffffff;
+	}
+}
+
+@include media-breakpoint-up(lg) { 
+	.footer-menu {
+		margin-bottom: 0;
+	}
+}
+
+/* 8. Listing prodotti - Categorie */
+#category {
+	section#wrapper {
+		.layout-row {
+			
+		}
+	}
+}
+
+.category-description,
+.manufacturer-description {
+	p:last-child {
+		margin-bottom: 0;
+	}
+}
+
+/* 9. Checkout */
+#checkout {
+	.checkout-step {
+		margin-bottom: 4px;
+	}
+
+	.card-header {
+		background-color: transparent;
+		border-bottom: none;
+	}
+}
+
+#order-confirmation {
+	.table__title-head {
+		font-weight: bold;
+	}
+
+	.order-confirmation-table {
+		padding: 0;
+		border: none;
+	}
+
+	.order-line {
+		align-items: center;
+	}
+
+	img {
+		width: 100%;
+		max-width: 140px;
+	}
+}
+
+/* 10. Login e Registrati */
+#authentication,
+#registration,
+#password {
+	.breadcrumbs-nav{
+		display: none;
+	}
+	.layout-container {
+		background-image: url('/themes/orange-theme-8/assets/img/default-login-background.jpg');
+		background-size: cover;
+		background-position: center;
+		background-blend-mode: multiply;
+		background-color: rgba($color: #000000, $alpha: 0.45);
+		padding: 0;
+		margin: 0 !important;
+		max-width: 100%;
+		width: 100%;
+
+		&>.row {
+			width: 100%;
+			min-height: calc(100vh - 250px);
+			justify-content: center;
+			margin-left: 0;
+			margin-right: 0;
+			align-items: center;
+			@include media-breakpoint-up(lg) { 
+				align-items: start;
+				padding-top: 100px;
+			}		
+			
+			.page-wrapper{
+				border: none;
+				box-shadow: 2px 2px 4px rgba($color: #000000, $alpha: 0.45);
+				header{
+					h1{
+						font-weight: bold;
+					}
+				}
+				.input-group-btn {
+					.btn {
+						padding: 7px 20px;
+						border-top-left-radius: 0;
+						border-bottom-left-radius: 0;
+					}
+				}
+			}
+		}
+
+		.page-header,
+		.page-footer {
+			background-color: transparent;
+			border: none;
+		}
+
+		.page-header {
+			padding-top: 50px;
+		}
+
+		.page-footer {
+			padding-bottom: 50px;
+		}
+
+			
+	}
+
+	.authentication-card {
+		@include media-breakpoint-up(lg) { 
+			min-width: 620px;
+			max-width: 100%;
+		}
+	}
+
+	.ps-alert-success {
+		padding: 0;
+		width: 100%;
+		margin: 0 auto;
+
+		@include media-breakpoint-up(lg) { 
+			max-width: 600px;
+		}
+	}
+}
+#registration{
+	.layout-container {
+		&>.row {
+			align-items: center;
+			padding-top: 0px;
+		}
+	}
+}
+
+/* 11. CMS */
+#cms {
+	.layout-container {
+		padding: 0;
+		margin: 0 !important;
+		max-width: 100%;
+		width: 100%;
+
+		&>.row {
+			width: 100%;
+		}
+	}
+}

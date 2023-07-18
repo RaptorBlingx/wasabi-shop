@@ -1,0 +1,109 @@
+/* 
+Orange-theme-8
+Author: OrangePix, Davide Mazzonetto
+
+Comandi:
+cd themes/orange-theme-8/_dev/
+npm run sass
+*/
+
+/* Indice: */
+/* 1. Custom */
+/* 3. Grid containers */
+/* 4. Color system */
+/* 5. Options */
+/* 6. Links */
+/* 7. Fonts */
+/* 8. Components */
+/* 9. Navs */
+/* 10. Pagination */
+/* 11. Modals */
+/* 12. tables */
+/* 13. scss-docs-start border-radius-variables */
+
+
+/* 1. Custom */
+$section-padding-sm: 42px;
+$section-padding: 70px;
+$screen-h-menu: calc(100vh - 180px);
+$font-size-section-title:32px;
+$line-height-section-title:38px;
+
+/* 3. Grid containers */
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1200px,
+  xxl: 1400px
+) !default;
+
+/* 4. Color system */
+$white:         #fff;
+$primary:       #0071bc;
+$secondary:       #00416d;
+$tertiary:         #002c49;
+$black:         #000;
+$gray-200:      #e9ecef;
+$gray-300 : #f1f1f1;
+$gray-400: #ced4da;
+
+/* 5. Options */
+$enable-rounded:            true;
+$enable-shadows:            true;
+
+/* 6. Links */
+$link-hover-decoration:     none;
+
+/* 7. Fonts */
+$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$headings-font-family:        'Noto Sans',$font-family-sans-serif;
+$font-size-base:              .88rem;
+$h1-font-size:                $font-size-base * 1.375;
+$h2-font-size:                $font-size-base * 1.25;
+$h3-font-size:                $font-size-base * 1.125;
+$h4-font-size:                $font-size-base * 1.125;
+$h5-font-size:                $font-size-base;
+$h6-font-size:                $font-size-base * 0.9375;
+$display1-size: 3.125rem;
+$display1-weight: 600;
+$display2-size: 2.188rem;
+$display2-weight: 400;
+$display3-size: 1.563rem;
+$display3-weight: 400;
+$display4-size: 1.25rem;
+$display4-weight: 400;
+$small-font-size:             $font-size-base * 0.875;
+
+/* 8. Components */
+$box-shadow:                  2px 2px 8px 0 rgba($black,.2);
+
+/* 9. Navs */
+$nav-tabs-border-width:             2px;
+$nav-tabs-border-color:             $gray-300 !default;
+$nav-tabs-link-hover-border-color:  transparent transparent $nav-tabs-border-color;
+$nav-tabs-link-active-color:        $primary;
+$nav-tabs-link-active-border-color: transparent transparent $primary;
+
+/* 10. Pagination */
+$pagination-border-color:           $gray-400;
+$pagination-disabled-border-color:  $gray-400;
+$pagination-hover-border-color:     $gray-400;
+
+/* 11. Modals */
+$modal-lg:                          990px;
+
+/* 12. tables */
+$table-bg : $white;
+
+/* 13. scss-docs-start border-radius-variables */
+$border-radius:               1rem !default;
+$border-radius-sm:            1rem !default;
+$border-radius-lg:            1.5rem !default;
+$border-radius-xl:            2rem !default;
+$border-radius-xxl:           2.5rem !default;
+$border-radius-pill:          50rem !default;
+
+
+
+
