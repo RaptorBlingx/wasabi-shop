@@ -27,30 +27,35 @@
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title text-center text-success w-100" id="blockcart-modal-label"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Product successfully added to your shopping cart' d='Shop.Theme.Checkout'}</h3>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
+        <button type="button" class="close js-add-to-cart-modal-close" data-dismiss="modal" aria-label="{l s='Close' d='Shop.Theme.Global'}">
           <span aria-hidden="true"><i class="material-icons">close</i></span>
         </button>
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-lg-6 divide-right">
+          <div class="col-12 divide-right">
             <div class="media">
-              <img class="product-image modal-cart__image" src="{$product.cover.medium.url}" alt="{$product.cover.legend}" width="{$product.cover.medium.width}" height="{$product.cover.medium.height}">
-              <div class="media-body">
-                <p class="h5 product-name modal-cart__name">{$product.name}</p>
-                <p class="product-price">{$product.price}</p>
-                  {hook h='displayProductPriceBlock' product=$product type="unit_price"}
-                  {foreach from=$product.attributes item="property_value" key="property"}
-                    <span>{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
-                  {/foreach}
-                <p>
-                  <span>{l s='Quantity:' d='Shop.Theme.Checkout'}&nbsp;<strong>{$product.cart_quantity}</strong></span>
-                </p>
+              <div class="row flex-nowrap align-items-center">
+                <div class="col pr-0 text-center">
+                  <img class="product-image modal-cart__image" src="{$product.cover.medium.url}" alt="{$product.cover.legend}">              
+                </div>
+                <div class="col pl-0">
+                  <div class="media-body">
+                    <p class="h5 product-name modal-cart__name">{$product.name}</p>
+                    <p class="product-price">{$product.price}</p>
+                      {hook h='displayProductPriceBlock' product=$product type="unit_price"}
+                      {foreach from=$product.attributes item="property_value" key="property"}
+                        <span>{l s='%label%:' sprintf=['%label%' => $property] d='Shop.Theme.Global'}<strong> {$property_value}</strong></span><br>
+                      {/foreach}
+                    <p>
+                      <span>{l s='Quantity:' d='Shop.Theme.Checkout'}&nbsp;<strong>{$product.cart_quantity}</strong></span>
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
+          <div class="col-12">
             <div class="cart-content">
                 {if $cart.products_count > 1}
                   <p class="cart-products-count">{l s='There are %products_count% items in your cart.' sprintf=['%products_count%' => $cart.products_count] d='Shop.Theme.Checkout'}</p>
@@ -76,8 +81,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Actions'}</button>
-        <a href="{$cart_url}" class="btn btn-primary"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
+        <!-- <button type="button" class="btn btn-outline-secondary js-add-to-cart-modal-close w-100" data-dismiss="modal">{l s='Continue shopping' d='Shop.Theme.Actions'}</button> -->
+        <a href="{$cart_url}" class="btn btn-primary w-100"><i class="material-icons rtl-no-flip">&#xE876;</i>{l s='Proceed to checkout' d='Shop.Theme.Actions'}</a>
       </div>
     </div>
   </div>

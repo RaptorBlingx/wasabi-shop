@@ -23,7 +23,7 @@
  * International Registered Trademark & Property of PrestaShop SA
  *}
 <!doctype html>
-<html lang="{$language.iso_code}" class="orangetheme8">
+<html lang="{$language.iso_code}" class="wasabi">
 
   <head>
     {block name='head'}
@@ -42,7 +42,7 @@
         {include file='catalog/_partials/product-activation.tpl'}
       {/block}
 
-      <header id="header" class="l-header">
+      <header id="header" class="l-header bg-primary">
         {block name='header'}
           {include file='_partials/header.tpl'}
         {/block}

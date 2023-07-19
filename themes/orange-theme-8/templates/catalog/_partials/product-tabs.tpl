@@ -1,5 +1,5 @@
-    <div class="tabs product-tabs card card-block">
-        <ul class="nav nav-tabs" role="tablist">
+    <div class="tabs product-tabs card card-block pb-0">
+        <ul class="nav nav-tabs flex-column flex-lg-row" role="tablist">
             {if $product.description}
                 <li class="nav-item">
                     <a
@@ -20,6 +20,7 @@
                         aria-controls="product-details"
                         {if !$product.description} aria-selected="true"{/if}>{l s='Product Details' d='Shop.Theme.Catalog'}</a>
             </li>
+           
             {if $product.attachments}
                 <li class="nav-item">
                     <a
@@ -40,10 +41,11 @@
                             aria-controls="extra-{$extraKey}">{$extra.title}</a>
                 </li>
             {/foreach}
+           
         </ul>
 
-        <div class="tab-content" id="tab-content">
-            <div class="tab-pane fade{if $product.description} show active{/if}" id="description" role="tabpanel">
+        <div class="tab-content py-2 py-xl-4 px-xl-5" id="tab-content">
+            <div class="tab-pane pt-4 px-0 px-xl-5 fade{if $product.description} show active{/if}" id="description" role="tabpanel">
                 {block name='product_description'}
                     <div class="product-description">{$product.description nofilter}</div>
                 {/block}
@@ -52,6 +54,8 @@
             {block name='product_details'}
                 {include file='catalog/_partials/product-details.tpl'}
             {/block}
+
+            
 
             {block name='product_attachments'}
                 {if $product.attachments}
@@ -71,6 +75,8 @@
                     </div>
                 {/if}
             {/block}
+
+            
 
             {foreach from=$product.extraContent item=extra key=extraKey}
             <div class="tab-pane fade {$extra.attr.class}" id="extra-{$extraKey}" role="tabpanel" {foreach $extra.attr as $key => $val} {$key}="{$val}"{/foreach}>

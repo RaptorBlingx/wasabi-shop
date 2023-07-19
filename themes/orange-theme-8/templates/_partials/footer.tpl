@@ -26,18 +26,18 @@
   <section class="bg-primary section-padding">
     <div class="container-fluid">
       <div class="row align-items-center">
-        <div class="col-12 col-xl-6 text-white">
+        <div class="col-12 col-xl flex-xl-nowrap text-center text-xl-left text-white">
           <h3 class="h2 text-white mb-2">Iscriviti alla nostra newsletter</h3>
           <p class="mb-0">Per restare sempre aggiornato su novità e promozioni esclusive</p>
         </div>
-        <div class="col-12 col-xl-6 text-center text-lg-right">
-            <a href="#" class="btn btn-white ">Iscriviti subito alla newsletter</a>
+        <div class="col-12 col-xl-auto text-center text-xl-right mt-3 mt-xl-0">
+            <a href="#" class="btn btn-outline-white ">Iscriviti subito alla newsletter</a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="bg-white py-4 border-top">
+  <section class="bg-light py-4 border-top">
     <div class="container-fluid py-3">
       <div class="row flex-lg-nowrap align-items-center">
         <div class="col-12 col-md-4 col-xl-4 mb-3 mb-md-0">

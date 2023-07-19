@@ -34,7 +34,5 @@
  
  {block name='page_content'}
    {widget name="contactform"}
-   <hr>
-   {widget name="ps_contactinfo" hook='displayLeftColumn'}
  {/block}
  

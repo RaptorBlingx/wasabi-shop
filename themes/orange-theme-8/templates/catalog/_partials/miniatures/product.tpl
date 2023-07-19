@@ -24,9 +24,9 @@
  *}
 {block name='product_miniature_item'}
     <article class="product-miniature js-product-miniature mb-3" data-id-product="{$product.id_product}" data-id-product-attribute="{$product.id_product_attribute}">
-        <div class="card card-product">
+        <div class="card card-product position-relative overflow-hidden" style="border-radius: 28px;">
 
-            <div class="card-img-top product__card-img">
+            <div class="card-img-top product__card-img rounded-0">
                 {block name='product_thumbnail'}
                     <a href="{$product.url}" class="thumbnail product-thumbnail rc ratio1_1">
                         {if $product.cover}

@@ -53,7 +53,7 @@
     {if $model->getList()->getMoreLink() and $model->getList()->more_link}
         <div class="row mt-5">
             <div class="col-12 text-center">
-                <a class="btn btn-primary" href="{$model->getList()->getMoreLink() nofilter}">
+                <a class="btn btn-outline-primary" href="{$model->getList()->getMoreLink() nofilter}">
                     {$model->more_link|escape:'htmlall':'UTF-8'}
                 </a>
             </div>

@@ -1,11 +1,22 @@
-<div class="tab-pane fade{if !$product.description} show active{/if}"
+<div class="tab-pane pt-4 px-4 px-xl-5  fade{if !$product.description} show active{/if}"
      id="product-details"
      data-product="{$product.embedded_attributes|json_encode}"
      role="tabpanel"
   >
+  <div class="row align-items-center text-left">
+      <div class="col-12 mb-4">
+          <h2 class="text-primary font-weight-bold">Dettagli del prodotto:</h2>
+      </div>
+  </div>
   {block name='product_reference'}
     {if isset($product_manufacturer->id)}
-      <div class="product-manufacturer">
+      <div class="product-manufacturer mb-4">
+        {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
+          <div class="product-reference mb-3">
+            <label class="label"><strong>Codice di riferimento:</strong></label>
+            <span>{$product.reference_to_display}</span>
+          </div>
+        {/if}
         {if isset($manufacturer_image_url)}
           <a href="{$product_brand_url}">
             <img src="{$manufacturer_image_url}" class="img img-thumbnail manufacturer-logo" alt="{$product_manufacturer->name}">
@@ -18,12 +29,7 @@
         {/if}
       </div>
     {/if}
-    {if isset($product.reference_to_display) && $product.reference_to_display neq ''}
-      <div class="product-reference">
-        <label class="label">{l s='Reference' d='Shop.Theme.Catalog'} </label>
-        <span>{$product.reference_to_display}</span>
-      </div>
-    {/if}
+    
   {/block}
 
   {block name='product_quantities'}

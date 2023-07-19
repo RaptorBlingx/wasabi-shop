@@ -27,28 +27,36 @@
 
 
     {block name='product_price'}
-      <div class="product__product-price product-price {if $product.has_discount}has-discount{/if}">
-      {block name='product_discount'}
+      <div class="product__product-price product-price {if $product.has_discount}has-discount{/if} row align-items-center">
+      
+
+        <div class="current-price col-auto">
+          <span class="current-price-display price{if $product.has_discount} current-price-discount{/if}">{$product.price}</span>
+          
+        </div>
+
+        {block name='product_discount'}
           {if $product.has_discount}
-              <span class="product-discount">
+              <span class="product-discount col-auto px-0">
                   {hook h='displayProductPriceBlock' product=$product type="old_price"}
                   <span class="regular-price">{$product.regular_price}</span>
               </span>
           {/if}
       {/block}
 
-        <div class="current-price">
-          <span class="current-price-display price{if $product.has_discount} current-price-discount{/if}">{$product.price}</span>
-          {if $product.has_discount}
-            {if $product.discount_type === 'percentage'}
-              <span class="discount discount-percentage">{l s='Save %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]}</span>
-            {else}
-              <span class="discount discount-amount">
-                  {l s='Save %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]}
-              </span>
-            {/if}
+      <div class="current-price col-auto">
+        {if $product.has_discount}
+          {if $product.discount_type === 'percentage'}
+            <span class="discount discount-percentage">{l s='- %percentage%' d='Shop.Theme.Catalog' sprintf=['%percentage%' => $product.discount_percentage_absolute]}</span>
+          {else}
+            <span class="discount discount-amount">
+                {l s='- %amount%' d='Shop.Theme.Catalog' sprintf=['%amount%' => $product.discount_to_display]}
+            </span>
           {/if}
-        </div>
+        {/if}
+      </div>
+
+        
 
         {block name='product_unit_price'}
           {if $displayUnitPrice}

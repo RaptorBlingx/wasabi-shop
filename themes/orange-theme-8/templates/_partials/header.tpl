@@ -29,7 +29,7 @@
 {/block}
 
 {block name='header_nav'}
-    <div class="header-nav u-bor-bot">
+    <div class="header-nav u-bor-bot d-none">
         <div class="header__container container-fluid">
             <div class="row py-2">
                 <div class="col">

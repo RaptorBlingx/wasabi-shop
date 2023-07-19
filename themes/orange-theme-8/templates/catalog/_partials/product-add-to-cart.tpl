@@ -41,9 +41,9 @@
           >
         </div>
 
-        <div class="add col-auto">
+        <div class="add col-12 col-lg-auto">
           <button
-            class="btn btn-primary add-to-cart btn-lg btn-block btn-add-to-cart js-add-to-cart"
+            class="btn btn-primary add-to-cart btn-lg btn-block btn-add-to-cart js-add-to-cart js-add-to-cart-modal-trigger ml-lg-4"
             data-button-action="add-to-cart"
             type="submit"
             {if !$product.add_to_cart_url}
@@ -51,7 +51,7 @@
             {/if}
           >
            <span class="btn-add-to-cart__spinner" role="status" aria-hidden="true"></span>
-            {l s='Add to cart' d='Shop.Theme.Actions'}
+            <i class="material-icons mr-2" style="font-size: 18px;">shopping_cart</i>{l s='Add to cart' d='Shop.Theme.Actions'}
           </button>
         </div>
           {hook h='displayProductActions' product=$product}
@@ -59,7 +59,7 @@
     {/block}
 
     {block name='product_availability'}
-      <span id="product-availability">
+      <span id="product-availability" class="mt-4 d-block">
         {if $product.show_availability && $product.availability_message}
           {if $product.availability == 'available'}
             <i class="material-icons rtl-no-flip product-available text-success">&#xE5CA;</i>

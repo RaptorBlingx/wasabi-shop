@@ -29,7 +29,7 @@
         <a rel="nofollow" href="{$cart_url}" class="u-link-body">
       {/if}
         <span><i class="material-icons blockcart__icon">shopping_cart</i></span>
-        <span class="d-none d-xl-inline blockcart__label small">{l s='Cart' d='Shop.Theme.Checkout'}</span>
+        <span class="visible--desktop blockcart__label small">{l s='Cart' d='Shop.Theme.Checkout'}</span>
         {if $cart.products_count > 0}
           <span class="cart-products-count small blockcart__count cart-notification-circle">{$cart.products_count}</span>
         {/if}
