@@ -24,7 +24,7 @@
  *}
 {block name='header'}
   {block name='header_nav'}
-      <div class="header-nav header-nav--checkout container d--flex-between u-a-i-c">
+      <div class="header-nav header-nav--checkout container d--flex-between u-a-i-c bg-primary">
         <a href="{$urls.base_url}" class="header__logo header__logo--checkout mx-auto mt-3">
           <img class="logo " src="{$shop.logo}" alt="{$shop.name} {l s='logo' d='Shop.Theme.Global'}">
         </a>

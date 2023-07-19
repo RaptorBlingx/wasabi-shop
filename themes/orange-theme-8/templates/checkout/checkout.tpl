@@ -37,7 +37,7 @@
     {hook h='displayAfterBodyOpeningTag'}
     {/block}
 
-    <header id="header" class="l-header">
+    <header id="header" class="l-header bg-primary">
       {block name='header'}
       {include file='checkout/_partials/header.tpl'}
       {/block}
