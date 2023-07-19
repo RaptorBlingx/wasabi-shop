@@ -105,11 +105,11 @@
                            id="product_customization_id">
                     {if !$product.add_to_cart_url}
                         <button class="btn btn-muted js-add-to-cart-modal-trigger w-100 px-0" data-button-action="add-to-cart" type="submit">
-                            <i class="material-icons mr-2">shopping_cart</i>Non disponibile
+                            <i class="material-icons mr-2">shopping_cart</i>{l s='Not available' d='Shop.OrangethemeCatalog'}
                         </button>
                     {else}
                         <button class="btn btn-secondary js-add-to-cart-modal-trigger w-100 px-0" data-button-action="add-to-cart" type="submit">
-                            <i class="material-icons mr-2">shopping_cart</i>Aggiungi al carrello
+                            <i class="material-icons mr-2">shopping_cart</i>{l s='Add to cart' d='Shop.OrangethemeCatalog'}
                         </button>
                     {/if}
                 </form>

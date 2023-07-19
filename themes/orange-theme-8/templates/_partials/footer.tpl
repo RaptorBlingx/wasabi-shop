@@ -57,45 +57,28 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-lg-3">
-          <p class="footer__title footer__title--desktop">Prodotti</p>
-          <a href="#footerMenu1" class="footer__title--mobile footer__title" data-toggle="collapse">Prodotti</a>
+          <p class="footer__title footer__title--desktop">Marketplace</p>
+          <a href="#footerMenu1" class="footer__title--mobile footer__title" data-toggle="collapse">Marketplace</a>
           <ul id="footerMenu1" class="footer-menu collapse show" data-collapse-hide-mobile="">
             <li>
-              <a id="link-product-page-prices-drop-1" class="cms-page-link" href="#" title="Our special products">
-                Offerte
-              </a>
-            </li>
-            <li>
-              <a id="link-product-page-new-products-1" class="cms-page-link" href="#"
-                title="I nostri nuovi prodotti, gli ultimi arrivi">
-                Nuovi prodotti
-              </a>
-            </li>
-            <li>
-              <a id="link-product-page-best-sales-1" class="cms-page-link" href="#"
-                title="I nostri prodotti più venduti">
-                Più venduti
+              <a href="/shops" title="Condizioni di vendita" class="cms-page-link">
+                Shops
               </a>
             </li>
           </ul>
         </div>
         <div class="col-lg-3">
-          <p class="footer__title footer__title--desktop">Chi siamo</p>
-          <a href="#footerMenu2" class="footer__title--mobile footer__title" data-toggle="collapse">Chi siamo</a>
+          <p class="footer__title footer__title--desktop">Wasabi</p>
+          <a href="#footerMenu2" class="footer__title--mobile footer__title" data-toggle="collapse">Wasabi</a>
           <ul id="footerMenu2" class="footer-menu collapse show" data-collapse-hide-mobile="">
             <li>
               <a id="link-cms-page-1-2" class="cms-page-link" href="{$link->getCMSLink('4')|escape:'html'}" title="Chi siamo">
-                Chi siamo
+                {Tools::getCMSTitle(4, $language.id)}
               </a>
             </li>
             <li>
-              <a id="link-cms-page-2-2" class="cms-page-link" href="#" title="  Blog">
-                Blog
-              </a>
-            </li>
-            <li>
-              <a id="link-cms-page-3-2" class="cms-page-link" href="#" title="Lavora con noi">
-                Lavora con noi
+              <a id="link-cms-page-3-2" class="cms-page-link" href="{$link->getCMSLink('6')|escape:'html'}" title="Lavora con noi">
+                {Tools::getCMSTitle(6, $language.id)}
               </a>
             </li>
             <li>
@@ -116,30 +99,28 @@
             </li>
             <li>
               <a href="{$link->getCMSLink('1')|escape:'html'}" title="Spedizioni" rel="nofollow">
-                Spedizioni
+                {Tools::getCMSTitle(1, $language.id)}
               </a>
             </li>
             <li>
               <a href="{$link->getCMSLink('5')|escape:'html'}" title="Pagamenti" rel="nofollow">
-                Pagamenti
+                {Tools::getCMSTitle(5, $language.id)}
               </a>
             </li>
             <li>
               <a href="{$link->getCMSLink('3')|escape:'html'}" title="Condizioni di vendita" rel="nofollow">
-                Condizioni di vendita
+                {Tools::getCMSTitle(3, $language.id)}
               </a>
             </li>
           </ul>
         </div>
         <div class="block-contact col-lg-3">
-          <p class="footer__title footer__title--desktop">Contatti</p>
+          <p class="footer__title footer__title--desktop">Support</p>
           <a href="#footerMenu4" class="footer__title--mobile footer__title" data-toggle="collapse">Contatti</a>
           <div id="footerMenu4" class="footer-menu account-list collapse show" data-collapse-hide-mobile="">
             Via Milano 94
             <br>
             Biella (BI) 13900 - Italy
-            <br>
-            Chiamaci: <a href="#">+39 XXXXXXXXXX</a>
             <br>
             Mail: <a href="#">info@orangepix.it</a>
           </div>

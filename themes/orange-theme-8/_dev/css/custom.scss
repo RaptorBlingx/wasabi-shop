@@ -55,7 +55,7 @@
         background-color: #e5e9eb !important;
     }
 
-    /* 1.1 BUTTONS */
+    /* 1.1 BUTTONS */    
     .btn:not(.search-widget__btn):not(.js-touchspin) {
         border-radius: 50rem !important;
 
@@ -242,6 +242,10 @@
     }
 
     /* 3.2 ARP CAROUSEL */
+    .arpl-section {
+        background-color: transparent!important;
+        border: none!important;
+    }
     #arpl-group-1,
     #arpl-group-3 {
         background-color: rgba($color: #e5e9eb, $alpha: 1);
@@ -266,6 +270,13 @@
     }
 
     #product {
+        .layout-container{
+            margin-top: 0!important
+        }
+        .bootstrap-touchspin{
+            box-shadow: none;
+            border: none;
+        }
         .blockreassurance_product {
             background-color: $primary;
             padding: 40px;
@@ -273,13 +284,11 @@
             display: flex;
             flex-wrap: nowrap;
             justify-content: center;
-
             div {
                 width: 100%;
                 flex: 0 0 auto;
                 max-width: 33%;
                 text-align: center;
-
                 span {
                     display: block;
                     width: 100%;
@@ -294,7 +303,6 @@
                         margin: 0 auto;
                     }
                 }
-
                 p {
                     display: block;
                     width: 100%;
@@ -307,6 +315,80 @@
 
             .clearfix {
                 display: none;
+            }
+        }
+    }
+
+    /* 3.4 MARKETPLACE */
+    #module-ets_marketplace-billing,
+    #module-ets_marketplace-orders,
+    #module-ets_marketplace-products,
+    #module-ets_marketplace-myseller{
+        .category-tree{
+            input.category{
+                position: absolute;
+                left: 0;
+            }
+            input.default-category{
+                position: absolute;
+                right: 20px;
+                top: 5px;
+            }
+        }
+        .btn, input, .input-group-text{
+            border-radius: 0!important;
+        }
+    }
+    #module-ets_marketplace-myseller{
+        .link-item{
+            i{
+                &:before{
+                    min-width: 80px!important;
+                    min-height: 80px!important;
+                }
+            }
+        }
+    }
+    .shop-detail-marketplace {
+        .layout-container {
+            margin: 0 !important;
+            width: 100% !important;
+            max-width: 100% !important;
+
+            .seller-banner {
+                max-height: 500px;
+
+                img {
+                    max-height: 500px;
+                    object-fit: cover;
+                }
+            }
+
+            .ets_myshop_right {
+                .product-miniature {
+                    margin-bottom: 10px !important;
+                    @media screen and (max-width: 767.9px) {
+                        flex: 0 0 auto;
+                    }
+                }
+            }
+            .ets_mp_tabs {
+                a.tab_link.active {
+                    @media screen and (max-width: 479.9px) {
+                        background-color: $primary;
+                        border-color: $primary;
+                       
+                    }
+                    @media screen and (min-width: 480px) {
+                        color: $primary;
+                    }
+                    &::before {
+                        background: $primary;
+                    }
+                }
+                a.tab_link.active + span.ets_mp_block-categories_arrow::before {
+                    border-top-color: $primary;
+                }
             }
         }
     }
@@ -412,7 +494,7 @@
             z-index: 2;
             top: 0;
             left: 0;
-            background-color: rgba($color: #000000, $alpha: .2);
+            background-color: rgba($color: #152d37, $alpha: .5);
         }
 
         .section-background-image {
@@ -447,16 +529,13 @@
 
     /* 6. PRODUCT */
     #product {
-
         .layout-container {
             max-width: 100%;
             margin-bottom: 0 !important;
         }
-
         .wishlist-button-add {
             display: none;
         }
-
         .price {
 
             &.current-price-discount,
@@ -464,11 +543,9 @@
                 font-size: 32px;
             }
         }
-
         .product-discount {
             font-size: 21px;
         }
-
         .discount {
             color: #fff;
             background-color: $primary;
@@ -476,12 +553,10 @@
             padding: .25rem;
             font-size: 1.2rem;
         }
-
         .regular-price {
             font-size: .85rem;
             font-weight: 400;
         }
-
     }
 
     /* 7. CMS */
@@ -489,20 +564,17 @@
         background-color: $primary;
         padding: 125px 0;
         text-align: center;
-
         h1 {
             font-weight: bold;
             font-size: 32px;
             color: white;
         }
     }
-
     #cms {
         .breadcrumbs-nav {
             background: $primary;
             border-bottom: 1px solid rgba($color: #fff, $alpha: .1);
             border-top: 1px solid rgba($color: #fff, $alpha: .1);
-
             ol {
                 li {
                     &::before {

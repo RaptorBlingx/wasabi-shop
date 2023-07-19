@@ -26,13 +26,11 @@
 
   {block name='content'}
 
-{if $product.is_virtual == 1}
-PRODOTTO VIRTUALE TEMPLATE ALTERNATIVO COMING SOON
-{/if}
-  <section id="main">
+
+  <section id="main" class="{if $product.is_virtual == 1}bg-light{/if} pt-5">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xl-6 pr-xl-5">
+        <div class="{if $product.is_virtual == 1}col-xl-5{else}col-xl-6{/if} pr-xl-5">
           {block name='page_content_container'}
           <section class="page-content--product" id="content">
             {block name='page_content'}
@@ -46,7 +44,7 @@ PRODOTTO VIRTUALE TEMPLATE ALTERNATIVO COMING SOON
           </section>
           {/block}
         </div>
-        <div class="col-xl-6 ">
+        <div class="{if $product.is_virtual == 1}col-xl-7{else}col-xl-6{/if} ">
           {block name='page_header_container'}
           {block name='page_header'}
           <h2 class="text-primary mt-3 text-uppercase"><small>{$product.category_name}</small></h2>
