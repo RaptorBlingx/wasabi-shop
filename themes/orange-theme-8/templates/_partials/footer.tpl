@@ -27,11 +27,11 @@
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-12 col-xl flex-xl-nowrap text-center text-xl-left text-white">
-          <h3 class="h2 text-white mb-2">Iscriviti alla nostra newsletter</h3>
-          <p class="mb-0">Per restare sempre aggiornato su novità e promozioni esclusive</p>
+          <h3 class="h2 text-white mb-2">Sign up to our newsletter</h3>
+          <p class="mb-0">To stay up to date on news and exclusive promotions</p>
         </div>
         <div class="col-12 col-xl-auto text-center text-xl-right mt-3 mt-xl-0">
-            <a href="#" class="btn btn-outline-white ">Iscriviti subito alla newsletter</a>
+            <a href="#" class="btn btn-outline-white ">Sign up for the newsletter now</a>
         </div>
       </div>
     </div>
@@ -41,13 +41,13 @@
     <div class="container-fluid py-3">
       <div class="row flex-lg-nowrap align-items-center">
         <div class="col-12 col-md-4 col-xl-4 mb-3 mb-md-0">
-          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Condividi su Facebook</a>
+          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Share on Facebook</a>
         </div>
         <div class="col-12 col-md-4 col-xl-4 mb-3 mb-md-0">
-          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Condividi su Whatsapp</a>
+          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Share on Whatsapp</a>
         </div>
         <div class="col-12 col-md-4 col-xl-4 mb-0 mb-md-0">
-          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Condividi su Twitter</a>
+          <a href="#" class="btn btn-primary btn-primary-outline-hover w-100" target="_blank">Share on Twitter</a>
         </div>
       </div>
     </div>
@@ -116,7 +116,7 @@
         </div>
         <div class="block-contact col-lg-3">
           <p class="footer__title footer__title--desktop">Support</p>
-          <a href="#footerMenu4" class="footer__title--mobile footer__title" data-toggle="collapse">Contatti</a>
+          <a href="#footerMenu4" class="footer__title--mobile footer__title" data-toggle="collapse">Support</a>
           <div id="footerMenu4" class="footer-menu account-list collapse show" data-collapse-hide-mobile="">
             Via Milano 94
             <br>

@@ -50,7 +50,7 @@
     <ul class="nav nav-tabs nav-tabs--center my-2 nav-tabs-info border-0 row w-100 flex-wrap checkout-tabs mx-auto" role="tablist">
       
       <li class="nav-item col-12 col-lg-6">
-        <small class="d-block text-center mb-2 text-dark">{l s='Se hai già effettuato un ordine o ti sei già registrato puoi accedere al tuo account.' d='Shop.OrangethemeBlog'}</small>
+        <small class="d-block text-center mb-2 text-dark">{l s='If you are already registered, access from here.' d='Shop.OrangethemeCheckout'}</small>
         <a
           class="btn btn-primary my-1 w-100"
           data-toggle="tab"
@@ -59,12 +59,12 @@
           aria-controls="checkout-login-form"
           aria-selected="false"
         >          
-          {l s='Sono già registrato' d='Shop.OrangethemeBlog'}
+          {l s='I\'m already registered' d='Shop.OrangethemeCheckout'}
         </a>
       </li>
 
       <li class="nav-item col-12 col-lg-6 mt-4 mt-lg-0">
-        <small class="d-block text-center mb-2 text-dark">{l s='Registrati su OrangeTheme8, crea un account o acquista come ospite.' d='Shop.OrangethemeBlog'}</small>
+        <small class="d-block text-center mb-2 text-dark">{l s='Register on Wasabi, create an account or shop as a guest.' d='Shop.OrangethemeCheckout'}</small>
         <a
           class="btn  btn-primary my-1 w-100"
           data-toggle="tab"
@@ -74,9 +74,9 @@
           aria-selected="false"
           >
           {if $guest_allowed}
-            {l s='Sono un nuovo utente' d='Shop.OrangethemeBlog'}
+            {l s='I am a new user' d='Shop.OrangethemeCheckout'}
           {else}
-            {l s='Sono un nuovo utente' d='Shop.OrangethemeBlog'}
+            {l s='I am a new user' d='Shop.OrangethemeCheckout'}
           {/if}
         </a>
       </li>
