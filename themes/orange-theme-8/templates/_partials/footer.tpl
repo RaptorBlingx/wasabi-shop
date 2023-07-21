@@ -118,11 +118,11 @@
           <p class="footer__title footer__title--desktop">Support</p>
           <a href="#footerMenu4" class="footer__title--mobile footer__title" data-toggle="collapse">Support</a>
           <div id="footerMenu4" class="footer-menu account-list collapse show" data-collapse-hide-mobile="">
-            Via Milano 94
+            Via Corradino Sella 10
             <br>
-            Biella (BI) 13900 - Italy
+            13900 Biella (BI) Italy
             <br>
-            Mail: <a href="#">info@orangepix.it</a>
+            Mail: <a href="#">info@sizeyou.it</a>
           </div>
         </div>
       </div>
@@ -144,7 +144,6 @@
               <img src="{$urls.img_url}payments/Klarna.svg" class="footer-payment" alt="Klarna">
               <img src="{$urls.img_url}payments/Soisy.svg" class="footer-payment" alt="Soisy">
               <img src="{$urls.img_url}payments/ApplePay.svg" class="footer-payment" alt="Apple Pay">
-              <img src="{$urls.img_url}payments/BonificoBancario.svg" class="footer-payment" alt="Bonifico">
               <img src="{$urls.img_url}payments/TaxFree.svg" class="footer-payment" alt="Taxfree">
             </a>
           </div>
@@ -158,7 +157,7 @@
       <div class="row justify-content-center align-items-center ">
         <div class="col-12 col-xl text-center text-xl-left text-footer-legal ">
             <small>
-              Copyright © 2023 Orangepix OrangeTheme8 | P.IVA 02582120024
+              Copyright © 2023 WASABI - I-DEAL S.R.L. | P.Iva 02528250026
               <br>
               <a href="#" class="text-footer-legal" title="Company Info">Company info</a> | 
               <a href="#" class="text-footer-legal" title="Privacy policy">Privacy policy</a> |
