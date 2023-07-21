@@ -70,7 +70,7 @@ var product_comment_grade_url  ='{$product_comment_grade_url nofilter}';
     <div class="container-fluid">
         
     <div id="js-product-list-header" class="mx-auto">
-        <div class="block-seller row mx-auto justify-content-center">
+        <div class="block-seller row mx-auto justify-content-center flex-nowrap">
             {if !$reported}
                 {if !$customer_logged}
                     <div class="col-auto">
@@ -81,7 +81,7 @@ var product_comment_grade_url  ='{$product_comment_grade_url nofilter}';
                     </div>
                 {/if}
             {/if}
-            <div class="seller-cover col">
+            <div class="seller-cover col-auto">
                 {if $seller->shop_logo}
                     <img style="width:120px" src="{$link->getMediaLink("`$smarty.const.__PS_BASE_URI__`img/mp_seller/`$seller->shop_logo|escape:'htmlall':'UTF-8'`")}" alt="{$seller->shop_name|escape:'html':'UTF-8'}" />
                 {/if}
@@ -108,7 +108,7 @@ var product_comment_grade_url  ='{$product_comment_grade_url nofilter}';
                     </div>
                 {/if}
             </div>
-            <div class="block-seller-inner{if isset($seller_group) && $seller_group} block-seller_has-group{/if}">
+            <div class="col block-seller-inner{if isset($seller_group) && $seller_group} block-seller_has-group{/if}">
                 <div class="row justify-content-center">
                     <div class="col-auto">
                         <h1 class="h1">{$seller->shop_name|escape:'html':'UTF-8'}</h1>                
