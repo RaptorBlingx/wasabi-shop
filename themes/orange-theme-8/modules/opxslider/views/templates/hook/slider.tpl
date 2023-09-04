@@ -10,7 +10,7 @@
 *}
  
 {if $homeslider.slides}
-<header id="dSlider" class="dSlider-text">
+<div id="dSlider" class="dSlider-text">
     <div id="js_dSlider" class="dSlider" data-arrows="true" data-autoplay="true">
       {foreach from=$homeslider.slides item=slide}
         {$img_url = {$slide.image_url}}
@@ -18,31 +18,28 @@
             {$img_url = $slide.image_mobile_url}
         {/if}
         {$isUrlValid = !empty($slide.url) && !in_array($slide.url,['#','/#','http://#','https://#'])}
-        <div class="dSlider-slide row align-items-center justify-content-center">
-          {if empty($slide.cta) && $isUrlValid}
-            <a href="{$slide.url nofilter}" class="position-absolute w-100 h-100" style="z-index: 3" ></a>
-          {/if}
-          <img src="{$img_url}" alt="{$slide.title}">   
-          <aside class="dOverlay"></aside>       
-          <div class="dSlider-content col-12 col-xl-11 p-0 m-0">
-            <div>
-                {if $slide.title || $slide.description }
-                    {if $slide.legend && $slide.legend!=''}<h5 class="dSlider-subtitle text-white mb-0">{$slide.legend}</h5>{/if}
-                    <h2 class="dSlider-title text-white mb-0 py-3">{$slide.title}</h2>
-                    <div class="dSlider-description text-white">{$slide.description nofilter}</div>
-                    {if !empty($slide.cta) && $isUrlValid}
-                        <a href="{$slide.url nofilter}" class="btn btn-outline-white mt-xl-2">
-                            {$slide.cta}
-                        </a>
-                    {/if}
-                {/if}
+        <div>
+          <div class="dSlider-slide row align-items-center justify-content-center">
+            <img src="{$img_url}" alt="{$slide.title}">   
+            <aside class="dOverlay"></aside>       
+            <div class="dSlider-content col-12 col-xl-11 p-0 m-0">
+              <div>
+                  {if $slide.title || $slide.description }
+                      {if $slide.legend && $slide.legend!=''}<h5 class="dSlider-subtitle text-white mb-0 pb-3">{$slide.legend}</h5>{/if}
+                      <h2 class="dSlider-title text-white mb-0 pb-3">{$slide.title}</h2>
+                      <div class="dSlider-description text-white">{$slide.description nofilter}</div>
+                      {if !empty($slide.cta) && $isUrlValid}
+                          <a href="{$slide.url nofilter}" class="btn btn-outline-white mt-xl-2">
+                              {$slide.cta}
+                          </a>
+                      {/if}
+                  {/if}
+              </div>
             </div>
           </div>
         </div>
       {/foreach}
   </div>
-</header>
+</div>
 {/if} 
-
-
 
