@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"></head>
+<body><p>{**
+ * 2007-2017 PrestaShop
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License 3.0 (AFL-3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * https://opensource.org/licenses/AFL-3.0
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@prestashop.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade PrestaShop to newer
+ * versions in the future. If you wish to customize PrestaShop for your
+ * needs please refer to http://www.prestashop.com for more information.
+ *
+ * @author    PrestaShop SA <contact>
+ * @copyright 2007-2017 PrestaShop SA
+ * @license   https://opensource.org/licenses/AFL-3.0 Academic Free License 3.0 (AFL-3.0)
+ * International Registered Trademark &amp; Property of PrestaShop SA
+ *}
+<span class="product-quantity">{$product.quantity}</span>
+<span class="product-name">{$product.name}</span>
+<span class="product-price">{$product.price}</span>
+<a class="remove-from-cart" rel="nofollow" href="%7B%24product.remove_from_cart_url%7D" data-link-action="remove-from-cart" title="{l s=&#039;remove from cart&#039; d=&#039;Shop.Theme.Actions&#039;}">
+    {l s=&#039;Remove&#039; d=&#039;Shop.Theme.Actions&#039;}
+</a>
+{if $product.customizations|count}
+    <div class="customizations">
+        <ul>
+            {foreach from=$product.customizations item=&#039;customization&#039;}
+                <li>
+                    <span class="product-quantity">{$customization.quantity}</span>
+                    <a href="%7B%24customization.remove_from_cart_url%7D" title="{l s=&#039;remove from cart&#039; d=&#039;Shop.Theme.Actions&#039;}" class="remove-from-cart" rel="nofollow">{l s=&#039;Remove&#039; d=&#039;Shop.Theme.Actions&#039;}</a>
+                    <ul>
+                        {foreach from=$customization.fields item=&#039;field&#039;}
+                            <li>
+                                <span>{$field.label}</span>
+                                {if $field.type == &#039;text&#039;}
+                                    <span>{$field.text nofilter}</span>
+                                {elseif $field.type == &#039;image&#039;}
+                                    <img src="%7B%24field.image.small.url%7D">
+                                {/if}
+                            </li>
+                        {/foreach}
+                    </ul>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+</contact></p></body>
+</html>
