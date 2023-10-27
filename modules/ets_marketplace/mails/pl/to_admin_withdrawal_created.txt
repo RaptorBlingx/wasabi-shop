@@ -1,0 +1,8 @@
+Witaj administratorze,
+Złożono nowe żądanie wypłaty. Zapoznaj się ze szczegółowymi informacjami dotyczącymi tego wniosku i przetwórz go:
+Identyfikator wypłaty: {withdrawal_ID}
+Kwota wypłaty: {amount}
+Od sprzedawcy: {seller_name}
+Forma płatności: {payment_method}
+Data utworzenia: {created_date}
+Data przetworzenia (szacunkowa): {processed_date}

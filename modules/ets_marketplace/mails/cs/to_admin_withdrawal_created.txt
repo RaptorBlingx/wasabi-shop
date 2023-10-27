@@ -1,0 +1,8 @@
+Ahoj admine,
+Byla podána nová žádost o výběr. Přečtěte si prosím podrobné informace o této žádosti a zpracujte ji:
+ID výběru: {withdrawal_ID}
+Částka výběru: {amount}
+Od prodejce: {seller_name}
+Platební metoda: {payment_method}
+Datum vytvoření: {created_date}
+Datum zpracování (odhad): {processed_date}

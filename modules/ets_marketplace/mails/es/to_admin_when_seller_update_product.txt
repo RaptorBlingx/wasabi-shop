@@ -1,0 +1,3 @@
+Hola, admin
+La tienda {shop_seller} acaba de actualizar el producto {product_name} y está esperando su aprobación
+Cordial saludo,

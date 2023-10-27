@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+Vaše přihláška byla přijata.
+Nyní si můžete vytvořit svůj obchod
+S úctou.
+

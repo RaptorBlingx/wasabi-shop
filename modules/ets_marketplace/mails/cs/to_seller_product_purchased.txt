@@ -1,0 +1,9 @@
+Ahoj {seller_name},
+{customer_name} zakoupil některé produkty od prodejce {seller_shop}
+Podrobnosti objednávky
+Produkty: {product_detail_txt}
+Reference objednávky: {order_reference}
+Celková platba: {total_payment}
+Datum nákupu: {purchased_date}
+Stav objednávky: {order_status}
+S úctou.

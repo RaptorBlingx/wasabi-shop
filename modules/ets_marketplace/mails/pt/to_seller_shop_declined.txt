@@ -1,0 +1,4 @@
+Olá {seller_name},
+Desculpe! A criação da sua loja foi recusada
+Motivo: {reason}
+Com os melhores cumprimentos.

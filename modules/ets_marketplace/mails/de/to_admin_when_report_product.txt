@@ -1,0 +1,4 @@
+Hallo Administrator,
+{reporter} hat gerade das Produkt {product_name} als missbraucht gemeldet.
+{title}
+{content}

@@ -1,0 +1,7 @@
+Witaj administratorze,
+Sprzedawca {seller_name} właśnie przesłał nowy produkt na rynek
+E-mail sprzedawcy: {seller_email}
+Nazwa sklepu: {shop_seller}
+Identyfikator produktu: {product_ID}
+Nazwa produktu: {product_name}
+Z poważaniem.

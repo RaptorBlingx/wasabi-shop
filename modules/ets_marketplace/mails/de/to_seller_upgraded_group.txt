@@ -1,0 +1,5 @@
+Hallo {seller_name},
+
+Ihr Shop wurde mit {fee_type} aktualisiert: Gebühr in Höhe von {fee_amount} und Provisionssatz beträgt {commission_rate}
+
+Mit freundlichen Grüßen,

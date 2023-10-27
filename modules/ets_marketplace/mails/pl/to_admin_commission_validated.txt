@@ -1,0 +1,6 @@
+Witaj administratorze,
+Prowizja klienta zostaje zatwierdzona. Znajdź szczegóły poniżej:
+Identyfikator prowizji: R-{commission_ID}
+Kwota prowizji: {amount}
+Data utworzenia: {created_date}
+Zatwierdzona data: {approved_date}

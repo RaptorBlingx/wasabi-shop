@@ -1,0 +1,3 @@
+Hallo Administrator,
+Shop {shop_seller} hat gerade Produkt {product_name} aktualisiert und wartet auf Ihre Genehmigung
+Mit freundlichen Grüßen,

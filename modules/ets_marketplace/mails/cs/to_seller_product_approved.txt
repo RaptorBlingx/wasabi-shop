@@ -1,0 +1,6 @@
+Ahoj {seller_name},
+Váš produkt {product_name} byl schválen.
+ID produktu: {product_ID}
+Odkaz na produkt: {product_link}
+Nyní můžete začít prodávat produkt. Hodně štěstí při prodeji!
+S úctou.

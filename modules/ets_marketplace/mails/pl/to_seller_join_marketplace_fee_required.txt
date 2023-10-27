@@ -1,0 +1,6 @@
+Witaj {seller_name},
+Dziękujemy za dołączenie do naszego rynku. Proces jest prawie zakończony.
+Aby zostać sprzedawcą i zacząć sprzedawać swoje produkty, prześlij nam opłatę rejestracyjną {fee_amount} w celu dokończenia procesu rejestracji
+Oto nasze informacje dotyczące płatności:
+{payment_information}
+Z poważaniem.

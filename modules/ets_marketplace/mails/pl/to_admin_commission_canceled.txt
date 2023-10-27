@@ -1,0 +1,7 @@
+Witaj administratorze,
+Prowizja klienta zostaje anulowana. Znajdź szczegóły poniżej:
+Prowizja za identyfikator: R-{commission_ID}
+Kwota prowizji: {amount}
+Powód: {reason}
+Data utworzenia: {created_date}
+Data anulowania: {canceled_date}

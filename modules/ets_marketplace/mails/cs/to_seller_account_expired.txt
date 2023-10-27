@@ -1,0 +1,3 @@
+Ahoj {seller_name},
+Váš účet prodejce právě vypršel. Pokud chcete i nadále používat tento účet prodejce, kontaktujte nás prostřednictvím našeho e-mailu: {store_email}
+S úctou.

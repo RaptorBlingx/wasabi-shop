@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+Vyúčtování je vytvořeno pro vás. Stáhněte si prosím fakturu v příloze a poté nám zašlete platbu.
+Zde jsou naše platební údaje:
+{payment_information}
+S úctou.

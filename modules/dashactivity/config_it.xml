@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>dashactivity</name>
+    <displayName><![CDATA[Dashboard Attivit&agrave;]]></displayName>
+    <version><![CDATA[2.1.0]]></version>
+    <description><![CDATA[Controlla a colpo d&#039;occhio cosa sta succedendo nel tuo negozio con un elenco di KPI (Indicatori chiave di prestazione) sulla tua dashboard.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[administration]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>1</need_instance>
+</module>

@@ -1,0 +1,3 @@
+Hallo {seller_name},
+Herzliche Glückwünsche! Ihr Shop ist nun aktiviert
+Dein.

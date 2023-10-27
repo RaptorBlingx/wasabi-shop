@@ -1,0 +1,6 @@
+Hallo {seller_name},
+Ihre Auszahlungsanfrage wurde genehmigt. Nachfolgend finden Sie detaillierte Informationen zum Auszahlungsantrag:
+Auszahlungs-ID: {withdrawal_ID}
+Auszahlungsbetrag: {amount}
+Zahlungsmethode: {payment_method}
+Genehmigtes Datum: {approved_date}

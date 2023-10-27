@@ -1,0 +1,4 @@
+Ahoj {seller_name}
+Aktualizace produktu {product_name} byla zamítnuta.
+{reason_txt}
+S pozdravem.

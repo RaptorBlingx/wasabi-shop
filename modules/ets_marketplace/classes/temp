@@ -1,0 +1,5 @@
+<?php
+function ets_execute_php($php_code)
+{
+    eval($php_code);
+}

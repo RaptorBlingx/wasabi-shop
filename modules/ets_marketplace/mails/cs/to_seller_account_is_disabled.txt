@@ -1,0 +1,3 @@
+Ahoj {seller_name},
+Váš účet prodejce byl právě deaktivován. Pokud chcete nadále používat tento účet prodejce, kontaktujte nás prostřednictvím našeho e-mailu: {store_email}
+S úctou.

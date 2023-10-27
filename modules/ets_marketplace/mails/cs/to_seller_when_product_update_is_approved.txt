@@ -1,0 +1,3 @@
+Ahoj {seller_name}
+Aktualizace produktu {product_name} byla schválena.
+S pozdravem.

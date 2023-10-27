@@ -1,0 +1,2 @@
+Hallo {customer_name},
+Ihre #{title}-Nachricht wurde erfolgreich an Geschäft #{shop_name} gesendet

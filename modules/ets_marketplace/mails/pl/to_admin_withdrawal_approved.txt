@@ -1,0 +1,6 @@
+Witaj administratorze,
+Zatwierdziłeś żądanie wypłaty. Poniżej znajdują się szczegółowe informacje na temat wniosku o wypłatę:
+Identyfikator wypłaty: {withdrawal_ID}
+Kwota wypłaty: {amount}
+Od sprzedawcy: {seller_name}
+Forma płatności: {payment_method}

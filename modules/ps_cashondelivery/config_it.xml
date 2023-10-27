@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_cashondelivery</name>
+    <displayName><![CDATA[Pagamento in contrassegno]]></displayName>
+    <version><![CDATA[2.0.1]]></version>
+    <description><![CDATA[Accetta pagamenti in contanti alla consegna per consentire ai clienti di acquistare con maggiore facilit&agrave; nel tuo negozio.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[payments_gateways]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>1</need_instance>
+</module>

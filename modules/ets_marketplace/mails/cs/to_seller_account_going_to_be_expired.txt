@@ -1,0 +1,7 @@
+Ahoj {seller_name},
+Platnost vašeho účtu prodejce vyprší dne {date}. Zašlete nám prosím opakovaný poplatek za účelem obnovení účtu prodejce.
+Výše poplatku: {fee_amount}
+Zde jsou naše platební údaje:
+{payment_information}
+S úctou.
+

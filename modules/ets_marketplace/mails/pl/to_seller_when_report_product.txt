@@ -1,0 +1,5 @@
+Witaj {seller_name},
+{reporter} właśnie zgłosił nadużycie Twojego produktu {product_name} w sklepie {shop_seller}.
+{title}
+{content}
+Wyświetl produkt: {link_report}

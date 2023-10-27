@@ -1,0 +1,6 @@
+Ahoj admine,
+Provize zákazníka je schválena. Podrobnosti naleznete níže:
+ID provize: R-{commission_ID}
+Výše provize: {amount}
+Datum vytvoření: {created_date}
+Datum schválení: {approved_date}

@@ -1,0 +1,6 @@
+Ahoj {seller_name},
+Váš účet prodejce bude deaktivován dne {date}. Chcete-li nadále používat tento účet prodejce, zašlete nám prosím opakovaný poplatek do {date}
+Výše poplatku: {fee_amount}
+Zde jsou naše platební údaje:
+{payment_information}
+S úctou.

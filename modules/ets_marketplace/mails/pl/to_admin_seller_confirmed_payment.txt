@@ -1,0 +1,7 @@
+Witaj administratorze,
+{seller_name} potwierdził płatność rozliczeniową {billing_number}
+Znajdź szczegóły poniżej:
+Numer rozliczeniowy: {billing_number}
+Nazwa sklepu: {shop_seller}
+Kwota: {amount}
+Potwierdzona data: {confirmed_date}

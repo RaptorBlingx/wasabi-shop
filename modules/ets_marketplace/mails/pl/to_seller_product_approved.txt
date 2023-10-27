@@ -1,0 +1,6 @@
+Witaj {seller_name},
+Twój produkt {product_name} został zatwierdzony.
+Identyfikator produktu: {product_ID}
+Link do produktu: {product_link}
+Teraz możesz rozpocząć sprzedaż produktu. Powodzenia w sprzedaży!
+Z poważaniem.

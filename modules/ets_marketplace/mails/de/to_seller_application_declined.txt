@@ -1,0 +1,5 @@
+Hallo {seller_name},
+Ihre Bewerbung wurde abgelehnt.
+Grund: {application_declined_reason}
+Dein.
+

@@ -1,0 +1,2 @@
+Olá {customer_name},
+Sua mensagem #{title} foi enviada com sucesso para a loja #{shop_name}

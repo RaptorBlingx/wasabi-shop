@@ -1,0 +1,4 @@
+Hallo {seller_name},
+Es tut uns leid! Ihre Shop-Erstellung wurde abgelehnt
+Grund: {reason}
+Dein.

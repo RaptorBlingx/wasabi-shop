@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_sharebuttons</name>
+    <displayName><![CDATA[Pulsanti per la condivisione sui social media]]></displayName>
+    <version><![CDATA[2.1.2]]></version>
+    <description><![CDATA[Instagram, YouTube, riunisci la tua community con i pulsanti di condivisione sui social media nelle pagine dei prodotti.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[advertising_marketing]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

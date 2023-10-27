@@ -1,0 +1,5 @@
+Olá {seller_name},
+Sua conta de vendedor acaba de ser desativada.
+Motivo: {reason}
+Se pretender continuar a utilizar esta conta de vendedor, contacte-nos através do nosso email: {store_email}
+Com os melhores cumprimentos.

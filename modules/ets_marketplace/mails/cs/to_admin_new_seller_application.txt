@@ -1,0 +1,3 @@
+Ahoj admine,
+{seller_name} právě odeslal žádost o připojení k tržišti
+{seller_application_content_txt}

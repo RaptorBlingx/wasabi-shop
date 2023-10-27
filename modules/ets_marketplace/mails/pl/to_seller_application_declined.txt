@@ -1,0 +1,5 @@
+Witaj {seller_name},
+Twoje zgłoszenie zostało odrzucone.
+Powód: {application_declined_reason}
+Z poważaniem.
+

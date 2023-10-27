@@ -1,0 +1,6 @@
+Hallo {seller_name},
+Ihr Verkäuferkonto wird am {date} deaktiviert. Wenn Sie dieses Verkäuferkonto weiterhin verwenden möchten, senden Sie uns bitte die wiederkehrende Gebühr vor dem {date}
+Gebührenbetrag: {fee_amount}
+Hier unsere Zahlungsinformationen:
+{payment_information}
+Dein.

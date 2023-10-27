@@ -1,0 +1,10 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Composer template
+composer.phar
+/vendor/*
+!/vendor/composer
+!/vendor/autoload.php
+
+/translations/*
+!/translations/index.php
+.DS_Store

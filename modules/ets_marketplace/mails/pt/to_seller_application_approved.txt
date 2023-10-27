@@ -1,0 +1,5 @@
+Olá {seller_name},
+Sua inscrição foi aceita.
+Você pode criar sua loja agora
+Com os melhores cumprimentos.
+

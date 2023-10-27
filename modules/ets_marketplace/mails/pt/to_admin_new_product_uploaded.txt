@@ -1,0 +1,7 @@
+Olá Admin,
+O vendedor {seller_name} acabou de enviar um novo produto para o mercado
+E-mail do vendedor: {seller_email}
+Nome da loja: {shop_seller}
+ID do produto: {product_ID}
+Nome do produto: {product_name}
+Com os melhores cumprimentos.

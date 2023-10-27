@@ -1,0 +1,4 @@
+Witaj administratorze,
+{reporter} właśnie zgłosił nadużycie w sklepie {shop_seller}.
+{title}
+{content}

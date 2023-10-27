@@ -1,0 +1,4 @@
+Olá admin,
+{reporter} acabou de denunciar o produto {product_name} como abusado.
+{title}
+{content}

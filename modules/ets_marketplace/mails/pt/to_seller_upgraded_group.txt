@@ -1,0 +1,5 @@
+Olá {seller_name},
+
+Sua loja foi atualizada com {fee_type}: {fee_amount} taxa e taxa de comissão é {commission_rate}
+
+Atenciosamente,

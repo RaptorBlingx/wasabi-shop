@@ -1,0 +1,7 @@
+Witaj {seller_name},
+Twoje konto sprzedawcy wygaśnie {date}. Prześlij nam cykliczną opłatę w celu odnowienia konta sprzedawcy.
+Wysokość opłaty: {fee_amount}
+Oto nasze informacje dotyczące płatności:
+{payment_information}
+Z poważaniem.
+

@@ -1,0 +1,5 @@
+Witaj {seller_name},
+
+Twój sklep został uaktualniony za pomocą {fee_type}: stawka opłaty i prowizji {fee_amount} wynosi {commission_rate}
+
+Z poważaniem,

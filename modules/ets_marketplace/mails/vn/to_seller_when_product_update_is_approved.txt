@@ -1,0 +1,3 @@
+Hi {seller_name}
+Product {product_name} update was approved.
+Best regards.

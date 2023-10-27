@@ -1,0 +1,3 @@
+Ahoj {seller_name},
+Právě vám byla odeslána zpráva do obchodu {seller_shop_name}. Níže je detail zprávy:
+{content_message}

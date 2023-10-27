@@ -1,0 +1,6 @@
+Hallo Administrator,
+Sie haben eine Auszahlungsanforderung genehmigt. Nachfolgend finden Sie detaillierte Informationen zum Auszahlungsantrag:
+Auszahlungs-ID: {withdrawal_ID}
+Auszahlungsbetrag: {amount}
+Vom Verkäufer: {seller_name}
+Zahlungsmethode: {payment_method}

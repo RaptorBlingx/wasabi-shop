@@ -1,0 +1,6 @@
+Olá {seller_name},
+Sua conta de vendedor será desativada em {date}. Se você quiser continuar usando esta conta de vendedor, envie-nos a taxa recorrente antes de {date}
+Valor da taxa: {fee_amount}
+Aqui estão nossas informações de pagamento:
+{payment_information}
+Com os melhores cumprimentos.

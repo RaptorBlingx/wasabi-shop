@@ -1,0 +1,6 @@
+Witaj {seller_name},
+Twoje konto sprzedawcy zostanie wyłączone {date}. Jeśli chcesz nadal korzystać z tego konta sprzedawcy, prześlij nam opłatę cykliczną przed {date}
+Wysokość opłaty: {fee_amount}
+Oto nasze informacje dotyczące płatności:
+{payment_information}
+Z poważaniem.

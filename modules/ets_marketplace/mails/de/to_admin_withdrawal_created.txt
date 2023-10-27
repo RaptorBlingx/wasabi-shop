@@ -1,0 +1,8 @@
+Hallo Administrator,
+Eine neue Auszahlungsanforderung wurde eingereicht. Bitte überprüfen Sie die detaillierten Informationen zu dieser Anfrage und bearbeiten Sie sie:
+Auszahlungs-ID: {withdrawal_ID}
+Auszahlungsbetrag: {amount}
+Vom Verkäufer: {seller_name}
+Zahlungsmethode: {payment_method}
+Erstellungsdatum: {created_date}
+Verarbeitungsdatum (geschätzt): {processed_date}

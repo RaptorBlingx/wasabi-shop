@@ -1,0 +1,3 @@
+Hi, admin
+Shop {shop_seller} has just updated product {product_name} and is waiting for your approval
+Best regards,

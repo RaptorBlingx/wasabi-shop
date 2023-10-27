@@ -1,0 +1,7 @@
+Ahoj admine,
+Odmítli jste žádost o výběr. Níže jsou uvedeny podrobné informace o žádosti o výběr:
+ID výběru: {withdrawal_ID}
+Částka výběru: {amount}
+Od prodejce: {seller_name}
+Platební metoda: {payment_method}
+Důvod: {reason}

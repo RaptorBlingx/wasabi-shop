@@ -1,0 +1,3 @@
+Olá {seller_name}
+A atualização do produto {product_name} foi aprovada.
+Atenciosamente.

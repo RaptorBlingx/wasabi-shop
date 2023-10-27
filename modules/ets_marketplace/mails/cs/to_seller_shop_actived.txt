@@ -1,0 +1,3 @@
+Ahoj {seller_name},
+Gratulujeme! Váš obchod je nyní aktivován
+S úctou.

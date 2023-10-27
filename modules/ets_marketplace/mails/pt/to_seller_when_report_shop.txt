@@ -1,0 +1,5 @@
+Olá {seller_name},
+{reporter} acabou de denunciar sua loja {shop_name} criada por {shop_seller} como abusada.
+{title}
+{content}
+Ver loja: {link_report}

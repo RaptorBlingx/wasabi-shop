@@ -1,0 +1,3 @@
+Ahoj admine,
+Obchod {shop_seller} právě aktualizoval produkt {product_name} a čeká na vaše schválení
+S pozdravem,

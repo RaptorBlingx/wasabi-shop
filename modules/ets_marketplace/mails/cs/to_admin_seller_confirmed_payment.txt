@@ -1,0 +1,7 @@
+Ahoj admine,
+Prodejce {seller_name} potvrdil platbu faktury {billing_number}
+Podrobnosti najdete níže:
+Fakturační číslo: {billing_number}
+Název obchodu: {shop_seller}
+Částka: {amount}
+Potvrzené datum: {confirmed_date}

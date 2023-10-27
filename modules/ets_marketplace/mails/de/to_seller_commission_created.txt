@@ -1,0 +1,8 @@
+Hallo {seller_name},
+Eine neue Provision wird für Sie erstellt. Einzelheiten finden Sie unten:
+Provisions-ID: R-{commission_ID}
+Provisionsbetrag: {amount}
+Verkauftes Produkt: {product_name}
+Bestellreferenz: {order_reference}
+Erstellungsdatum: {created_date}
+Zustand: {status}

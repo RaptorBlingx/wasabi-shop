@@ -1,0 +1,758 @@
+#ARPLG_CUSTOM_CSS{
+    min-height: 300px;
+    display: none;
+}
+.field_custom_css .ace_editor{
+    min-height: 300px;
+    border: 1px solid #c7d6db;
+    border-radius: 3px;
+}
+.field_custom_css .ace_editor.ace_focus{
+    border-color: #66afe9;
+}
+.ar-blocked{
+    position: relative;
+}
+.ar-loading{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255,255,255,0.5);
+}
+.ar-loading .ar-loading-inner{
+    position: absolute;
+    width: 140px;
+    height: 49px;
+    padding: 15px 15px 15px 40px;
+    border-radius: 2px;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+    border: 1px solid #AAAAAA;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: url('../img/ring-alt.gif') no-repeat 6px 8px scroll  #FFFFFF;
+}
+
+#arpl-config .tab-content .panel{
+    border-radius: 0 0 5px 5px;
+}
+
+#arpl-config .font-15{
+    font-size: 15px;
+}
+#arpl-config .form-group .help-block{
+    margin-bottom: 0;
+}
+#arpl-config .form-group .errors{
+    display: none;
+    color: #a94442;
+}
+
+#arpl-config .form-group.has-error .errors{
+    display: block;
+}
+
+#arpl-config .form-group.has-error .help-block{
+    color: #959595;
+}
+#arpl-config .form-group .form-group{
+    margin-left: 0;
+    margin-right: 0;
+}
+#arproductlists-config-tabs{
+    opacity: 0;
+    transition: 0.2s all;
+}
+#arproductlists-config-tabs.active{
+    opacity: 1;
+}
+#arproductlists-groups h2{
+    margin-top: 0;
+}
+
+.arpl-group-container{
+    margin-bottom: 20px;
+}
+.arpl-group-container.ui-sortable-placeholder{
+    border: 1px dashed #DDDDDD;
+    visibility: visible !important;
+}
+.arpl-group-container:last-child{
+    margin-bottom: 0;
+}
+.arpl-group,
+.arpl-list-item{
+    padding: 5px 140px 5px 40px;
+    border: 1px solid #DDDDDD;
+    position: relative;
+    background: #FAFAFA;
+}
+.arpl-group.active .arpl-group-actions .arpl-group-status{
+    color: #78d07d;
+}
+.arpl-group .arpl-group-actions .arpl-group-status{
+    color: #c05c67;
+}
+.arpl-group.active .arpl-group-actions .arpl-group-status .icon-unchecked{
+    display: none;
+}
+.arpl-group.active .arpl-group-actions .arpl-group-status .icon-checked{
+    display: block;
+}
+.arpl-group .arpl-group-actions .arpl-group-status .icon-unchecked{
+    display: block;
+}
+.arpl-group .arpl-group-actions .arpl-group-status .icon-checked{
+    display: none;
+}
+.arpl-list-item{
+    margin-left: 15px;
+    position: relative;
+}
+
+.arpl-list-item.active .arpl-list-actions .arpl-list-status{
+    color: #78d07d;
+}
+.arpl-list-item .arpl-list-actions .arpl-list-status{
+    color: #c05c67;
+}
+.arpl-list-item.active .arpl-list-actions .arpl-list-status .icon-unchecked{
+    display: none;
+}
+.arpl-list-item.active .arpl-list-actions .arpl-list-status .icon-checked{
+    display: block;
+}
+.arpl-list-item .arpl-list-actions .arpl-list-status .icon-unchecked{
+    display: block;
+}
+.arpl-list-item .arpl-list-actions .arpl-list-status .icon-checked{
+    display: none;
+}
+
+.arpl-group-container .arpl-list-item:before{
+    content: " ";
+    position: absolute;
+    width: 15px;
+    border-top: 1px dashed #DDDDDD;
+    top: 50%;
+    left: -15px;
+}
+.arpl-group-container .arpl-group-toggle svg{
+    transition: 0.2s all;
+}
+.arpl-group-container.open .arpl-group-toggle svg{
+    transform: rotate(180deg);
+}
+.arpl-group-container.open .arpl-group{
+    background: #EEEEEE;
+}
+.arpl-group .arpl-group-handle,
+.arpl-list-item .arpl-list-handle{
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    margin-top: -12px;
+    cursor: move;
+}
+.arpl-group .arpl-group-handle svg,
+.arpl-list-item .arpl-list-handle svg{
+    height: 16px;
+    width: 16px;
+    display: block;
+}
+.arpl-group .arpl-group-title{
+    font-size: 16px;
+    cursor: pointer;
+}
+.arpl-group .arpl-group-title .shop-context{
+    float: right;
+    color: #777777;
+    font-size: 12px;
+    margin-top: 2px;
+    margin-right: 10px;
+}
+.arpl-group .arpl-group-title:hover{
+    color: #333333;
+}
+.arpl-group .arpl-group-actions,
+.arpl-list-item .arpl-list-actions{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 136px;
+    height: 100%;
+    padding: 5px 0;
+}
+.arpl-list-item{
+    margin-bottom: 10px;
+}
+.arpl-list-item:last-of-type{
+    margin-bottom: 0;
+}
+.arpl-group-list-container .arpl-list-item{
+    left: auto !important;
+}
+.arpl-list-item .arpl-list-actions{
+    width: 92px;
+}
+.arpl-list-item .arpl-list-actions{
+    padding: 3px 0;
+}
+.arpl-group .arpl-group-actions .arpl-group-action,
+.arpl-list-item .arpl-list-actions .arpl-list-action{
+    padding: 0;
+    border: 0 none;
+    background: none;
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: left;
+    margin: 3px;
+}
+.arpl-group .arpl-group-actions .arpl-group-action:hover,
+.arpl-list-item .arpl-list-actions .arpl-list-action:hover{
+    color: #40c9ed;
+}
+.arpl-group .arpl-group-actions .arpl-group-action svg,
+.arpl-list-item .arpl-list-actions .arpl-list-action svg{
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+.arpl-group-list-container-inner{
+    padding: 15px 0 15px 15px;
+    position: relative;
+}
+.arpl-group-container .arpl-group-list-container{
+    height: auto;
+    transition: max-height 0.2s;
+    max-height: 0;
+    overflow: hidden;
+}
+.arpl-group-container.open .arpl-group-list-container{
+    height: auto;
+    max-height: 400px;
+    overflow: visible;
+}
+.arpl-group-list-container-inner:before{
+    border-left: 1px dashed #DDDDDD;
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 29px;
+    width: 1px;
+}
+.arpl-list-type{
+    color: #AAAAAA;
+    margin-left: 10px;
+}
+#arpl-config .tab-pane{
+    padding: 15px;
+    border: 1px solid #DDDDDD;
+}
+
+#arpl-config .tab-content .sub-section-head{
+    text-transform: none;
+    font-size: 14px;
+    border: 0 none;
+    padding: 5px 10px;
+    margin: -10px -10px 10px -10px;
+    position: relative;
+    background: #FAFAFA;
+}
+#arpl-config .tab-content .sub-section-head span{
+    color: #787878;
+}
+.arpl-sub-section{
+    border: 1px solid #DDDDDD;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+.arpl-sub-section:last-child{
+    margin-bottom: 0;
+}
+.arpl-sub-section-actions{
+    position: absolute;
+    right: 10px;
+    width: 100px;
+    top: 5px;
+    text-align: right;
+}
+.arpl-sub-section-actions button{
+    padding: 0 5px 0 20px;
+    background: none;
+    margin: 0;
+    border: 0 none;
+    position: relative;
+}
+.arpl-sub-section-actions button:hover{
+    color: #40c9ed;
+}
+.arpl-sub-section-actions button svg{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 50%;
+    margin-top: -8px;
+    left: 0;
+}
+.arpl-list-item-no-content{
+    display: none;
+    padding: 5px 20px 5px 20px;
+    border: 1px solid #DDDDDD;
+    position: relative;
+    background: #FAFAFA;
+    color: #AAAAAA;
+    font-style: italic;
+    margin: 0 0 0 15px !important;
+}
+.arpl-list-item-no-content:before{
+    content: " ";
+    position: absolute;
+    width: 15px;
+    border-top: 1px dashed #DDDDDD;
+    top: 50%;
+    left: -15px;
+}
+.arpl-list-item-no-content:last-child:first-child{
+    display: block;
+}
+#arpl-lists .arpl-list-container .arpl-list-delete,
+#arpl-lists .arpl-list-container .arpl-list-edit,
+#arpl-lists .arpl-list-container .arpl-list-status,
+#arpl-lists .arpl-list-container .arpl-list-device{
+    pointer-events: none;
+    color: #AAAAAA;
+}
+#arpl-product-container,
+#arpl-categories-container,
+#arpl-brands-container{
+    list-style: none outside none;
+    padding: 0;
+    margin: 3px 0 0 0;
+    max-height: 400px;
+    overflow: auto;
+    position: relative;
+}
+#arpl-product-container li,
+#arpl-categories-container li,
+#arpl-brands-container li{
+    position: relative;
+    padding: 5px 25px 5px 120px;
+    min-height: 90px;
+    border-bottom: 1px solid #DDDDDD;
+    background: #FFFFFF;
+}
+#arpl-product-container li:last-child{
+    
+}
+#arpl-product-container li .img-container,
+#arpl-categories-container li .img-container,
+#arpl-brands-container li .img-container{
+    position: absolute;
+    top: 5px;
+    left: 30px;
+    width: 80px;
+    overflow: hidden;
+}
+#arpl-product-container li .img-container img,
+#arpl-categories-container li .img-container img,
+#arpl-brands-container li .img-container img{
+    max-width: 80px;
+    max-height: 80px;
+}
+#arpl-product-container li .arpl-product-handle,
+#arpl-categories-container li .arpl-category-handle,
+#arpl-brands-container li .arpl-brand-handle{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    margin-top: -8px;
+    left: 5px;
+    cursor: move;
+}
+#arpl-product-container li .arpl-product-handle svg,
+#arpl-product-container li .arpl-product-delete svg,
+#arpl-categories-container li .arpl-category-handle svg,
+#arpl-categories-container li .arpl-category-delete svg,
+#arpl-brands-container li .arpl-brand-delete svg{
+    display: block;
+    width: 16px;
+    height: 16px;
+}
+
+#arpl-product-container li .arpl-product-delete,
+#arpl-categories-container li .arpl-category-delete,
+#arpl-brands-container li .arpl-brand-delete{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 50%;
+    margin-top: -8px;
+    right: 5px;
+    border: 0 none;
+    background: none;
+    box-shadow: none;
+    padding: 0;
+}
+.ui-autocomplete{
+    z-index: 100000;
+    max-height: 400px;
+    overflow: auto;
+}
+.ui-menu .ui-menu-item.ui-autocomplete-row{
+    padding: 5px 5px 5px 60px;
+    position: relative;
+    min-height: 50px;
+    cursor: pointer;
+    transition: 0.2s all;
+    width: auto;
+}
+.ui-menu .ui-menu-item.ui-autocomplete-row:hover,
+.ui-menu .ui-menu-item.ui-autocomplete-row.selected{
+    background: #F6F6F6;
+}
+.ui-menu .ui-menu-item.ui-autocomplete-row img{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    max-height: 50px;
+    max-width: 50px;
+}
+.ui-menu .ui-menu-item.ui-autocomplete-row>a{
+    display: block;
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+    background: none;
+}
+.arpl-product-name{
+    font-size: 14px;
+}
+.arpl-product-ref{
+    color: #787878;
+}
+.arpl-list-container.arpl-list-disabled{
+    opacity: 0.6;
+    pointer-events: none;
+}
+#arpl-list-form .category-group .panel{
+    margin-bottom: 0;
+}
+#arpl-config .form-group .form-group{
+    margin-bottom: 0;
+}
+
+.arpl-relcat,
+.arpl-rule{
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    padding: 5px 5px 5px 8px;
+    position: relative;
+    margin-bottom: 10px;
+    background: #F8F8F8;
+}
+.arpl-relcat.active{
+    background: #FFFFFF;
+    border-radius: 3px 3px 0 0;
+}
+.arplr-relcat-header,
+.arplr-rule-header{
+    padding: 0 70px 0 0;
+    position: relative;
+    min-height: 40px;
+}
+.arplr-rule-name input.form-control{
+    font-size: 16px;
+    height: 39px;
+    background: #FFFFFF;
+}
+.arplr-relcat-header .arpl-relcat-actions,
+.arplr-rule-header .arpl-rule-actions{
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -11px;
+}
+.arplr-relcat-content{
+    position: absolute;
+    left: -1px;
+    right: -1px;
+    top: 100%;
+    background: #FFFFFF;
+    width: auto;
+    display: none;
+    z-index: 1;
+    border: 1px solid #DDDDDD;
+    border-radius: 0 0 3px 3px;
+    overflow: hidden;
+}
+.arpl-relcat.active .arplr-relcat-content{
+    display: block;
+}
+.arpl-relcat .arpl-rel-toggle svg{
+    transition: 0.2s all;
+}
+.arpl-relcat.active .arpl-rel-toggle svg{
+    transform: rotate(180deg);
+}
+
+.arplr-relcat-header .arpl-relcat-actions button,
+.arplr-relcat-content ul li .arplr-relcat-actions button,
+.arplr-rule-header .arpl-rule-actions button,
+.arpl-condition-action{
+    padding: 0;
+    border: 0 none;
+    background: none;
+    width: 16px;
+    height: 16px;
+    display: block;
+    float: left;
+    margin: 3px;
+}
+.arpl-condition-action{
+    margin-top: 7px;
+}
+.arplr-relcat-header .arpl-relcat-actions button svg, 
+.arplr-relcat-content ul li .arplr-relcat-actions svg,
+.arplr-rule-header .arpl-rule-actions button svg,
+.arpl-condition-action svg{
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+.arpl-rule-group-op,
+.arpl-rule-condition-op{
+    width: 100%;
+    position: relative;
+}
+.arpl-rule-group-op select,
+.arpl-rule-condition-op select{
+    width: 80px !important;
+    margin: 0 auto 5px auto;
+    position: relative;
+    z-index: 1;
+}
+.arpl-rule-group-op select{
+    outline: 2px solid #F8F8F8;
+}
+.arpl-rule-group .fa-equals{
+    height: 30px;
+    display: block;
+    margin: 0 auto;
+}
+.arpl-rule-empty{
+    display: none;
+}
+.arpl-rule-group-op:before{
+    position: absolute;
+    content: " ";
+    border-top: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+    width: 100%;
+    height: 25px;
+    top: 50%;
+    border-radius: 3px 3px 0 0;
+    background: #FFFFFF;
+}
+.arpl-rule-group{
+    margin-bottom: 5px;
+}
+.arpl-rule-group-content{
+    background: #FFFFFF;
+    border-radius: 3px;
+    padding: 10px;
+    border-bottom: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
+    border-left: 1px solid #DDDDDD;
+}
+.arpl-rule-group:first-child .arpl-rule-group-content{
+    border-top: 1px solid #DDDDDD;
+}
+.arpl-rule-group:last-child{
+    margin-bottom: 0;
+    
+}
+.arpl-rule-group:first-child .arpl-rule-group-op{
+    display: none;
+}
+.arpl-rule-condition:first-child .arpl-rule-condition-op{
+    display: none;
+}
+.arpl-rule-condition{
+    margin-bottom: 5px;
+    border-radius: 3px;
+    padding: 5px;
+}
+.arpl-rule-condition .arpl-condition-toggle .icon-checked{
+    display: none;
+}
+.arpl-rule-condition.active .arpl-condition-toggle .icon-checked{
+    display: block;
+}
+.arpl-rule-condition.active .arpl-condition-toggle .icon-unchecked{
+    display: none;
+}
+.arpl-rule-condition:hover{
+    background: #f5f8f9;
+}
+.arplr-rule-footer{
+    text-align: right;
+    margin-top: 10px;
+}
+.arplr-rule-footer,
+.arplr-rule-content{
+    display: none;
+}
+.arplr-rule-content{
+    margin-top: 3px;
+}
+.arpl-rule.expanded .arplr-rule-footer,
+.arpl-rule.expanded .arplr-rule-content{
+    display: block;
+}
+.arpl-rule-toggle svg{
+    transition: 0.2s all;
+}
+.arpl-rule.expanded .arpl-rule-toggle svg{
+    transform: rotate(180deg);
+}
+.arpl-rule-condition:last-child{
+    margin-bottom: 0;
+}
+.arpl-rule-condition-op{
+    margin-bottom: 5px;
+}
+.arplr-relcat-name,
+.arplr-rule-name{
+    font-weight: bold;
+}
+.arplr-rule-name,
+.arplr-rule-rel{
+    width: 50%;
+    float: left;
+}
+.arplr-rule-rel p{
+    margin-top: 10px;
+}
+.arplr-rule-rel{
+    padding-left: 10px;
+}
+.arplr-rule-rel select.form-control{
+    height: 39px;
+}
+.arplr-relcat-header .arplr-relcat-name,
+.arplr-rule-header .arplr-rule-name{
+    font-size: 16px;
+}
+.arplr-relcat-path{
+    color: #787878;
+}
+.arplr-relcat-content ul{
+    list-style: none outside none;
+    padding: 0;
+    margin: 0;
+}
+.arplr-relcat-content ul li{
+    padding: 3px 60px 3px 37px;
+    position: relative;
+    border-bottom: 1px dashed #DDDDDD;
+    border-top: 1px dashed #DDDDDD;
+    margin-top: -1px;
+    min-height: 42px;
+    background: #FFFFFF;
+}
+.arplr-relcat-content ul li .arplr-relcat-actions{
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    margin-top: -11px;
+}
+
+.arplr-relcat-content ul li .arplr-relcat-actions .arpl-relcat-status .icon-checked{
+    display: none;
+}
+.arplr-relcat-content ul li .arplr-relcat-actions .arpl-relcat-status .icon-unchecked{
+    display: block;
+}
+.arplr-relcat-content ul li.active .arplr-relcat-actions .arpl-relcat-status .icon-checked{
+    display: block;
+}
+.arplr-relcat-content ul li.active .arplr-relcat-actions .arpl-relcat-status .icon-unchecked{
+    display: none;
+}
+.arpl-relcat-handle{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    display: block;
+    top: 50%;
+    left: 10px;
+    margin-top: -8px;
+    cursor: move;
+}
+.arpl-relcat-handle svg{
+    width: 16px;
+    height: 16px;
+    display: block;
+}
+#arpl-relcat-form .panel{
+    margin-bottom: 0 !important;
+}
+
+#arpl-config .btn-dropdown{
+    position: relative;
+}
+#arpl-config .btn-dropdown ul{
+    list-style: none outside none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    z-index: 1;
+    background: #FFFFFF;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    width: auto;
+    left: -4px;
+    top: -2px;
+    display: none;
+}
+#arpl-config .btn-dropdown:hover ul{
+    display: block;
+}
+#arpl-config .btn-dropdown ul li{
+    list-style: none;
+    padding: 4px 4px 4px 27px;
+    color: rgb(85, 85, 85);
+    text-align: left;
+    white-space: nowrap;
+    position: relative;
+}
+#arpl-config .btn-dropdown ul li:hover{
+    background: #EEEEEE;
+}
+#arpl-config .btn-dropdown ul li .icon{
+    position: absolute;
+    top: 3px;
+    left: 4px;
+    
+}
+#arpl-config .btn-dropdown ul li svg{
+    display: inline-block;
+}
+#arpl-config .btn-dropdown ul li.active{
+    background: #40c9ed;
+    color: #FFFFFF;
+}
+#arpl-list-form .category-restrictions-group .panel{
+    margin-bottom: 0;
+}

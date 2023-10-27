@@ -1,0 +1,4 @@
+Hola {seller_name}
+Se rechazó la actualización del producto {product_name}.
+{reason_txt}
+Cordial saludo,

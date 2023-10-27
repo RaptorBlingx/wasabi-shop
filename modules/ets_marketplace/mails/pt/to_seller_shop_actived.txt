@@ -1,0 +1,3 @@
+Olá {seller_name},
+Parabéns! Sua loja já está ativada
+Com os melhores cumprimentos.

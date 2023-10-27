@@ -1,0 +1,7 @@
+Olá Admin,
+{seller_name} acabou de criar uma loja
+Segue abaixo as informações da loja:
+Nome da loja: {shop_seller_name}
+Descrição da loja: {shop_description}
+Endereço da loja: {shop_address}
+Telefone da loja: {shop_phone}

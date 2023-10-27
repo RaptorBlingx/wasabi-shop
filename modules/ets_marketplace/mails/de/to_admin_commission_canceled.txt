@@ -1,0 +1,7 @@
+Hallo Admin,
+Die Provision eines Kunden wird storniert. Einzelheiten finden Sie unten:
+ID-Provision: R-{commission_ID}
+Provisionsbetrag: {amount}
+Grund: {reason}
+Erstellungsdatum: {created_date}
+Storniert am: {canceled_date}

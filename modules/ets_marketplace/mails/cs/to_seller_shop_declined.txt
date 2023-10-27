@@ -1,0 +1,4 @@
+Ahoj {seller_name},
+Promiňte! Vaše vytvoření obchodu bylo odmítnuto
+Důvod: {reason}
+S úctou.

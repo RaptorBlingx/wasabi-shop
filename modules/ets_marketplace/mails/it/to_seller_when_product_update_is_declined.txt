@@ -1,0 +1,4 @@
+Ciao {seller_name}
+L'aggiornamento del prodotto {product_name} è stato rifiutato.
+{reason_txt}
+Distinti saluti,

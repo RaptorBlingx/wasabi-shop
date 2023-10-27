@@ -1,0 +1,4 @@
+Ahoj admine,
+{reporter} právě nahlásil produkt {product_name} jako zneužitý.
+{title}
+{content}

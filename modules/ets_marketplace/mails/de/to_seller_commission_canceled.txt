@@ -1,0 +1,7 @@
+Hallo {seller_name},
+Ihre Provision wird storniert. Einzelheiten finden Sie unten:
+ID-Provision: R-{commission_ID}
+Provisionsbetrag: {amount}
+Grund: {Reason}
+Erstellungsdatum: {created_date}
+Stornierungsdatum: {approved_date}

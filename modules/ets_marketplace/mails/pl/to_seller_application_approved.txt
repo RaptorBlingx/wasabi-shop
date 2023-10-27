@@ -1,0 +1,5 @@
+Witaj {seller_name},
+Twoje zgłoszenie zostało zaakceptowane.
+Możesz teraz stworzyć swój sklep
+Z poważaniem.
+

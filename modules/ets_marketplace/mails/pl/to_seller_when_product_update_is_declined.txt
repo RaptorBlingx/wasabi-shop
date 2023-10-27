@@ -1,0 +1,4 @@
+Witaj {seller_name}
+Aktualizacja produktu {product_name} została odrzucona.
+{reason_txt}
+Z poważaniem.

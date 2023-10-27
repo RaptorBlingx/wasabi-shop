@@ -1,0 +1,6 @@
+Ahoj {seller_name},
+Děkujeme, že jste se připojili k našemu trhu. Proces je téměř hotový.
+Chcete-li se stát prodejcem a začít prodávat své produkty, zašlete nám prosím registrační poplatek {fee_amount}, abychom dokončili registrační proces
+Zde jsou naše platební údaje:
+{payment_information}
+S úctou.

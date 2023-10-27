@@ -1,0 +1,5 @@
+Ahoj {customer_name},
+{seller_name} vám udělil oprávnění spravovat jeho obchod na adrese {shop_name}. Autorizovaný obsah si můžete prohlédnout níže
+{permission}
+S pozdravem,
+Chcete-li žádost přijmout nebo odmítnout, klikněte na tento odkaz: {link_account}

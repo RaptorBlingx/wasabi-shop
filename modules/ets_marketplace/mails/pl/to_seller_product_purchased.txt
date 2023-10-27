@@ -1,0 +1,10 @@
+Witaj {seller_name},
+{customer_name} kupił niektóre produkty w {seller_shop}
+Szczegóły zamówienia
+Produkty:
+{product_detail_txt}
+Numer referencyjny zamówienia: {order_reference}
+Całkowita płatność: {total_payment}
+Data zakupu: {purchased_date}
+Stan zamówienia: {order_status}
+Z poważaniem.

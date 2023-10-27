@@ -1,0 +1,5 @@
+Witaj administratorze,
+{seller_name} została potwierdzona płatność #{invoice_ref}
+Temat: {subject}
+Zawartość:
+{content}

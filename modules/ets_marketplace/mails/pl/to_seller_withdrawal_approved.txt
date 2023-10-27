@@ -1,0 +1,6 @@
+Witaj {seller_name},
+Twoja prośba o wypłatę została zatwierdzona. Poniżej znajdują się szczegółowe informacje na temat wniosku o wypłatę:
+Identyfikator wypłaty: {withdrawal_ID}
+Kwota wypłaty: {amount}
+Forma płatności: {payment_method}
+Zatwierdzona data: {approved_date}

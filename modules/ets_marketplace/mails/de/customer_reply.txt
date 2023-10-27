@@ -1,0 +1,4 @@
+Hallo {seller_name},
+{customer_name} hat gerade Ihrem Kontakt auf {message_title} geantwortet
+
+{content_message}

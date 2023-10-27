@@ -1,0 +1,4 @@
+Bonjour {seller_name}
+La mise à jour du produit {product_name} a été refusée.
+{reason_txt}
+Sincères salutations,

@@ -1,0 +1,4 @@
+Olá {seller_name}
+A atualização do produto {product_name} foi recusada.
+{reason_txt}
+Atenciosamente.

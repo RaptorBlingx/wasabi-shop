@@ -1,0 +1,7 @@
+Ahoj admine,
+Provize zákazníka je zrušena. Podrobnosti naleznete níže:
+ID provize: R-{commission_ID}
+Výše provize: {amount}
+Důvod: {reason}
+Datum vytvoření: {created_date}
+Datum zrušení: {canceled_date}

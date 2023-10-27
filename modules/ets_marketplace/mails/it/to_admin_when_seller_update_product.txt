@@ -1,0 +1,3 @@
+Ciao, amministratore
+Il negozio {shop_seller} ha appena aggiornato il prodotto {product_name} ed è in attesa della tua approvazione
+Distinti saluti,

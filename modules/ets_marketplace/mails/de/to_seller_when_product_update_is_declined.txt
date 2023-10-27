@@ -1,0 +1,4 @@
+Hallo {seller_name}
+Die Aktualisierung des Produkts {product_name} wurde abgelehnt.
+{reason_txt}
+Mit freundlichen Grüßen.

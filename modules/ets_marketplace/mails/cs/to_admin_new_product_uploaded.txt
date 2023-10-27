@@ -1,0 +1,7 @@
+Ahoj admine,
+Prodejce {seller_name} právě nahrál na tržiště nový produkt
+E-mail prodejce: {seller_email}
+Název obchodu: {shop_seller}
+ID produktu: {product_ID}
+Název produktu: {product_name}
+S úctou.

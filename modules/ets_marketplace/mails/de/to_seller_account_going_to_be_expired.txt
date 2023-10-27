@@ -1,0 +1,7 @@
+Hallo {seller_name},
+Ihr Verkäuferkonto läuft am {date} ab. Bitte senden Sie uns die wiederkehrende Gebühr, um Ihr Verkäuferkonto zu erneuern.
+Gebührenbetrag: {fee_amount}
+Hier unsere Zahlungsinformationen:
+{payment_information}
+Dein.
+

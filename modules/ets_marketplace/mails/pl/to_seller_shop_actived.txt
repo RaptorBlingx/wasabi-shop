@@ -1,0 +1,3 @@
+Witaj {seller_name},
+Gratulacje! Twój sklep jest teraz aktywowany
+Z poważaniem.

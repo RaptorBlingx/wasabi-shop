@@ -1,0 +1,3 @@
+Hallo {seller_name},
+Ihr Verkäuferkonto wurde gerade deaktiviert. Wenn Sie dieses Verkäuferkonto weiterhin verwenden möchten, kontaktieren Sie uns bitte über unsere E-Mail-Adresse: {store_email}
+Dein.

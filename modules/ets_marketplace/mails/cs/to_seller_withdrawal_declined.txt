@@ -1,0 +1,7 @@
+Ahoj {seller_name},
+Vaše žádost o výběr byla zamítnuta. Níže jsou uvedeny podrobné informace o žádosti o výběr:
+ID výběru: {withdrawal_ID}
+Částka výběru: {amount}
+Platební metoda: {payment_method}
+Datum odmítnutí: {declined_date}
+Důvod: {reason}

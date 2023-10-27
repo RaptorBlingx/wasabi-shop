@@ -1,0 +1,4 @@
+Witaj {customer_name},
+{seller_name} właśnie odpowiedział na Twój kontakt w {message_title}
+{content_message}
+Odpowiedź

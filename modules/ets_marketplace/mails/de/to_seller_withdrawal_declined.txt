@@ -1,0 +1,7 @@
+Hallo {seller_name},
+Ihre Auszahlungsanfrage wurde abgelehnt. Nachfolgend finden Sie detaillierte Informationen zum Auszahlungsantrag:
+Auszahlungs-ID: {withdrawal_ID}
+Auszahlungsbetrag: {amount}
+Zahlungsmethode: {payment_method}
+Abgelehntes Datum: {declined_date}
+Grund: {reason}

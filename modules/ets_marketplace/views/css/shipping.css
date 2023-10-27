@@ -1,0 +1,65 @@
+.ets-mp-delivery-options-list .row.delivery-option {
+  padding: 0 14px !important;
+}
+.ets-mp-delivery-options-list .delivery-option label {
+  text-align: inherit;
+  width: 100%;
+}
+.ets-mp-delivery-options-list .media {
+  margin-bottom: 5px;
+}
+.ets-mp-delivery-options-list .delivery-option label.control-label {
+    border: 1px solid #ddd;
+    margin-bottom: 25px;
+    padding: 15px;
+}
+
+.ets-mp-delivery-options-list .delivery-option label.control-label li.media {
+    border-bottom: 1px dashed #ddd;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.ets-mp-delivery-options-list .delivery-option label.control-label .media-left img {
+    border: 1px solid #ddd;
+}
+h4.delivery-option_label {
+    padding-bottom: 10px;
+    font-weight: normal;
+    font-style: italic;
+    color: #999;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+.ets-mp-delivery-options-list {
+    margin-top: 15px;
+}
+select.form-control.ets-carriers-selected {
+    background: #fff;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    display: inline-block;
+    cursor: pointer;
+    outline: none!important;
+    padding: 5px;
+}
+#checkout-delivery-step .ets-mp-delivery-options-list .delivery-option {
+    background: transparent!important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

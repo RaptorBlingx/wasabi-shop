@@ -1,0 +1,7 @@
+Witaj administratorze,
+{seller_name} właśnie utworzył sklep
+Poniżej informacje o sklepie:
+Nazwa sklepu: {shop_seller_name}
+Opis sklepu: {shop_description}
+Adres sklepu: {shop_address}
+Adres sklepu: {shop_phone}

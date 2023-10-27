@@ -1,0 +1,6 @@
+Hallo Administrator,
+Die Provision eines Kunden wird genehmigt. Einzelheiten finden Sie unten:
+Provisions-ID: R-{commission_ID}
+Provisionsbetrag: {amount}
+Erstellungsdatum: {created_date}
+Genehmigtes Datum: {approved_date}

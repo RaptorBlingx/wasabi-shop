@@ -1,0 +1,3 @@
+Ciao {seller_name}
+L'aggiornamento del prodotto {product_name} è stato approvato.
+Distinti saluti,

@@ -1,0 +1,3 @@
+Hallo Administrator,
+{seller_name} hat gerade einen Antrag auf Teilnahme am Marktplatz gestellt
+{seller_application_content_txt}

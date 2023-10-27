@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+
+Váš obchod byl upgradován pomocí {fee_type}: sazba poplatku a provize {fee_amount} je {commission_rate}
+
+S pozdravem,

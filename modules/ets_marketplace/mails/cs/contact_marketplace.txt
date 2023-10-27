@@ -1,0 +1,5 @@
+Ahoj admine,
+{seller_name} byla potvrzena platba č. #{invoice_ref}
+Předmět: {subject}
+Obsah:
+{content}

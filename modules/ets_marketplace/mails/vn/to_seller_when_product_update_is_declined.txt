@@ -1,0 +1,4 @@
+Hi {seller_name}
+Product {product_name} update was declined.
+{reason_txt}
+Best regards.

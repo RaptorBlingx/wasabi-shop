@@ -1,0 +1,2 @@
+Ahoj {customer_name},
+Vaše zpráva #{title} byla úspěšně odeslána do obchodu #{shop_name}

@@ -1,0 +1,7 @@
+Hallo Administrator,
+Verkäufer {seller_name} hat gerade ein neues Produkt auf den Marktplatz hochgeladen
+Verkäufer-E-Mail: {seller_email}
+Shop-Name: {shop_seller}
+Produkt-ID: {product_ID}
+Produktname: {product_name}
+Dein.

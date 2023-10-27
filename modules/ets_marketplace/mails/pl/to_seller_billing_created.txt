@@ -1,0 +1,5 @@
+Witaj {seller_name},
+Rozliczenie jest tworzone dla Ciebie. Proszę pobrać fakturę w załączniku, a następnie przesłać do nas płatność.
+Oto nasze informacje dotyczące płatności:
+{payment_information}
+Z poważaniem.

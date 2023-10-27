@@ -1,0 +1,5 @@
+Hallo {customer_name},
+Sie wurden von {seller_name} autorisiert, sein Geschäft im {shop_name} zu verwalten. Autorisierter Inhalt, den Sie unten sehen können
+{permission}
+Mit freundlichen Grüßen,
+Bitte klicken Sie auf diesen Link, um die Anfrage anzunehmen oder abzulehnen: {link_account}

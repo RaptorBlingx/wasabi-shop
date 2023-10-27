@@ -1,0 +1,5 @@
+Hallo {seller_name},
+Ihre Bewerbung wurde angenommen.
+Sie können jetzt Ihren Shop erstellen
+Dein.
+

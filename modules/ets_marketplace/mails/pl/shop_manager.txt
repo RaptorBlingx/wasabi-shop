@@ -1,0 +1,5 @@
+Witaj {customer_name},
+Zostałeś upoważniony przez {seller_name} do zarządzania swoim sklepem w {shop_name}. Autoryzowana treść, którą możesz zobaczyć poniżej
+{permission}
+Z poważaniem,
+Kliknij ten link, aby zaakceptować lub odrzucić prośbę: {link_account}

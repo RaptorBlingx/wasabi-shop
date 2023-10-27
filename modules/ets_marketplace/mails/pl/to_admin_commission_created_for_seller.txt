@@ -1,0 +1,8 @@
+Witaj administratorze,
+Utworzona zostaje nowa prowizja dla sprzedawcy {seller_name}. Znajdź szczegóły poniżej
+Identyfikator prowizji: R-{commission_ID}
+Kwota prowizji: {amount}
+Sprzedany produkt: {product_name}
+Numer referencyjny zamówienia: {order_reference}
+Data utworzenia: {created_date}
+Status: {status}

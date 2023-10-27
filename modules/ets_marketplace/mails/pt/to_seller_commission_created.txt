@@ -1,0 +1,8 @@
+Olá {seller_name},
+Uma nova comissão é criada para você. Encontre detalhes abaixo:
+ID da comissão: R-{commission_ID}
+Valor da comissão: {amount}
+Produto vendido: {product_name}
+Referência do pedido: {order_reference}
+Data de criação: {created_date}
+Estado: {status}

@@ -1,0 +1,3 @@
+Hola {seller_name}
+Se aprobó la actualización del producto {product_name}.
+Cordial saludo.

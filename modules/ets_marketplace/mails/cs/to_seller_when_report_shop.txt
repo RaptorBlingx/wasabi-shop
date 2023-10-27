@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+{reporter} právě nahlásil váš obchod {shop_name} vytvořený {shop_seller} jako zneužitý.
+{title}
+{content}
+Zobrazit obchod: {link_report}

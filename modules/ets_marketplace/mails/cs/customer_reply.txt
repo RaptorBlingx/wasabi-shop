@@ -1,0 +1,4 @@
+Ahoj {seller_name},
+{customer_name} právě odpověděl na váš kontakt ve službě {message_title}
+
+{content_message}

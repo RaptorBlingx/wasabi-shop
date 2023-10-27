@@ -1,0 +1,7 @@
+Ahoj admine,
+{seller_name} právě vytvořil obchod
+Níže jsou informace o prodejně:
+Název obchodu: {shop_seller_name}
+Popis obchodu: {shop_description}
+Adresa obchodu: {shop_address}
+Telefon do obchodu: {shop_phone}

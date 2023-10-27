@@ -1,0 +1,6 @@
+Olá {seller_name},
+Sua solicitação de retirada foi aprovada. Abaixo estão informações detalhadas sobre o pedido de retirada:
+ID de retirada: {withdrawal_ID}
+Valor do saque: {amount}
+Forma de pagamento: {payment_method}
+Data de aprovação: {approved_date}

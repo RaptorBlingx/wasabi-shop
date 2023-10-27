@@ -1,0 +1,7 @@
+Witaj {seller_name},
+Twoja prowizja została anulowana. Znajdź szczegóły poniżej:
+Prowizja za identyfikator: R-{commission_ID}
+Kwota prowizji: {amount}
+Powód: {Reason}
+Data utworzenia: {created_date}
+Data anulowania: {approved_date}

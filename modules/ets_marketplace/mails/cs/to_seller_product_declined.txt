@@ -1,0 +1,6 @@
+Ahoj {seller_name},
+Váš produkt {product_name} byl odmítnut.
+ID produktu: {product_ID}
+{reason_txt}
+Díky za váš čas.
+S úctou.

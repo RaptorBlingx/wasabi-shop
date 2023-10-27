@@ -1,0 +1,4 @@
+Witaj {seller_name},
+Przepraszam! Twój sklep został odrzucony
+Powód: {reason}
+Z poważaniem.

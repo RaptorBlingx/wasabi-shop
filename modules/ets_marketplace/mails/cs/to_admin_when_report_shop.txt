@@ -1,0 +1,4 @@
+Ahoj admine,
+{reporter} právě nahlásil prodejce {shop_seller} jako zneužitý.
+{title}
+{content}

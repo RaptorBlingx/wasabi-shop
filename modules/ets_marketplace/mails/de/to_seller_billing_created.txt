@@ -1,0 +1,5 @@
+Hallo {seller_name},
+Eine Abrechnung wird für Sie erstellt. Bitte laden Sie die Rechnung im Anhang herunter und senden Sie dann die Zahlung an uns.
+Hier unsere Zahlungsinformationen:
+{payment_information}
+Dein.

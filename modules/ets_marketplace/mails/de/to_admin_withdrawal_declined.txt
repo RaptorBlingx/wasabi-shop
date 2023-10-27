@@ -1,0 +1,7 @@
+Hallo Administrator,
+Sie haben eine Auszahlungsanfrage abgelehnt. Nachfolgend finden Sie detaillierte Informationen zum Auszahlungsantrag:
+Auszahlungs-ID: {withdrawal_ID}
+Auszahlungsbetrag: {amount}
+Vom Verkäufer: {seller_name}
+Zahlungsmethode: {payment_method}
+Grund: {reason}

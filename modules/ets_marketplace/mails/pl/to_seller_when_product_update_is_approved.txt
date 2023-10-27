@@ -1,0 +1,3 @@
+Witaj {seller_name}
+Aktualizacja produktu {product_name} została zatwierdzona.
+Z poważaniem.

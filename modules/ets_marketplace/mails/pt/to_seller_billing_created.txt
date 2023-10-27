@@ -1,0 +1,5 @@
+Olá {seller_name},
+Um faturamento é criado para você. Faça o download da fatura no anexo e envie o pagamento para nós.
+Aqui estão nossas informações de pagamento:
+{payment_information}
+Com os melhores cumprimentos.

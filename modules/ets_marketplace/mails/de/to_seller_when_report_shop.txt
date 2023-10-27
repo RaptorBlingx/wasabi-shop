@@ -1,0 +1,5 @@
+Hallo {seller_name},
+{reporter} hat gerade Ihren von {shop_name} erstellten Shop {shop_seller} als missbraucht gemeldet.
+{title}
+{content}
+Shop ansehen: {link_report}

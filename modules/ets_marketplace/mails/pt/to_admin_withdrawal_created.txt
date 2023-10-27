@@ -1,0 +1,8 @@
+Olá Admin,
+Uma nova solicitação de retirada foi enviada. Revise as informações detalhadas sobre esta solicitação e processe-a:
+ID de retirada: {withdrawal_ID}
+Valor do saque: {amount}
+Do vendedor: {seller_name}
+Forma de pagamento: {payment_method}
+Data de criação: {created_date}
+Data processada (estimada): {processed_date}

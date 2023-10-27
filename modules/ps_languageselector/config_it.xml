@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ps_languageselector</name>
+    <displayName><![CDATA[Blocco di selezione delle lingue]]></displayName>
+    <version><![CDATA[2.1.3]]></version>
+    <description><![CDATA[Diventa internazionale e mostra un selettore per la lingua nell&#039;header del tuo negozio in modo che i clienti possano fare acquisti nella propria lingua.]]></description>
+    <author><![CDATA[PrestaShop]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>0</is_configurable>
+    <need_instance>0</need_instance>
+</module>

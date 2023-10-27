@@ -1,0 +1,3 @@
+Witaj administratorze,
+Sklep {shop_seller} właśnie zaktualizował produkt {product_name} i czeka na Twoją akceptację
+Z poważaniem,

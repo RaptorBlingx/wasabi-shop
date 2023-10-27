@@ -1,0 +1,5 @@
+Hallo Administrator,
+{seller_name} hat Zahlung Nr. #{invoice_ref} bestätigt bekommen
+Betreff: {subject}
+Inhalt:
+{content}

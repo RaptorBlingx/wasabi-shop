@@ -1,0 +1,3 @@
+Olá Admin,
+{seller_name} acaba de enviar uma inscrição para participar do mercado
+{seller_application_content_txt}

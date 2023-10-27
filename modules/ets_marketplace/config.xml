@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>ets_marketplace</name>
+    <displayName><![CDATA[Marketplace Builder]]></displayName>
+    <version><![CDATA[3.6.2]]></version>
+    <description><![CDATA[Turn PrestaShop into marketplace with simple set up steps, #1 PrestaShop Marketplace module (multi vendor) that allows sellers to list their products for sale and pay a percentage fee amount for each sale or a membership fee]]></description>
+    <author><![CDATA[PrestaHero]]></author>
+    <tab><![CDATA[market_place]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

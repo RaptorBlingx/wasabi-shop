@@ -1,0 +1,139 @@
+.arpl-carousel-products.owl-carousel{
+    display: block;
+}
+.arpl-carousel-products .ajax_block_product{
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+}
+.arpl-carousel-products .product-container {
+    background: #fff;
+    padding: 0;
+    position: relative;
+}
+.arpl-carousel-products .product-image-container {
+    text-align: center;
+}
+.arpl-carousel-products .product-container .product-image-container {
+    border: 1px solid #d6d4d4;
+    padding: 9px;
+    margin-bottom: 13px;
+    position: relative;
+}
+.arpl-carousel-products .product-image-container img {
+    margin: 0 auto;
+}
+.arpl-sort-container .selector{
+    margin-top: 12px;
+}
+.arpl-carousel-products .product-image-container .quick-view {
+    font: 700 13px/16px Arial, Helvetica, sans-serif;
+    color: #777676;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -21px 0 0 -53px;
+    padding: 13px 0 0;
+    background: rgba(255, 255, 255, 0.82);
+    width: 107px;
+    height: 43px;
+    text-align: center;
+    -moz-box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0 2px 8px;
+}
+.arpl-carousel-products .product-image-container .quick-view {
+    display: none;
+}
+.arpl-carousel-products .product-container:hover .quick-view {
+    display: block;
+}
+.arpl-carousel-products .product-image-container .quick-view-wrapper-mobile {
+    display: none;
+}
+.arpl-carousel-products .product-container:hover .product-image-container .content_price {
+    display: block;
+}
+.arpl-carousel-products .product-container:hover .content_price {
+    display: none;
+}
+.arpl-carousel-products .product-container .product-image-container .content_price {
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 9px 0;
+    display: none;
+}
+.arpl-carousel-products .product-container .content_price {
+    padding-bottom: 9px;
+    line-height: 21px;
+}
+.arpl-carousel-products .product-container .right-block .content_price {
+    height: 45px;
+    padding-bottom: 0;
+    margin-bottom: 14px;
+    padding-top: 10px;
+}
+.arpl-carousel-products .product-container .product-image-container .content_price span{
+    color: #FFFFFF;
+}
+.arpl-carousel-products .product-container h5{
+    padding: 0 15px 7px 15px;
+    min-height: 53px;
+}
+.arpl-carousel-products .product-name {
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+}
+.arpl-carousel-products .product-container .old-price, 
+.arpl-carousel-products .product-container .price, 
+.arpl-carousel-products .product-container .price-percent-reduction {
+    display: inline-block;
+}
+.arpl-carousel-products .availability span {
+    display: inline-block;
+    color: #fff;
+    font-weight: bold;
+    padding: 3px 8px 4px 8px;
+    margin-bottom: 20px;
+}
+.arpl-carousel-products .product-container .button-container {
+    display: none;
+    margin-bottom: 14px;
+    height: 45px;
+}
+.arpl-carousel-products .product-container:hover .button-container {
+    display: block;
+}
+.arpl-carousel-products .product-container .functional-buttons {
+    display: none;
+}
+.arpl-carousel-products .product-container .functional-buttons {
+    background: url(../img/functional-bt-shadow.png) repeat-x;
+    padding: 11px 0 5px;
+}
+.arpl-carousel-products .product-container:hover .functional-buttons, 
+.arpl-carousel-products .product-container:hover .button-container, 
+.arpl-carousel-products .product-container:hover .comments_note {
+    display: block;
+}
+.arpl-group-tabbed .arpl-tab-content.tab-content,
+#index .arpl-group-tabbed .arpl-tab-content.tab-content{
+    margin: 0;
+}
+.arpl-group-tabbed .nav-item.active .nav-link, 
+.arpl-group-tabbed .nav-item.active .nav-separtor{
+    border-bottom: 1px solid transparent;
+}
+.arpl-group-tabbed .nav-tabs .nav-item.active .nav-link:hover{
+    border: 1px solid #DDD;
+    border-bottom: 1px solid transparent;
+}
+
+.arpl-thumb .new-box, 
+.arpl-thumb .sale-box{
+    top: -3px;
+}

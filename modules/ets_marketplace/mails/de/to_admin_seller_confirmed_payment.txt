@@ -1,0 +1,7 @@
+Hallo Administrator,
+{seller_name} hat die Zahlung der Rechnung {billing_number} bestätigt
+Einzelheiten finden Sie unten:
+Rechnungsnummer: {billing_number}
+Shop-Name: {shop_seller}
+Betrag: {amount}
+Bestätigtes Datum: {confirmed_date}

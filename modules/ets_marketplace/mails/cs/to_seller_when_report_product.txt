@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+{reporter} právě nahlásil váš produkt {product_name} na {shop_seller} jako zneužitý.
+{title}
+{content}
+Zobrazit produkt: {link_report}

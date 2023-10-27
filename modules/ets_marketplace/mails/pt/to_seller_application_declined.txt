@@ -1,0 +1,5 @@
+Olá {seller_name},
+Sua inscrição foi recusada.
+Motivo: {application_declined_reason}
+Com os melhores cumprimentos.
+

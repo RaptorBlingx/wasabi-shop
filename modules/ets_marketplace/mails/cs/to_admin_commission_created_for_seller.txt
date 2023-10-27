@@ -1,0 +1,8 @@
+Ahoj admine,
+Pro prodejce {seller_name} byla vytvořena nová provize. Podrobnosti naleznete níže
+ID provize: R-{commission_ID}
+Výše provize: {amount}
+Produkt prodaný: {product_name}
+Reference objednávky: {order_reference}
+Datum vytvoření: {created_date}
+Stav: {status}

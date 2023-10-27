@@ -1,0 +1,3 @@
+Witaj administratorze,
+{seller_name} właśnie złożył wniosek o dołączenie do rynku
+{seller_application_content_txt}

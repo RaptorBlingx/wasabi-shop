@@ -1,0 +1,6 @@
+Hallo {seller_name},
+Ihre Provision wurde genehmigt. Einzelheiten finden Sie unten:
+Provisions-ID: R-{commission_ID}
+Provisionsbetrag: {amount}
+Erstellungsdatum: {created_date}
+Genehmigtes Datum: {approved_date}

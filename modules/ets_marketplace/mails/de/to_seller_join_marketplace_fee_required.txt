@@ -1,0 +1,6 @@
+Hallo {seller_name},
+Vielen Dank, dass Sie sich unserem Marktplatz angeschlossen haben. Der Vorgang ist fast abgeschlossen.
+Um Verkäufer zu werden und mit dem Verkauf Ihrer Produkte zu beginnen, senden Sie uns bitte die Registrierungsgebühr {fee_amount} um den Registrierungsprozess abzuschließen
+Hier unsere Zahlungsinformationen:
+{payment_information}
+Dein.

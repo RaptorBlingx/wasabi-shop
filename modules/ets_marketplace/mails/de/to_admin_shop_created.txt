@@ -1,0 +1,7 @@
+Hallo Administrator,
+{seller_name} hat gerade einen Shop erstellt
+Nachfolgend die Shop-Informationen:
+Shop-Name: {shop_seller_name}
+Shop-Beschreibung: {shop_description}
+Geschäftsadresse: {shop_address}
+Geschäftstelefon: {shop_phone}

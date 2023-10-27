@@ -1,0 +1,5 @@
+Ahoj {seller_name},
+Vaše přihláška byla zamítnuta.
+Důvod: {application_declined_reason}
+S úctou.
+

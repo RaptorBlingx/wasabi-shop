@@ -1,0 +1,4 @@
+Witaj administratorze,
+{reporter} właśnie zgłosił nadużycie produktu {product_name}.
+{title}
+{content}
