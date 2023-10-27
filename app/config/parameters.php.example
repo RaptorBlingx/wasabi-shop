@@ -1,0 +1,25 @@
+<?php return array (
+  'parameters' => 
+  array (
+    'database_host' => '127.0.0.1',
+    'database_port' => '',
+    'database_name' => 'wasabi',
+    'database_user' => 'user',
+    'database_password' => 'password',
+    'database_prefix' => 'wa_',
+    'database_engine' => 'InnoDB',
+    'mailer_transport' => 'smtp',
+    'mailer_host' => '127.0.0.1',
+    'mailer_user' => NULL,
+    'mailer_password' => NULL,
+    'secret' => '',
+    'ps_caching' => 'CacheMemcache',
+    'ps_cache_enable' => false,
+    'ps_creation_date' => '2023-07-18',
+    'locale' => 'it-IT',
+    'use_debug_toolbar' => true,
+    'cookie_key' => '',
+    'cookie_iv' => '',
+    'new_cookie_key' => '',
+  ),
+);
