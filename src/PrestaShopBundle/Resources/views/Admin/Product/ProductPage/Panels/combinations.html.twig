@@ -26,6 +26,18 @@
   <div class="container-fluid">
 
     <div id="quantities" style="{% if has_combinations or formDependsOnStocks.vars.value != "0" %}display: none;{% endif %}">
+
+      <div id="skill" style="{% if formType.vars.value != "3" %}display: none;{% endif %}">
+        <h2>
+          {{ formSkill.vars.label }}
+          <span class="help-box" data-toggle="popover"
+            data-content="Insert skill details in json format" ></span>
+        </h2>
+        <div id="skill-editor" style="width: 100%; height: 300px;">{{ formSkill.vars.value }}</div>
+        {{ form_errors(formSkill) }}
+        {{ form_widget(formSkill) }}
+      </div>
+      
       <h2>{{ 'Quantities'|trans({}, 'Admin.Catalog.Feature') }}</h2>
       <fieldset class="form-group">
         <div class="row">

@@ -98,6 +98,7 @@
               'formLocation': form.step3.location,
               'formLowStockAlert': form.step3.low_stock_alert,
               'formVirtualProduct': form.step3.virtual_product,
+              'formSkill': form.step3.skill,
               'asm_globally_activated': asm_globally_activated,
               'formType': form.step1.type_product,
               'formAdvancedStockManagement': form.step3.advanced_stock_management,
@@ -286,6 +287,7 @@
   <script src="{{ asset('../js/tiny_mce/tiny_mce.js') }}"></script>
   <script src="{{ asset('../js/admin/tinymce.inc.js') }}"></script>
   <script src="{{ asset('../js/admin/tinymce_loader.js') }}"></script>
+  <script src="{{ asset('../js/ace/src/ace.js') }}"></script>
 
   <script>
       $(function() {
@@ -304,6 +306,13 @@
             });
           });
         }
+
+        var skill_editor = ace.edit('skill-editor')
+        skill_editor.setTheme("ace/theme/chrome");
+        skill_editor.session.setMode("ace/mode/json");
+        skill_editor.session.on('change', function(delta) {
+            $('[id^=form_step][id$=skill]').val(skill_editor.getValue())
+        });
       });
   </script>
 {% endblock %}

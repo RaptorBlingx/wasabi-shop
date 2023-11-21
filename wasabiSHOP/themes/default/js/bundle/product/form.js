@@ -174,21 +174,25 @@ window.displayFieldsManager = (function () {
         $('#virtual_product, #pack_stock_type, #js_form_step1_inputPackItems').hide();
         $('#form-nav a[href="#step4"]').show();
 
-        if (typeProduct.val() === '2') {
+        if (['2', '3'].includes(typeProduct.val())) {
           showVariationsSelector.hide();
           $('#virtual_product').show();
           $('#form-nav a[href="#step4"]').hide();
           showVariationsSelector.find('input[value="0"]').attr('checked', true);
-          $('#form-nav a[href="#step3"]').text(translate_javascripts['Virtual product']);
-        } else {
+          if (typeProduct.val() == 2) $('#form-nav a[href="#step3"]').text(translate_javascripts['Virtual product']);
+          else $('#form-nav a[href="#step3"]').text('Skill');
+        } 
+        else {
           showVariationsSelector.show();
           $('#form-nav a[href="#step3"]').text(translate_javascripts.Quantities);
         }
       }
 
+      $('#skill').toggle(typeProduct.val() === '3')
+
       // Switching from a product type to another which is not "Virtual product",
       // triggers the destruction of pre-existing virtual product
-      const shouldDestroyVirtualProduct = typeProduct.val() !== '2';
+      const shouldDestroyVirtualProduct = ! ['2', '3'].includes(typeProduct.val());
 
       if (shouldDestroyVirtualProduct && managedVirtualProduct !== undefined) {
         managedVirtualProduct.destroy();
@@ -220,13 +224,12 @@ window.displayFieldsManager = (function () {
       switch (typeProduct.val()) {
         case '0':
           return 'standard';
-          break;
         case '1':
           return 'pack';
-          break;
         case '2':
           return 'virtual';
-          break;
+        case '3':
+          return 'skill';
         default:
           return 'standard';
       }
@@ -241,8 +244,7 @@ window.displayFieldsManager = (function () {
       if (
         (showVariationsSelector.find('input:checked').val() === '1'
         || $('#accordion_combinations tr:not(#loading-attribute)').length > 0)
-        && (typeProduct.val() === '1'
-        || typeProduct.val() === '2')
+        && ['1', '2', '3'].includes(typeProduct.val())
       ) {
         const typeOfProduct = this.getProductType();
         // eslint-disable-next-line

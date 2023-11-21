@@ -261,6 +261,21 @@ class ProductQuantity extends CommonAbstractType
                         'Admin.Catalog.Feature'
                     ),
                 ]
+            )
+            ->add(
+                'skill',
+                FormType\TextareaType::class,
+                [
+                    'required' => true,
+                    'label' => 'Skill details',
+                    'constraints' => [
+                        new Assert\NotBlank(),
+                        new Assert\Json()
+                    ],
+                    'attr' => [
+                        'style' => 'display: none;'
+                    ]
+                ]
             );
 
         $builder->addEventListener(

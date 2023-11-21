@@ -190,6 +190,7 @@ class ProductInformation extends CommonAbstractType
                 $this->translator->trans('Standard product', [], 'Admin.Catalog.Feature') => 0,
                 $this->translator->trans('Pack of products', [], 'Admin.Catalog.Feature') => 1,
                 $this->translator->trans('Virtual product', [], 'Admin.Catalog.Feature') => 2,
+                $this->translator->trans('Skill', [], 'Admin.Catalog.Feature') => 3,
             ],
             'attr' => [
                 'class' => 'custom-select',

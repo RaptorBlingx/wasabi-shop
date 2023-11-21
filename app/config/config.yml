@@ -33,6 +33,9 @@ services:
     public: true
 
 framework:
+  #vscode://file/{full path to file}:line:column
+  ide: 'vscode://file%%f:%%l'
+  # ide: 'myide://open?url=file://%%f&line=%%l'
   assets:
     version: !php/const \AppKernel::VERSION
 
