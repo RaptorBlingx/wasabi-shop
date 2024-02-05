@@ -266,12 +266,8 @@ class ProductQuantity extends CommonAbstractType
                 'skill',
                 FormType\TextareaType::class,
                 [
-                    'required' => true,
+                    'required' => false,
                     'label' => 'Skill details',
-                    'constraints' => [
-                        new Assert\NotBlank(),
-                        new Assert\Json()
-                    ],
                     'attr' => [
                         'style' => 'display: none;'
                     ]
@@ -282,6 +278,21 @@ class ProductQuantity extends CommonAbstractType
             FormEvents::PRE_SET_DATA,
             function (FormEvent $event) {
                 $form = $event->getForm();
+                $type_product = $_POST['form']['step1']['type_product'] ?? "0";
+                if ($type_product === "3" ) {
+                    $form->add(
+                        'skill',
+                        FormType\TextareaType::class,
+                        [
+                            'required' => false,
+                            'label' => 'Skill details',
+                            'constraints' => [
+                                new Assert\NotBlank(),
+                                new Assert\Json()
+                            ],
+                        ]
+                    );
+                }
 
                 //Manage out_of_stock field with contextual values/label
                 $defaultChoiceLabel = $this->translator->trans(
@@ -345,6 +356,17 @@ class ProductQuantity extends CommonAbstractType
                         'label' => $this->translator->trans('Pack quantities', [], 'Admin.Catalog.Feature'),
                     ]
                 );
+            }
+        );
+
+        $builder->addEventListener(
+            FormEvents::PRE_SUBMIT,
+            function (FormEvent $event) {
+                $form = $event->getForm();
+                $type_product = $_POST['form']['step1']['type_product'] ?? "0";
+                if ($type_product !== "3" ) {
+                    $form->get('skill')->setData(null);
+                }
             }
         );
     }

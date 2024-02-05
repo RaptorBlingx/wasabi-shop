@@ -512,7 +512,7 @@ class ProductController extends FrameworkBundleAdminController
             );
         }
 
-        /* @var Form $form */
+        /** @var Form $form */
         $form->handleRequest($request);
         $formData = $form->getData();
         $formData['step3']['combinations'] = $combinationsList;

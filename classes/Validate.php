@@ -1350,4 +1350,9 @@ class ValidateCore
 
         return true;
     }
+
+    public static function isSkill($string)
+    {
+        return is_null($string) || self::isJson($string);
+    }
 }

@@ -252,7 +252,7 @@ class AdminModelAdapter extends \PrestaShopBundle\Model\AdminModelAdapter
         }
 
         //Product type
-        if ($form_data['type_product'] == 2) {
+        if (in_array($form_data['type_product'], [2, 3])) {
             $form_data['condition'] = 'new';
             $form_data['is_virtual'] = 1;
         } else {
@@ -487,7 +487,7 @@ class AdminModelAdapter extends \PrestaShopBundle\Model\AdminModelAdapter
     private function mapStep1FromData(Product $product)
     {
         return [
-            'type_product' => $product->getType(),
+            'type_product' => null === $product->skill ? $product->getType() : 3,
             'inputPackItems' => [
                 'data' => array_map(
                     function ($p) {
@@ -595,6 +595,7 @@ class AdminModelAdapter extends \PrestaShopBundle\Model\AdminModelAdapter
             'available_date' => $product->available_date,
             'pack_stock_type' => $product->pack_stock_type,
             'virtual_product' => $this->getVirtualProductData($product),
+            'skill' => $product->skill,
         ];
     }
 

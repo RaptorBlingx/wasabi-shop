@@ -39,6 +39,8 @@ use PrestaShop\PrestaShop\Core\Util\DateTime\DateTime as DateTimeUtil;
 
 class ProductCore extends ObjectModel
 {
+    /** @var string Skill details in json format  */
+    public $skill;
     /**
      * @var string Tax name
      *
@@ -452,6 +454,7 @@ class ProductCore extends ObjectModel
         'multilang' => true,
         'multilang_shop' => true,
         'fields' => [
+            'skill' => ['type' => self::TYPE_STRING, 'validate' => 'isSkill'],
             /* Classic fields */
             'id_shop_default' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
             'id_manufacturer' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
@@ -718,6 +721,10 @@ class ProductCore extends ObjectModel
     public function __construct($id_product = null, $full = false, $id_lang = null, $id_shop = null, Context $context = null)
     {
         parent::__construct($id_product, $id_lang, $id_shop);
+
+        if (empty($this->skill)) {
+            $this->skill = null;
+        }
 
         if ($full && $this->id) {
             if (!$context) {
