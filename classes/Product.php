@@ -711,6 +711,31 @@ class ProductCore extends ObjectModel
     public const PTYPE_PACK = 1;
     public const PTYPE_VIRTUAL = 2;
 
+    /** @return Customer|null */
+    public function getDeveloper()
+    {
+        if ($email = $this->getDeveloperEmail()) {
+            return (new Customer)->getByEmail($email) ?: null;
+        }
+        return null;
+    }
+
+    /** @return string|false */
+    public function getDeveloperEmail()
+    {
+        if ($this->skill && $aSkill = json_decode($this->skill, true)) {
+            return $aSkill['developer']['email'] ?? false;
+        }
+        return false;
+    }
+
+    public static function findByDeveloperEmail($email)
+    {
+        return (new PrestaShopCollection('Product'))->sqlWhere(
+            "`skill` <> '' AND JSON_EXTRACT(`skill`, '$.developer.email') = '$email'"
+        )->getResults();
+    }
+
     /**
      * @param int|null $id_product Product identifier
      * @param bool $full Load with price, tax rate, manufacturer name, supplier name, tags, stocks...
