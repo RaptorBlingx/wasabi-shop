@@ -7,6 +7,8 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
+use function sprintf;
+
 class JsonContains extends FunctionNode
 {
     protected $target;
@@ -15,7 +17,7 @@ class JsonContains extends FunctionNode
 
     protected $path;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser): void
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -35,9 +37,9 @@ class JsonContains extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker): string
     {
-        $target = $sqlWalker->walkStringPrimary($this->target);
+        $target    = $sqlWalker->walkStringPrimary($this->target);
         $candidate = $sqlWalker->walkStringPrimary($this->candidate);
 
         if ($this->path !== null) {

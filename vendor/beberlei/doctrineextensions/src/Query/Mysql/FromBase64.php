@@ -10,15 +10,15 @@ use Doctrine\ORM\Query\SqlWalker;
 /**
  * "FROM_BASE64" "(" "$fieldIdentifierExpression" ")"
  *
- * @example SELECT FROM_BASE64(foo) FROM dual;
- *
  * @link https://dev.mysql.com/doc/refman/en/string-functions.html#function_from-base64
+ *
+ * @example SELECT FROM_BASE64(foo) FROM dual;
  */
 class FromBase64 extends FunctionNode
 {
     public $field = null;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser): void
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -26,7 +26,7 @@ class FromBase64 extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker): string
     {
         return 'FROM_BASE64(' . $this->field->dispatch($sqlWalker) . ')';
     }

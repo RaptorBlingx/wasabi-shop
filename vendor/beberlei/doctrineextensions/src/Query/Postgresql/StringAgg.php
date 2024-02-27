@@ -8,6 +8,8 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
+use function sprintf;
+
 /**
  * @author Roberto Júnior <me@robertojunior.net>
  * @author Vaskevich Eugeniy <wbrframe@gmail.com>
@@ -22,7 +24,7 @@ class StringAgg extends FunctionNode
 
     private $isDistinct = false;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser): void
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -45,9 +47,9 @@ class StringAgg extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker): string
     {
-        return \sprintf(
+        return sprintf(
             'string_agg(%s%s, %s%s)',
             ($this->isDistinct ? 'DISTINCT ' : ''),
             $sqlWalker->walkPathExpression($this->expression),

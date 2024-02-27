@@ -7,16 +7,14 @@ use Doctrine\ORM\Query\Lexer;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 
-/**
- * @author Geovani Roggeo
- */
+/** @author Geovani Roggeo */
 class DatePart extends FunctionNode
 {
     public $dateString = null;
-    
+
     public $dateFormat = null;
 
-    public function parse(Parser $parser)
+    public function parse(Parser $parser): void
     {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
@@ -26,7 +24,7 @@ class DatePart extends FunctionNode
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
     }
 
-    public function getSql(SqlWalker $sqlWalker)
+    public function getSql(SqlWalker $sqlWalker): string
     {
         return 'DATE_PART(' .
             $this->dateString->dispatch($sqlWalker) . ', ' .

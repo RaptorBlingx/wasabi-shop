@@ -16,11 +16,11 @@ use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Connections\PrimaryReadReplicaConnection;
 use Doctrine\DBAL\Driver\Middleware as MiddlewareInterface;
 use Doctrine\DBAL\Logging\LoggerChain;
-use Doctrine\DBAL\Logging\Middleware;
 use Doctrine\DBAL\Sharding\PoolingShardConnection;
 use Doctrine\DBAL\Sharding\PoolingShardManager;
 use Doctrine\DBAL\Tools\Console\Command\ImportCommand;
 use Doctrine\DBAL\Tools\Console\ConnectionProvider;
+use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Id\AbstractIdGenerator;
 use Doctrine\ORM\Proxy\Autoloader;
@@ -29,11 +29,15 @@ use Doctrine\ORM\Tools\Console\Command\EnsureProductionSettingsCommand;
 use Doctrine\ORM\Tools\Export\ClassMetadataExporter;
 use Doctrine\ORM\UnitOfWork;
 use LogicException;
+use ReflectionMethod;
+use Symfony\Bridge\Doctrine\ArgumentResolver\EntityValueResolver;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 use Symfony\Bridge\Doctrine\DependencyInjection\AbstractDoctrineExtension;
 use Symfony\Bridge\Doctrine\IdGenerator\UlidGenerator;
 use Symfony\Bridge\Doctrine\IdGenerator\UuidGenerator;
 use Symfony\Bridge\Doctrine\Messenger\DoctrineClearEntityManagerWorkerSubscriber;
 use Symfony\Bridge\Doctrine\Messenger\DoctrineTransactionMiddleware;
+use Symfony\Bridge\Doctrine\Middleware\Debug\Middleware as SfDebugMiddleware;
 use Symfony\Bridge\Doctrine\PropertyInfo\DoctrineExtractor;
 use Symfony\Bridge\Doctrine\SchemaListener\DoctrineDbalCacheAdapterSchemaSubscriber;
 use Symfony\Bridge\Doctrine\SchemaListener\MessengerTransportDoctrineSchemaSubscriber;
@@ -50,6 +54,7 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\DependencyInjection\Reference;
+use Symfony\Component\ExpressionLanguage\ExpressionLanguage;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Messenger\Bridge\Doctrine\Transport\DoctrineTransportFactory;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -65,6 +70,7 @@ use function method_exists;
 use function reset;
 use function sprintf;
 use function str_replace;
+use function trigger_deprecation;
 
 use const PHP_VERSION_ID;
 
@@ -115,9 +121,6 @@ class DoctrineExtension extends AbstractDoctrineExtension
     {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('dbal.xml');
-        $chainLogger = $container->getDefinition('doctrine.dbal.logger.chain');
-        $logger      = new Reference('doctrine.dbal.logger');
-        $chainLogger->addArgument([$logger]);
 
         if (class_exists(ImportCommand::class)) {
             $container->register('doctrine.database_import_command', ImportDoctrineCommand::class)
@@ -146,10 +149,20 @@ class DoctrineExtension extends AbstractDoctrineExtension
         $container->setParameter('doctrine.connections', $connections);
         $container->setParameter('doctrine.default_connection', $this->defaultConnection);
 
-        $connWithLogging = [];
+        $connWithLogging   = [];
+        $connWithProfiling = [];
+        $connWithBacktrace = [];
         foreach ($config['connections'] as $name => $connection) {
             if ($connection['logging']) {
                 $connWithLogging[] = $name;
+            }
+
+            if ($connection['profiling']) {
+                $connWithProfiling[] = $name;
+
+                if ($connection['profiling_collect_backtrace']) {
+                    $connWithBacktrace[] = $name;
+                }
             }
 
             $this->loadDbalConnection($name, $connection, $container);
@@ -172,7 +185,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
             });
         }
 
-        $this->useMiddlewaresIfAvailable($container, $connWithLogging);
+        $this->useMiddlewaresIfAvailable($container, $connWithLogging, $connWithProfiling, $connWithBacktrace);
     }
 
     /**
@@ -186,7 +199,9 @@ class DoctrineExtension extends AbstractDoctrineExtension
     {
         $configuration = $container->setDefinition(sprintf('doctrine.dbal.%s_connection.configuration', $name), new ChildDefinition('doctrine.dbal.connection.configuration'));
         $logger        = null;
-        if ($connection['logging']) {
+
+        /** @psalm-suppress UndefinedClass */
+        if (! interface_exists(MiddlewareInterface::class) && $connection['logging']) {
             $logger = new Reference('doctrine.dbal.logger');
         }
 
@@ -195,7 +210,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
         $dataCollectorDefinition = $container->getDefinition('data_collector.doctrine');
         $dataCollectorDefinition->replaceArgument(1, $connection['profiling_collect_schema_errors']);
 
-        if ($connection['profiling']) {
+        if (! $this->isSfDebugMiddlewareAvailable() && $connection['profiling']) {
             $profilingAbstractId = $connection['profiling_collect_backtrace'] ?
                 'doctrine.dbal.logger.backtrace' :
                 'doctrine.dbal.logger.profiling';
@@ -277,6 +292,12 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
         // Create a shard_manager for this connection
         if (isset($options['shards'])) {
+            trigger_deprecation(
+                'doctrine/doctrine-bundle',
+                '2.7',
+                'Using shards for connection "%s" is deprecated. DBAL 3 does not support shards anymore.',
+                $name
+            );
             $shardManagerDefinition = new Definition($options['shardManagerClass'], [new Reference($connectionId)]);
             $container->setDefinition(sprintf('doctrine.dbal.%s_shard_manager', $name), $shardManagerDefinition);
         }
@@ -477,6 +498,11 @@ class DoctrineExtension extends AbstractDoctrineExtension
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('orm.xml');
 
+        if (! (new ReflectionMethod(EntityManager::class, '__construct'))->isPublic()) {
+            $container->getDefinition('doctrine.orm.entity_manager.abstract')
+                ->setFactory(['%doctrine.orm.entity_manager.class%', 'create']);
+        }
+
         if (class_exists(AbstractType::class)) {
             $container->getDefinition('form.type.entity')->addTag('kernel.reset', ['method' => 'reset']);
         }
@@ -502,6 +528,44 @@ class DoctrineExtension extends AbstractDoctrineExtension
 
         if (! class_exists(UuidGenerator::class)) {
             $container->removeDefinition('doctrine.uuid_generator');
+        }
+
+        // available in Symfony 6.2 and higher
+        if (! class_exists(EntityValueResolver::class)) {
+            $container->removeDefinition('doctrine.orm.entity_value_resolver');
+            $container->removeDefinition('doctrine.orm.entity_value_resolver.expression_language');
+        } else {
+            if (! class_exists(ExpressionLanguage::class)) {
+                $container->removeDefinition('doctrine.orm.entity_value_resolver.expression_language');
+            }
+
+            $controllerResolverDefaults = [];
+
+            if (! $config['controller_resolver']['enabled']) {
+                $controllerResolverDefaults['disabled'] = true;
+            }
+
+            if (! $config['controller_resolver']['auto_mapping']) {
+                $controllerResolverDefaults['mapping'] = [];
+            }
+
+            if ($config['controller_resolver']['evict_cache']) {
+                $controllerResolverDefaults['evict_cache'] = true;
+            }
+
+            if ($controllerResolverDefaults) {
+                $container->getDefinition('doctrine.orm.entity_value_resolver')->setArgument(2, (new Definition(MapEntity::class))->setArguments([
+                    null,
+                    null,
+                    null,
+                    $controllerResolverDefaults['mapping'] ?? null,
+                    null,
+                    null,
+                    null,
+                    $controllerResolverDefaults['evict_cache'] ?? null,
+                    $controllerResolverDefaults['disabled'] ?? false,
+                ]));
+            }
         }
 
         // not available in Doctrine ORM 3.0 and higher
@@ -627,6 +691,7 @@ class DoctrineExtension extends AbstractDoctrineExtension
             'setProxyDir' => '%doctrine.orm.proxy_dir%',
             'setProxyNamespace' => '%doctrine.orm.proxy_namespace%',
             'setAutoGenerateProxyClasses' => '%doctrine.orm.auto_generate_proxy_classes%',
+            'setSchemaIgnoreClasses' => $entityManager['schema_ignore_classes'],
             'setClassMetadataFactoryName' => $entityManager['class_metadata_factory_name'],
             'setDefaultRepositoryClassName' => $entityManager['default_repository_class'],
             'setNamingStrategy' => new Reference($entityManager['naming_strategy']),
@@ -1109,24 +1174,50 @@ class DoctrineExtension extends AbstractDoctrineExtension
         return $id;
     }
 
-    /** @param string[] $connWithLogging */
-    private function useMiddlewaresIfAvailable(ContainerBuilder $container, array $connWithLogging): void
-    {
+    /**
+     * @param string[] $connWithLogging
+     * @param string[] $connWithProfiling
+     * @param string[] $connWithBacktrace
+     */
+    private function useMiddlewaresIfAvailable(
+        ContainerBuilder $container,
+        array $connWithLogging,
+        array $connWithProfiling,
+        array $connWithBacktrace
+    ): void {
         /** @psalm-suppress UndefinedClass */
-        if (! class_exists(Middleware::class)) {
+        if (! interface_exists(MiddlewareInterface::class)) {
             return;
         }
+
+        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader->load('middlewares.xml');
 
         $container
             ->getDefinition('doctrine.dbal.logger')
             ->replaceArgument(0, null);
 
-        $loader = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
-        $loader->load('middlewares.xml');
-
         $loggingMiddlewareAbstractDef = $container->getDefinition('doctrine.dbal.logging_middleware');
         foreach ($connWithLogging as $connName) {
             $loggingMiddlewareAbstractDef->addTag('doctrine.middleware', ['connection' => $connName]);
         }
+
+        if ($this->isSfDebugMiddlewareAvailable()) {
+            $container->getDefinition('doctrine.debug_data_holder')->replaceArgument(0, $connWithBacktrace);
+            $debugMiddlewareAbstractDef = $container->getDefinition('doctrine.dbal.debug_middleware');
+            foreach ($connWithProfiling as $connName) {
+                $debugMiddlewareAbstractDef
+                    ->addTag('doctrine.middleware', ['connection' => $connName]);
+            }
+        } else {
+            $container->removeDefinition('doctrine.dbal.debug_middleware');
+            $container->removeDefinition('doctrine.debug_data_holder');
+        }
+    }
+
+    private function isSfDebugMiddlewareAvailable(): bool
+    {
+        /** @psalm-suppress UndefinedClass */
+        return interface_exists(MiddlewareInterface::class) && class_exists(SfDebugMiddleware::class);
     }
 }

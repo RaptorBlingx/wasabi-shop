@@ -2,12 +2,10 @@
 
 namespace DoctrineExtensions\Query\Sqlite;
 
-/**
- * @author Tarjei Huse <tarjei.huse@gmail.com>
- */
+/** @author Tarjei Huse <tarjei.huse@gmail.com> */
 class Month extends NumberFromStrfTime
 {
-    protected function getFormat()
+    protected function getFormat(): string
     {
         return '%m';
     }

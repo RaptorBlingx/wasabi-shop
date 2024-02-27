@@ -173,9 +173,21 @@ class Configuration implements ConfigurationInterface
                 ->scalarNode('server_version')->end()
                 ->scalarNode('driver_class')->end()
                 ->scalarNode('wrapper_class')->end()
-                ->scalarNode('shard_manager_class')->end()
-                ->scalarNode('shard_choser')->end()
-                ->scalarNode('shard_choser_service')->end()
+                ->scalarNode('shard_manager_class')
+                    ->setDeprecated(
+                        ...$this->getDeprecationMsg('The "shard_manager_class" configuration is deprecated and not supported anymore using DBAL 3.', '2.7')
+                    )
+                ->end()
+                ->scalarNode('shard_choser')
+                    ->setDeprecated(
+                        ...$this->getDeprecationMsg('The "shard_choser" configuration is deprecated and not supported anymore using DBAL 3.', '2.7')
+                    )
+                ->end()
+                ->scalarNode('shard_choser_service')
+                    ->setDeprecated(
+                        ...$this->getDeprecationMsg('The "shard_choser_service" configuration is deprecated and not supported anymore using DBAL 3.', '2.7')
+                    )
+                ->end()
                 ->booleanNode('keep_slave')
                     ->setDeprecated(
                         ...$this->getDeprecationMsg('The "keep_slave" configuration key is deprecated since doctrine-bundle 2.2. Use the "keep_replica" configuration key instead.', '2.2')
@@ -222,6 +234,9 @@ class Configuration implements ConfigurationInterface
         $shardNode = $connectionNode
             ->children()
                 ->arrayNode('shards')
+                    ->setDeprecated(
+                        ...$this->getDeprecationMsg('The "shards" configuration is deprecated and not supported anymore using DBAL 3.', '2.7')
+                    )
                     ->prototype('array');
 
         $shardNode
@@ -391,7 +406,7 @@ class Configuration implements ConfigurationInterface
                         })
                         ->then(static function ($v) {
                             $v = (array) $v;
-                            // Key that should not be rewritten to the connection config
+                            // Key that should not be rewritten to the entity-manager config
                             $excludedKeys  = [
                                 'default_entity_manager' => true,
                                 'auto_generate_proxy_classes' => true,
@@ -399,6 +414,7 @@ class Configuration implements ConfigurationInterface
                                 'proxy_namespace' => true,
                                 'resolve_target_entities' => true,
                                 'resolve_target_entity' => true,
+                                'controller_resolver' => true,
                             ];
                             $entityManager = [];
                             foreach ($v as $key => $value) {
@@ -451,6 +467,19 @@ class Configuration implements ConfigurationInterface
                         ->end()
                         ->scalarNode('proxy_dir')->defaultValue('%kernel.cache_dir%/doctrine/orm/Proxies')->end()
                         ->scalarNode('proxy_namespace')->defaultValue('Proxies')->end()
+                        ->arrayNode('controller_resolver')
+                            ->canBeDisabled()
+                            ->children()
+                                ->booleanNode('auto_mapping')
+                                    ->defaultTrue()
+                                    ->info('Set to false to disable using route placeholders as lookup criteria when the primary key doesn\'t match the argument name')
+                                ->end()
+                                ->booleanNode('evict_cache')
+                                    ->info('Set to true to fetch the entity from the database instead of using the cache, if any')
+                                    ->defaultFalse()
+                                ->end()
+                            ->end()
+                        ->end()
                     ->end()
                     ->fixXmlConfig('entity_manager')
                     ->append($this->getOrmEntityManagersNode())
@@ -578,6 +607,7 @@ class Configuration implements ConfigurationInterface
                 ->append($this->getOrmCacheDriverNode('metadata_cache_driver'))
                 ->append($this->getOrmCacheDriverNode('result_cache_driver'))
                 ->append($this->getOrmEntityListenersNode())
+                ->fixXmlConfig('schema_ignore_class', 'schema_ignore_classes')
                 ->children()
                     ->scalarNode('connection')->end()
                     ->scalarNode('class_metadata_factory_name')->defaultValue(ClassMetadataFactory::class)->end()
@@ -587,6 +617,9 @@ class Configuration implements ConfigurationInterface
                     ->scalarNode('quote_strategy')->defaultValue('doctrine.orm.quote_strategy.default')->end()
                     ->scalarNode('entity_listener_resolver')->defaultNull()->end()
                     ->scalarNode('repository_factory')->defaultValue('doctrine.orm.container_repository_factory')->end()
+                    ->arrayNode('schema_ignore_classes')
+                        ->prototype('scalar')->end()
+                    ->end()
                 ->end()
                 ->children()
                     ->arrayNode('second_level_cache')
