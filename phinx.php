@@ -9,6 +9,7 @@ $db = [
     'pass' => $parameters['database_password'],
     'port' => $parameters['database_port'],
     'charset' => 'utf8',
+    'db_prefix' => $parameters['database_prefix'],
 ];
 return
 [

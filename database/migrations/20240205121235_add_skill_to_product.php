@@ -19,6 +19,8 @@ final class AddSkillToProduct extends AbstractMigration
      */
     public function change(): void
     {
-        $this->table('wa_product')->addColumn('skill', 'text')->update();
+        $db_prefix = $this->getAdapter()->getOption('db_prefix');
+        $table = $this->table($db_prefix.'product');
+        $table->addColumn('skill', 'text')->update();
     }
 }

@@ -25,6 +25,9 @@
  */
 class OrderDetailCore extends ObjectModel
 {
+    /** @var int|null */
+    public $developer_id;
+
     /** @var int */
     public $id_order_detail;
 
@@ -191,6 +194,7 @@ class OrderDetailCore extends ObjectModel
         'table' => 'order_detail',
         'primary' => 'id_order_detail',
         'fields' => [
+            'developer_id' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
             'id_order' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true],
             'id_order_invoice' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
             'id_warehouse' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true],
@@ -748,6 +752,11 @@ class OrderDetailCore extends ObjectModel
      */
     protected function create(Order $order, Cart $cart, $product, $id_order_state, $id_order_invoice, $use_taxes = true, $id_warehouse = 0)
     {
+        $oProduct = new Product($product['id_product']);
+        if ($developer = $oProduct->getDeveloper()) {
+            $this->developer_id = $developer->id;
+        }
+        
         if ($use_taxes) {
             $this->tax_calculator = new TaxCalculator();
         }
