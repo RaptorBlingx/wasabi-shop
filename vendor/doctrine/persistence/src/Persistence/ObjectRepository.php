@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence;
 
 use UnexpectedValueException;
@@ -38,21 +36,18 @@ interface ObjectRepository
      * an UnexpectedValueException if certain values of the sorting or limiting details are
      * not supported.
      *
-     * @param array<string, mixed>       $criteria
-     * @param array<string, string>|null $orderBy
+     * @param array<string, mixed> $criteria
+     * @param string[]|null        $orderBy
+     * @param int|null             $limit
+     * @param int|null             $offset
      * @psalm-param array<string, 'asc'|'desc'|'ASC'|'DESC'>|null $orderBy
      *
-     * @return array<int, object> The objects.
+     * @return object[] The objects.
      * @psalm-return T[]
      *
      * @throws UnexpectedValueException
      */
-    public function findBy(
-        array $criteria,
-        ?array $orderBy = null,
-        ?int $limit = null,
-        ?int $offset = null
-    );
+    public function findBy(array $criteria, ?array $orderBy = null, $limit = null, $offset = null);
 
     /**
      * Finds a single object by a set of criteria.
@@ -67,6 +62,7 @@ interface ObjectRepository
     /**
      * Returns the class name of the object managed by the repository.
      *
+     * @return string
      * @psalm-return class-string<T>
      */
     public function getClassName();

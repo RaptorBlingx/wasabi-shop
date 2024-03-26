@@ -1,11 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence;
-
-use Doctrine\Persistence\Mapping\ClassMetadata;
-use Doctrine\Persistence\Mapping\ClassMetadataFactory;
 
 /**
  * Base class to simplify ObjectManager decorators
@@ -20,36 +15,62 @@ abstract class ObjectManagerDecorator implements ObjectManager
     /**
      * {@inheritdoc}
      */
-    public function find(string $className, $id)
+    public function find($className, $id)
     {
         return $this->wrapped->find($className, $id);
     }
 
-    public function persist(object $object)
+    /**
+     * {@inheritdoc}
+     */
+    public function persist($object)
     {
         $this->wrapped->persist($object);
     }
 
-    public function remove(object $object)
+    /**
+     * {@inheritdoc}
+     */
+    public function remove($object)
     {
         $this->wrapped->remove($object);
     }
 
-    public function clear(): void
+    /**
+     * {@inheritdoc}
+     */
+    public function merge($object)
     {
-        $this->wrapped->clear();
+        return $this->wrapped->merge($object);
     }
 
-    public function detach(object $object)
+    /**
+     * {@inheritdoc}
+     */
+    public function clear($objectName = null)
+    {
+        $this->wrapped->clear($objectName);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function detach($object)
     {
         $this->wrapped->detach($object);
     }
 
-    public function refresh(object $object)
+    /**
+     * {@inheritdoc}
+     */
+    public function refresh($object)
     {
         $this->wrapped->refresh($object);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function flush()
     {
         $this->wrapped->flush();
@@ -58,7 +79,7 @@ abstract class ObjectManagerDecorator implements ObjectManager
     /**
      * {@inheritdoc}
      */
-    public function getRepository(string $className)
+    public function getRepository($className)
     {
         return $this->wrapped->getRepository($className);
     }
@@ -66,18 +87,23 @@ abstract class ObjectManagerDecorator implements ObjectManager
     /**
      * {@inheritdoc}
      */
-    public function getClassMetadata(string $className)
+    public function getClassMetadata($className)
     {
         return $this->wrapped->getClassMetadata($className);
     }
 
-    /** @psalm-return ClassMetadataFactory<ClassMetadata<object>> */
+    /**
+     * {@inheritdoc}
+     */
     public function getMetadataFactory()
     {
         return $this->wrapped->getMetadataFactory();
     }
 
-    public function initializeObject(object $obj)
+    /**
+     * {@inheritdoc}
+     */
+    public function initializeObject($obj)
     {
         $this->wrapped->initializeObject($obj);
     }
@@ -85,7 +111,7 @@ abstract class ObjectManagerDecorator implements ObjectManager
     /**
      * {@inheritdoc}
      */
-    public function contains(object $object)
+    public function contains($object)
     {
         return $this->wrapped->contains($object);
     }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping;
 
 use function strpos;
@@ -17,7 +15,7 @@ class StaticReflectionService implements ReflectionService
     /**
      * {@inheritDoc}
      */
-    public function getParentClasses(string $class)
+    public function getParentClasses($class)
     {
         return [];
     }
@@ -25,7 +23,7 @@ class StaticReflectionService implements ReflectionService
     /**
      * {@inheritDoc}
      */
-    public function getClassShortName(string $class)
+    public function getClassShortName($class)
     {
         $nsSeparatorLastPosition = strrpos($class, '\\');
 
@@ -39,7 +37,7 @@ class StaticReflectionService implements ReflectionService
     /**
      * {@inheritDoc}
      */
-    public function getClassNamespace(string $class)
+    public function getClassNamespace($class)
     {
         $namespace = '';
 
@@ -55,7 +53,7 @@ class StaticReflectionService implements ReflectionService
      *
      * @return null
      */
-    public function getClass(string $class)
+    public function getClass($class)
     {
         return null;
     }
@@ -63,7 +61,7 @@ class StaticReflectionService implements ReflectionService
     /**
      * {@inheritDoc}
      */
-    public function getAccessibleProperty(string $class, string $property)
+    public function getAccessibleProperty($class, $property)
     {
         return null;
     }
@@ -71,7 +69,7 @@ class StaticReflectionService implements ReflectionService
     /**
      * {@inheritDoc}
      */
-    public function hasPublicMethod(string $class, string $method)
+    public function hasPublicMethod($class, $method)
     {
         return true;
     }

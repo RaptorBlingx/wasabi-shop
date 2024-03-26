@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping;
 
 use ReflectionClass;
@@ -26,8 +24,7 @@ interface ClassMetadata
      *
      * The returned structure is an array of the identifier field names.
      *
-     * @return array<int, string>
-     * @psalm-return list<string>
+     * @return mixed[]
      */
     public function getIdentifier();
 
@@ -41,51 +38,61 @@ interface ClassMetadata
     /**
      * Checks if the given field name is a mapped identifier for this class.
      *
+     * @param string $fieldName
+     *
      * @return bool
      */
-    public function isIdentifier(string $fieldName);
+    public function isIdentifier($fieldName);
 
     /**
      * Checks if the given field is a mapped property for this class.
      *
+     * @param string $fieldName
+     *
      * @return bool
      */
-    public function hasField(string $fieldName);
+    public function hasField($fieldName);
 
     /**
      * Checks if the given field is a mapped association for this class.
      *
+     * @param string $fieldName
+     *
      * @return bool
      */
-    public function hasAssociation(string $fieldName);
+    public function hasAssociation($fieldName);
 
     /**
      * Checks if the given field is a mapped single valued association for this class.
      *
+     * @param string $fieldName
+     *
      * @return bool
      */
-    public function isSingleValuedAssociation(string $fieldName);
+    public function isSingleValuedAssociation($fieldName);
 
     /**
      * Checks if the given field is a mapped collection valued association for this class.
      *
+     * @param string $fieldName
+     *
      * @return bool
      */
-    public function isCollectionValuedAssociation(string $fieldName);
+    public function isCollectionValuedAssociation($fieldName);
 
     /**
      * A numerically indexed list of field names of this persistent class.
      *
      * This array includes identifier fields if present on this class.
      *
-     * @return array<int, string>
+     * @return string[]
      */
     public function getFieldNames();
 
     /**
      * Returns an array of identifier field names numerically indexed.
      *
-     * @return array<int, string>
+     * @return string[]
      */
     public function getIdentifierFieldNames();
 
@@ -94,7 +101,7 @@ interface ClassMetadata
      *
      * This array includes identifier associations if present on this class.
      *
-     * @return array<int, string>
+     * @return string[]
      */
     public function getAssociationNames();
 
@@ -104,38 +111,48 @@ interface ClassMetadata
      * This type names can be implementation specific but should at least include the php types:
      * integer, string, boolean, float/double, datetime.
      *
+     * @param string $fieldName
+     *
      * @return string|null
      */
-    public function getTypeOfField(string $fieldName);
+    public function getTypeOfField($fieldName);
 
     /**
      * Returns the target class name of the given association.
      *
+     * @param string $assocName
+     *
      * @return string|null
      * @psalm-return class-string|null
      */
-    public function getAssociationTargetClass(string $assocName);
+    public function getAssociationTargetClass($assocName);
 
     /**
      * Checks if the association is the inverse side of a bidirectional association.
      *
+     * @param string $assocName
+     *
      * @return bool
      */
-    public function isAssociationInverseSide(string $assocName);
+    public function isAssociationInverseSide($assocName);
 
     /**
      * Returns the target field of the owning side of the association.
      *
+     * @param string $assocName
+     *
      * @return string
      */
-    public function getAssociationMappedByTargetField(string $assocName);
+    public function getAssociationMappedByTargetField($assocName);
 
     /**
      * Returns the identifier of this object as an array with field name as key.
      *
      * Has to return an empty array if no identifier isset.
      *
-     * @return array<string, mixed>
+     * @param object $object
+     *
+     * @return mixed[]
      */
-    public function getIdentifierValues(object $object);
+    public function getIdentifierValues($object);
 }

@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping\Driver;
 
 use Doctrine\Persistence\Mapping\MappingException;
@@ -32,14 +30,14 @@ trait ColocatedMappingDriver
     /**
      * The paths where to look for mapping files.
      *
-     * @var array<int, string>
+     * @var string[]
      */
     protected $paths = [];
 
     /**
      * The paths excluded from path where to look for mapping files.
      *
-     * @var array<int, string>
+     * @var string[]
      */
     protected $excludePaths = [];
 
@@ -53,7 +51,7 @@ trait ColocatedMappingDriver
     /**
      * Cache for getAllClassNames().
      *
-     * @var array<int, string>|null
+     * @var string[]|null
      * @psalm-var list<class-string>|null
      */
     protected $classNames;
@@ -61,7 +59,7 @@ trait ColocatedMappingDriver
     /**
      * Appends lookup paths to metadata driver.
      *
-     * @param array<int, string> $paths
+     * @param string[] $paths
      *
      * @return void
      */
@@ -73,7 +71,7 @@ trait ColocatedMappingDriver
     /**
      * Retrieves the defined metadata lookup paths.
      *
-     * @return array<int, string>
+     * @return string[]
      */
     public function getPaths()
     {
@@ -95,7 +93,7 @@ trait ColocatedMappingDriver
     /**
      * Retrieve the defined metadata lookup exclude paths.
      *
-     * @return array<int, string>
+     * @return string[]
      */
     public function getExcludePaths()
     {
@@ -123,16 +121,15 @@ trait ColocatedMappingDriver
     }
 
     /**
-     * {@inheritDoc}
-     *
      * Returns whether the class with the specified name is transient. Only non-transient
      * classes, that is entities and mapped superclasses, should have their metadata loaded.
      *
+     * @param string $className
      * @psalm-param class-string $className
      *
      * @return bool
      */
-    abstract public function isTransient(string $className);
+    abstract public function isTransient($className);
 
     /**
      * Gets the names of all mapped classes known to this driver.
@@ -146,7 +143,7 @@ trait ColocatedMappingDriver
             return $this->classNames;
         }
 
-        if ($this->paths === []) {
+        if (! $this->paths) {
             throw MappingException::pathRequiredForDriver(static::class);
         }
 
@@ -194,11 +191,9 @@ trait ColocatedMappingDriver
         $declared = get_declared_classes();
 
         foreach ($declared as $className) {
-            $rc = new ReflectionClass($className);
-
+            $rc         = new ReflectionClass($className);
             $sourceFile = $rc->getFileName();
-
-            if (! in_array($sourceFile, $includedFiles, true) || $this->isTransient($className)) {
+            if (! in_array($sourceFile, $includedFiles) || $this->isTransient($className)) {
                 continue;
             }
 

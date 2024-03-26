@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence;
 
 /**
@@ -23,12 +21,12 @@ interface ManagerRegistry extends ConnectionRegistry
      *
      * @return ObjectManager
      */
-    public function getManager(?string $name = null);
+    public function getManager($name = null);
 
     /**
      * Gets an array of all registered object managers.
      *
-     * @return array<string, ObjectManager> An array of ObjectManager instances
+     * @return ObjectManager[] An array of ObjectManager instances
      */
     public function getManagers();
 
@@ -49,7 +47,20 @@ interface ManagerRegistry extends ConnectionRegistry
      *
      * @return ObjectManager
      */
-    public function resetManager(?string $name = null);
+    public function resetManager($name = null);
+
+    /**
+     * Resolves a registered namespace alias to the full namespace.
+     *
+     * This method looks for the alias in all registered object managers.
+     *
+     * @deprecated This method is deprecated along with short namespace aliases.
+     *
+     * @param string $alias The alias.
+     *
+     * @return string The full namespace.
+     */
+    public function getAliasNamespace($alias);
 
     /**
      * Gets all object manager names and associated service IDs. A service ID
@@ -73,17 +84,14 @@ interface ManagerRegistry extends ConnectionRegistry
      *
      * @template T of object
      */
-    public function getRepository(
-        string $persistentObject,
-        ?string $persistentManagerName = null
-    );
+    public function getRepository($persistentObject, $persistentManagerName = null);
 
     /**
      * Gets the object manager associated with a given class.
      *
-     * @param class-string $class A persistent object class name.
+     * @param string $class A persistent object class name.
      *
      * @return ObjectManager|null
      */
-    public function getManagerForClass(string $class);
+    public function getManagerForClass($class);
 }

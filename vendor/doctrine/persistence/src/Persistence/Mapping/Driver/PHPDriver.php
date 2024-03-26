@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping\Driver;
 
 use Doctrine\Persistence\Mapping\ClassMetadata;
@@ -18,7 +16,9 @@ class PHPDriver extends FileDriver
      */
     protected $metadata;
 
-    /** @param string|array<int, string>|FileLocator $locator */
+    /**
+     * {@inheritDoc}
+     */
     public function __construct($locator)
     {
         parent::__construct($locator, '.php');
@@ -27,7 +27,7 @@ class PHPDriver extends FileDriver
     /**
      * {@inheritDoc}
      */
-    public function loadMetadataForClass(string $className, ClassMetadata $metadata)
+    public function loadMetadataForClass($className, ClassMetadata $metadata)
     {
         $this->metadata = $metadata;
 
@@ -37,7 +37,7 @@ class PHPDriver extends FileDriver
     /**
      * {@inheritDoc}
      */
-    protected function loadMappingFile(string $file)
+    protected function loadMappingFile($file)
     {
         $metadata = $this->metadata;
         include $file;

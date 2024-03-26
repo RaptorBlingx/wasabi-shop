@@ -1,15 +1,10 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Reflection;
 
 use BackedEnum;
 use ReflectionProperty;
 use ReturnTypeWillChange;
-
-use function array_map;
-use function is_array;
 
 /**
  * PHP Enum Reflection Property - special override for backed enums.
@@ -36,7 +31,7 @@ class EnumReflectionProperty extends ReflectionProperty
      *
      * @param object|null $object
      *
-     * @return int|string|int[]|string[]|null
+     * @return int|string|null
      */
     #[ReturnTypeWillChange]
     public function getValue($object = null)
@@ -51,7 +46,7 @@ class EnumReflectionProperty extends ReflectionProperty
             return null;
         }
 
-        return $this->fromEnum($enum);
+        return $enum->value;
     }
 
     /**
@@ -63,39 +58,9 @@ class EnumReflectionProperty extends ReflectionProperty
     public function setValue($object, $value = null): void
     {
         if ($value !== null) {
-            $value = $this->toEnum($value);
+            $value = $this->enumType::from($value);
         }
 
         $this->originalReflectionProperty->setValue($object, $value);
-    }
-
-    /**
-     * @param BackedEnum|BackedEnum[] $enum
-     *
-     * @return ($enum is BackedEnum ? (string|int) : (string[]|int[]))
-     */
-    private function fromEnum($enum)
-    {
-        if (is_array($enum)) {
-            return array_map(static function (BackedEnum $enum) {
-                return $enum->value;
-            }, $enum);
-        }
-
-        return $enum->value;
-    }
-
-    /**
-     * @param int|string|int[]|string[] $value
-     *
-     * @return ($value is int|string ? BackedEnum : BackedEnum[])
-     */
-    private function toEnum($value)
-    {
-        if (is_array($value)) {
-            return array_map([$this->enumType, 'from'], $value);
-        }
-
-        return $this->enumType::from($value);
     }
 }

@@ -571,6 +571,7 @@ class ComposerStaticInit61518aaab37938ec22a64705e79dfae9
         array (
             0 => __DIR__ . '/..' . '/doctrine/common/src',
             1 => __DIR__ . '/..' . '/doctrine/event-manager/src',
+            2 => __DIR__ . '/..' . '/doctrine/persistence/src/Common',
         ),
         'Doctrine\\Bundle\\DoctrineBundle\\' => 
         array (

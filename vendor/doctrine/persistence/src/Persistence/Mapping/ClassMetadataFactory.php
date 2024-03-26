@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping;
 
 /**
@@ -23,39 +21,41 @@ interface ClassMetadataFactory
     /**
      * Gets the class metadata descriptor for a class.
      *
-     * @param class-string $className The name of the class.
+     * @param string $className The name of the class.
      *
      * @return ClassMetadata
      * @psalm-return T
      */
-    public function getMetadataFor(string $className);
+    public function getMetadataFor($className);
 
     /**
      * Checks whether the factory has the metadata for a class loaded already.
      *
-     * @param class-string $className
+     * @param string $className
      *
      * @return bool TRUE if the metadata of the class in question is already loaded, FALSE otherwise.
      */
-    public function hasMetadataFor(string $className);
+    public function hasMetadataFor($className);
 
     /**
      * Sets the metadata descriptor for a specific class.
      *
-     * @param class-string $className
+     * @param string        $className
+     * @param ClassMetadata $class
      * @psalm-param T $class
      *
      * @return void
      */
-    public function setMetadataFor(string $className, ClassMetadata $class);
+    public function setMetadataFor($className, $class);
 
     /**
      * Returns whether the class with the specified name should have its metadata loaded.
      * This is only the case if it is either mapped directly or as a MappedSuperclass.
      *
+     * @param string $className
      * @psalm-param class-string $className
      *
      * @return bool
      */
-    public function isTransient(string $className);
+    public function isTransient($className);
 }

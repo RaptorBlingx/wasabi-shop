@@ -1,23 +1,18 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence\Mapping\Driver;
 
 use Doctrine\Persistence\Mapping\MappingException;
 use InvalidArgumentException;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use RuntimeException;
 
 use function array_keys;
 use function array_merge;
 use function assert;
 use function is_dir;
 use function is_file;
-use function is_int;
 use function realpath;
-use function sprintf;
 use function str_replace;
 use function strlen;
 use function strpos;
@@ -37,14 +32,14 @@ class SymfonyFileLocator implements FileLocator
     /**
      * The paths where to look for mapping files.
      *
-     * @var array<int, string>
+     * @var string[]
      */
     protected $paths = [];
 
     /**
      * A map of mapping directory path to namespace prefix used to expand class shortnames.
      *
-     * @var array<string, string>
+     * @var string[]
      */
     protected $prefixes = [];
 
@@ -63,29 +58,26 @@ class SymfonyFileLocator implements FileLocator
     private $nsSeparator;
 
     /**
-     * @param array<string, string> $prefixes
-     * @param string                $nsSeparator String which would be used when converting FQCN
-     *                                           to filename and vice versa. Should not be empty
+     * @param string[]    $prefixes
+     * @param string|null $fileExtension
+     * @param string      $nsSeparator   String which would be used when converting FQCN to filename and vice versa. Should not be empty
      */
-    public function __construct(
-        array $prefixes,
-        string $fileExtension = '',
-        string $nsSeparator = '.'
-    ) {
+    public function __construct(array $prefixes, $fileExtension = null, $nsSeparator = '.')
+    {
         $this->addNamespacePrefixes($prefixes);
         $this->fileExtension = $fileExtension;
 
-        if ($nsSeparator === '') {
+        if (empty($nsSeparator)) {
             throw new InvalidArgumentException('Namespace separator should not be empty');
         }
 
-        $this->nsSeparator = $nsSeparator;
+        $this->nsSeparator = (string) $nsSeparator;
     }
 
     /**
      * Adds Namespace Prefixes.
      *
-     * @param array<string, string> $prefixes
+     * @param string[] $prefixes
      *
      * @return void
      */
@@ -128,7 +120,7 @@ class SymfonyFileLocator implements FileLocator
      *
      * @return void
      */
-    public function setFileExtension(string $fileExtension)
+    public function setFileExtension($fileExtension)
     {
         $this->fileExtension = $fileExtension;
     }
@@ -136,7 +128,7 @@ class SymfonyFileLocator implements FileLocator
     /**
      * {@inheritDoc}
      */
-    public function fileExists(string $className)
+    public function fileExists($className)
     {
         $defaultFileName = str_replace('\\', $this->nsSeparator, $className) . $this->fileExtension;
         foreach ($this->paths as $path) {
@@ -156,7 +148,6 @@ class SymfonyFileLocator implements FileLocator
             }
 
             $filename = $path . '/' . strtr(substr($className, strlen($prefix) + 1), '\\', $this->nsSeparator) . $this->fileExtension;
-
             if (is_file($filename)) {
                 return true;
             }
@@ -168,48 +159,50 @@ class SymfonyFileLocator implements FileLocator
     /**
      * {@inheritDoc}
      */
-    public function getAllClassNames(?string $globalBasename = null)
+    public function getAllClassNames($globalBasename = null)
     {
-        if ($this->paths === []) {
-            return [];
-        }
-
         $classes = [];
 
-        foreach ($this->paths as $path) {
-            if (! is_dir($path)) {
-                throw MappingException::fileMappingDriversRequireConfiguredDirectoryPath($path);
-            }
-
-            $iterator = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($path),
-                RecursiveIteratorIterator::LEAVES_ONLY
-            );
-
-            foreach ($iterator as $file) {
-                $fileName = $file->getBasename($this->fileExtension);
-
-                if ($fileName === $file->getBasename() || $fileName === $globalBasename) {
-                    continue;
+        if ($this->paths) {
+            foreach ((array) $this->paths as $path) {
+                if (! is_dir($path)) {
+                    throw MappingException::fileMappingDriversRequireConfiguredDirectoryPath($path);
                 }
 
-                // NOTE: All files found here means classes are not transient!
-                if (isset($this->prefixes[$path])) {
-                    // Calculate namespace suffix for given prefix as a relative path from basepath to file path
-                    $nsSuffix = strtr(
-                        substr($this->realpath($file->getPath()), strlen($this->realpath($path))),
-                        $this->nsSeparator,
-                        '\\'
-                    );
+                $iterator = new RecursiveIteratorIterator(
+                    new RecursiveDirectoryIterator($path),
+                    RecursiveIteratorIterator::LEAVES_ONLY
+                );
 
-                    /** @psalm-var class-string */
-                    $class = $this->prefixes[$path] . str_replace(DIRECTORY_SEPARATOR, '\\', $nsSuffix) . '\\' . str_replace($this->nsSeparator, '\\', $fileName);
-                } else {
-                    /** @psalm-var class-string */
-                    $class = str_replace($this->nsSeparator, '\\', $fileName);
+                foreach ($iterator as $file) {
+                    $fileName = $file->getBasename($this->fileExtension);
+
+                    if ($fileName === $file->getBasename() || $fileName === $globalBasename) {
+                        continue;
+                    }
+
+                    // NOTE: All files found here means classes are not transient!
+                    if (isset($this->prefixes[$path])) {
+                        // Calculate namespace suffix for given prefix as a relative path from basepath to file path
+                        $basepath = realpath($path);
+                        $filepath = realpath($file->getPath());
+                        assert($basepath !== false);
+                        assert($filepath !== false);
+                        $nsSuffix = strtr(
+                            substr($filepath, strlen($basepath)),
+                            $this->nsSeparator,
+                            '\\'
+                        );
+
+                        /** @psalm-var class-string */
+                        $class = $this->prefixes[$path] . str_replace(DIRECTORY_SEPARATOR, '\\', $nsSuffix) . '\\' . str_replace($this->nsSeparator, '\\', $fileName);
+                    } else {
+                        /** @psalm-var class-string */
+                        $class = str_replace($this->nsSeparator, '\\', $fileName);
+                    }
+
+                    $classes[] = $class;
                 }
-
-                $classes[] = $class;
             }
         }
 
@@ -219,7 +212,7 @@ class SymfonyFileLocator implements FileLocator
     /**
      * {@inheritDoc}
      */
-    public function findMappingFile(string $className)
+    public function findMappingFile($className)
     {
         $defaultFileName = str_replace('\\', $this->nsSeparator, $className) . $this->fileExtension;
         foreach ($this->paths as $path) {
@@ -243,23 +236,6 @@ class SymfonyFileLocator implements FileLocator
             }
         }
 
-        $pos = strrpos($className, '\\');
-        assert(is_int($pos));
-
-        throw MappingException::mappingFileNotFound(
-            $className,
-            substr($className, $pos + 1) . $this->fileExtension
-        );
-    }
-
-    private function realpath(string $path): string
-    {
-        $realpath = realpath($path);
-
-        if ($realpath === false) {
-            throw new RuntimeException(sprintf('Could not get realpath for %s', $path));
-        }
-
-        return $realpath;
+        throw MappingException::mappingFileNotFound($className, substr($className, (int) strrpos($className, '\\') + 1) . $this->fileExtension);
     }
 }

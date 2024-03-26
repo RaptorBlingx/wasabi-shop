@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace Doctrine\Persistence;
 
 /**
@@ -20,5 +18,5 @@ interface PropertyChangedListener
      *
      * @return void
      */
-    public function propertyChanged(object $sender, string $propertyName, $oldValue, $newValue);
+    public function propertyChanged($sender, $propertyName, $oldValue, $newValue);
 }
