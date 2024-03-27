@@ -362,10 +362,11 @@ class ProductQuantity extends CommonAbstractType
         $builder->addEventListener(
             FormEvents::PRE_SUBMIT,
             function (FormEvent $event) {
-                $form = $event->getForm();
                 $type_product = $_POST['form']['step1']['type_product'] ?? "0";
                 if ($type_product !== "3" ) {
-                    $form->get('skill')->setData(null);
+                    $data = $event->getData();
+                    $data['skill'] = null;
+                    $event->setData($data);
                 }
             }
         );
