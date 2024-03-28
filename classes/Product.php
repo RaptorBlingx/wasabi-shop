@@ -729,9 +729,9 @@ class ProductCore extends ObjectModel
         return false;
     }
 
-    public static function findByDeveloperEmail($email)
+    public static function findByDeveloperEmail($email, $id_lang = null)
     {
-        return (new PrestaShopCollection('Product'))->sqlWhere(
+        return (new PrestaShopCollection('Product', $id_lang))->sqlWhere(
             "`skill` <> '' AND JSON_EXTRACT(`skill`, '$.developer.email') = '$email'"
         )->getResults();
     }
