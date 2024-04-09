@@ -22,6 +22,17 @@
         <div class="container-fluid">
             <div class="">
                 <div id="quantities" style="">
+                    <div id="skill-form-group" {if $is_skill === false}style="display: none;"{/if}>
+                        <h2>Skill</h2>
+                        <fieldset class="form-group">
+                            <div class="row">
+                                <div class="col-8">
+                                    <div style="width: 100%; height: 300px;" id="skill-editor">{$product_skill}</div>
+                                    <textarea style="display: none;" name="product_skill">{$product_skill}</textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
                     <h2>{l s='Quantities' mod='ets_marketplace'}</h2>
                     <fieldset class="form-group">
                         <div class="row">

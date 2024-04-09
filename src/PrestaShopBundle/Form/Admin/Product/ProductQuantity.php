@@ -378,7 +378,7 @@ class ProductQuantity extends CommonAbstractType
                     $result = Hook::exec('actionSkillUpdate', [ 'skill' => $event->getData()['skill'] ]);
                     $isValid = $result == '';
                     if (! $isValid) {
-                        $errorMessage = is_string($result) ? $result : $errorMessage;
+                        $errorMessage = (is_string($result) && ! empty($result)) ? $result : $errorMessage;
                         $form->add(
                             'skill',
                             FormType\TextareaType::class,

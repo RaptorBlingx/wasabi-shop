@@ -16,8 +16,11 @@
  * @copyright  ETS Software Technology Co., Ltd
  * @license    Valid for 1 website (or project) for each purchase of license
 *}
-
+{if !isset($is_skill)}
+    {$is_skill = false}
+{/if}
 <script type="text/javascript" src="{$url_path|escape:'html':'UTF-8'}views/js/tinymce/tinymce.min.js"></script>
+<script type="text/javascript" src="{$url.base_url|escape:'html':'UTF-8'}js/ace/src/ace.js"></script>
 <script  type="text/javascript">
     var confirm_delete_specific = '{l s='This will delete the specific price. Do you wish to proceed?' mod='ets_marketplace' js=1}';
     var Unlimited_text ='{l s='Unlimited' mod='ets_marketplace' js=1}';
@@ -122,7 +125,8 @@
                             <option value="1"{if $valueFieldPost.product_type==1} selected="selected"{/if}>{l s='Pack of products' mod='ets_marketplace'}</option>
                         {/if}
                         {if in_array('virtual_product',$seller_product_types) || $valueFieldPost.product_type==2}
-                            <option value="2"{if $valueFieldPost.product_type==2} selected="selected"{/if}>{l s='Virtual product' mod='ets_marketplace'}</option>
+                            <option value="2"{if $valueFieldPost.product_type==2 && !$is_skill} selected="selected"{/if}>{l s='Virtual product' mod='ets_marketplace'}</option>
+                            <option value="3"{if $is_skill} selected="selected"{/if}>Skill</option>
                         {/if}
                     </select>
                 </div>
@@ -133,6 +137,9 @@
         {foreach from=$product_tabs item='product_tab'}
             <li class="ets_mp_tab{if $current_tab==$product_tab.tab} active{/if}" data-tab="{$product_tab.tab|escape:'html':'UTF-8'}">{$product_tab.name|escape:'html':'UTF-8'}</li>
         {/foreach}
+        {if isset($extra_tab)}
+            <li class="ets_mp_tab" data-tab="module">Module</li>
+        {/if}
     </ul>
     <div class="ets_mp_product_tab_content">
         <input name="id_product" type="hidden" id="ets_mp_id_product" value="{$product_class->id|intval}"/>
@@ -144,6 +151,12 @@
                     {$product_tab.content_html nofilter}        
                 </div>
             {/foreach}
+            {if isset($extra_tab)}
+                <div class="ets_mp_tab_content module">
+                    {* EXTRA TAB *}
+                    {$extra_tab nofilter}
+                </div>
+            {/if}
         </div>
         <div class="ets_mp-form-footer">
             <a class="btn btn-secondary bd text-uppercase" href="{$link->getModuleLink('ets_marketplace','products',['list'=>1])|escape:'html':'UTF-8'}" title="">
