@@ -1,0 +1,18 @@
+.status-approved {
+    --color: green;
+}
+.status-pending {
+    --color: #e4b600;
+}
+.status-refused {
+    --color: #e40800;
+}
+
+[class^=status-] {
+    color: var(--contrast, #fff);
+    background-color: var(--color);
+    padding: 5px 12px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    font-size: 12px;
+}

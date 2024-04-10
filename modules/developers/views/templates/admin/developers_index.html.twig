@@ -1,0 +1,58 @@
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+
+{% block content %}
+	<table style="width: 100%" class="table">
+		<thead>
+			<tr>
+				<th style="width: 1%;" class="text-nowrap">#</th>
+				<th>Name</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+        <tbody>
+            {% for developer in developers %}
+                <tr>
+                    <td>{{ developer.id }}</td>
+                    <td>{{ developer.firstname }} {{ developer.lastname }}</td>
+                    <td>
+                        <span class="status-{{ developer.developer_status }}" data-status="{{ developer.id }}"> 
+                            {{ developer.developer_status }}
+                        </span>
+                    </td>
+                    <td>
+                        {% if developer.developer_status is not same as 'refused' %}
+                            <button class="btn btn-danger" data-block="{{ developer.id }}">
+                                Block
+                            </button>
+                        {% endif %}
+                        {% if developer.developer_status is not same as 'approved' %}
+                            <button class="btn btn-success" data-approve="{{ developer.id }}">
+                                Approve
+                            </button>
+                        {% endif %}
+                        <a class="btn btn-primary" href="{{ path('admin_customers_view', {customerId: developer.id}) }}">View</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+	</table>
+    
+{% endblock %}
+
+{% block javascripts %}
+  {{ parent() }}
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <script src="{{ asset('../modules/developers/views/js/admin/developers_index.js') }}" type="module"></script>
+    <script>
+        window.prestashop = window.prestashop || {}
+        window.prestashop.customRoutes = {{ customRoutes | raw }}
+    </script>
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css" />
+    <link rel="stylesheet" href="{{ asset('../modules/developers/views/css/admin/back.css') }}">
+{% endblock %}

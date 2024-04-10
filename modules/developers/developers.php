@@ -1,8 +1,13 @@
 <?php
+
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use PrestaShopBundle\Entity\Repository\TabRepository;
+
 if (!defined('_PS_VERSION_')) {
     exit;
 }
 
+require_once __DIR__ . '/vendor/autoload.php';
 class Developers extends Module
 {
     const STATUS_APPROVED = 'approved';
@@ -19,7 +24,7 @@ class Developers extends Module
     {
         $this->name = 'developers';
         $this->tab = 'front_office_features';
-        $this->version = '0.0.1';
+        $this->version = '0.0.2';
         $this->author = 'Wasabi';
         $this->need_instance = 0;
         $this->ps_versions_compliancy = [
@@ -32,16 +37,38 @@ class Developers extends Module
 
         $this->displayName = $this->trans('Developers', [], 'Modules.Developers.Admin');
         $this->description = $this->trans('Add developers management', [], 'Modules.Developers.Admin');
+
+        $tabNames = [];
+        foreach (Language::getLanguages(true) as $lang) {
+            $tabNames[$lang['locale']] = $this->trans('Developers', [], 'Modules.Developers.Admin', $lang['locale']);
+        }
+        $this->tabs = [
+            [
+                'route_name' => 'developers_index',
+                'class_name' => 'AdminDevelopers',
+                'visible' => true,
+                'name' => $tabNames,
+                'icon' => 'free_breakfast',
+                'parent_class_name' => $this->getParentTabClassName()
+            ],
+        ];
     }
 
     public function install()
     {
         include __DIR__ . '/sql/install.php';
+        // $this->installTabs();
         return parent::install() &&
             $this->registerHook([
                 'displayCustomerAccount'
             ]);
         ;
+    }
+
+    public function getContent()
+    {
+        $route = $this->get('router')->generate('developers_index');
+        Tools::redirectAdmin($route);
     }
 
     public function hookDisplayCustomerAccount()
@@ -74,5 +101,15 @@ class Developers extends Module
             ]
         ];
         return $breadcrumb;
+    }
+
+    protected function getParentTabClassName()
+    {
+        /** @var TabRepository */
+        $tabRepository = SymfonyContainer::getInstance()?->get('prestashop.core.admin.tab.repository');
+        if ($tabRepository?->findOneIdByClassName('AdminMarketPlace')) {
+            return 'AdminMarketPlace';
+        }
+        return 'SELL';
     }
 }

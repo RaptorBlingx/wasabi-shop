@@ -1,0 +1,13 @@
+{
+    "name": "wasabi/developers",
+    "autoload": {
+      "psr-4": {
+        "Wasabi\\Developers\\": "src/"
+      }
+    },
+    "config": {
+        "preferred-install": "dist",
+        "prepend-autoloader": false
+    },
+    "type": "prestashop-module"
+  }

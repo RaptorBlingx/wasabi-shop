@@ -1,0 +1,67 @@
+{
+    "developers_index": {
+        "tokens": [
+            [
+                "text",
+                "\/modules\/developers"
+            ]
+        ],
+        "defaults": [],
+        "requirements": [],
+        "hosttokens": [],
+        "methods": [
+            "GET"
+        ],
+        "schemes": []
+    },
+    "developers_block": {
+        "tokens": [
+            [
+                "text",
+                "\/block"
+            ],
+            [
+                "variable",
+                "\/",
+                "[^\/]++",
+                "id"
+            ],
+            [
+                "text",
+                "\/modules\/developers"
+            ]
+        ],
+        "defaults": [],
+        "requirements": [],
+        "hosttokens": [],
+        "methods": [
+            "POST"
+        ],
+        "schemes": []
+    },
+    "developers_approve": {
+        "tokens": [
+            [
+                "text",
+                "\/approve"
+            ],
+            [
+                "variable",
+                "\/",
+                "[^\/]++",
+                "id"
+            ],
+            [
+                "text",
+                "\/modules\/developers"
+            ]
+        ],
+        "defaults": [],
+        "requirements": [],
+        "hosttokens": [],
+        "methods": [
+            "POST"
+        ],
+        "schemes": []
+    }
+}

@@ -1,0 +1,29 @@
+# your_route_name:
+#     path: your-module/demo
+#     methods: [GET]
+#     defaults:
+#       _controller: 'MyModule\Controller\DemoController::demoAction'
+
+developers_index:
+    path: developers
+    methods: [GET]
+    options:
+      expose: true
+    defaults:
+      _controller: 'Wasabi\Developers\Controller\DeveloperController::indexAction'
+      _legacy_controller: AdminDevelopers
+developers_block:
+    path: developers/{id}/block
+    methods: [POST]
+    options:
+      expose: true
+    defaults:
+      _controller: 'Wasabi\Developers\Controller\DeveloperController::blockAction'
+developers_approve:
+    path: developers/{id}/approve
+    methods: [POST]
+    options:
+      expose: true
+    defaults:
+      _controller: 'Wasabi\Developers\Controller\DeveloperController::approveAction'
+
