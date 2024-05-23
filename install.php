@@ -1,6 +1,7 @@
 <?php
 
 use Symfony\Component\VarDumper\VarDumper;
+error_reporting(E_ERROR);
 require './vendor/autoload.php';
 if (isset($_POST['submit'])) {
     $dbLink = new mysqli(
