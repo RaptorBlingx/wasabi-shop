@@ -1,11 +1,11 @@
 <?php return array (
   'parameters' => 
   array (
-    'database_host' => '127.0.0.1',
+    'database_host' => '%DB_HOST%',
     'database_port' => '',
-    'database_name' => 'wasabi',
-    'database_user' => 'user',
-    'database_password' => 'password',
+    'database_name' => '%DB_NAME%',
+    'database_user' => '%DB_USER%',
+    'database_password' => '%DB_PASSWORD%',
     'database_prefix' => 'wa_',
     'database_engine' => 'InnoDB',
     'mailer_transport' => 'smtp',
