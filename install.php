@@ -3,6 +3,14 @@
 use Symfony\Component\VarDumper\VarDumper;
 error_reporting(E_ERROR);
 require './vendor/autoload.php';
+if (getenv('wasabi_host') === 'wasabi-db') {
+    $_POST['host'] = getenv('wasabi_host');
+    $_POST['dbuser'] = getenv('wasabi_dbuser');
+    $_POST['dbpass'] = getenv('wasabi_dbpass');
+    $_POST['dbname'] = getenv('wasabi_dbname');
+    $_POST['shopurl'] = 'localhost:8080';
+    $_POST['submit'] = true;
+}
 if (isset($_POST['submit'])) {
     $dbLink = new mysqli(
         hostname: $_POST['host'],

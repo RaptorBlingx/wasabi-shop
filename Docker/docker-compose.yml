@@ -9,6 +9,11 @@ services:
       - ../:/project/src
     ports:
       - 8080:80
+    environment:
+      - wasabi_host=wasabi-db
+      - wasabi_dbuser=root
+      - wasabi_dbpass=root
+      - wasabi_dbname=wasabi
 
   db:
     container_name: wasabi-db
