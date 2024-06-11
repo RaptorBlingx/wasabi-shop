@@ -11,3 +11,6 @@
     ```sh
     docker exec -it wasabi-db sh -c "mysql -u root -proot wasabi < PS-Wasabi-Default.sql"
     ```
+
+4. Browse into `http://localhost:8080` and wait for the installation
+5. Generate an `.htacces` file by enabling `Apache optimizations` in `Advanced parameters` > `Performace`
