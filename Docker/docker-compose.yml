@@ -1,0 +1,38 @@
+name: wasabi
+services:
+  project:
+    build:
+      dockerfile: Dockerfile
+    container_name: wasabi-project
+    image: prestashop/prestashop:8.0
+    volumes:
+      - ../:/project/src
+    ports:
+      - 8080:80
+
+  db:
+    container_name: wasabi-db
+    image: mysql:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_DATABASE: wasabi
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    volumes:
+      - ./mysql_dumps/:/var/lib/mysql/
+      - ../database/PS-Wasabi-Default.sql:/PS-Wasabi-Default.sql
+
+  # phpmyadmin:
+  #   container_name: wasabi-phpmyadmin
+  #   image: phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   environment:
+  #     - PMA_ARBITRARY=1
+  #     - PMA_HOST=wasabi-db
+  #     - PMA_VERBOSE=Database Wasabi
+  #     - PMA_USER=root
+  #     - PMA_PASSWORD=root
