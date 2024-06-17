@@ -115,7 +115,7 @@ class nftroyaltymanagementsystemajaxModuleFrontController extends ModuleFrontCon
       
         // Assuming you have a method to mint the skill
         $nftModule = new NftRoyaltymanagementsystem();
-        $mintSkillResponse = $nftModule->mintSkill(
+        $mintSkillResponse = $nftModule->trymintSkill(
             $contractAddress,
             $contractABI,
             $fromAddress,
@@ -188,7 +188,7 @@ class nftroyaltymanagementsystemajaxModuleFrontController extends ModuleFrontCon
     
             // Call the distributeSmartContractRoyalties function from your NftRoyaltymanagementsystem module
             $nftModule = new NftRoyaltymanagementsystem();
-            $distributionResponse = $nftModule->distributeSmartContractRoyalties($contractABI, $contractAddress, $fromAddress, $privateKey);
+            $distributionResponse = $nftModule->tryDistributeSmartContractRoyalties($contractABI, $contractAddress, $fromAddress, $privateKey);
     
             // If no exception was thrown, assume success
             if ($distributionResponse) {
@@ -205,8 +205,29 @@ class nftroyaltymanagementsystemajaxModuleFrontController extends ModuleFrontCon
 
            
            
-            sleep(55);
-            $nftModule->getTotalRoyalties($contractAddress, $contractABI);
+            sleep(25);
+            $attemptLimit = 5;
+
+            for ($attempt = 0; $attempt < $attemptLimit; $attempt++) {
+                $royaltiesResponse = $nftModule->getTotalRoyalties($contractAddress, $contractABI);
+
+                // Check if the response is true
+                if ($royaltiesResponse === true) {
+                    // If the response is true, break out of the loop
+                    break;
+                }
+
+                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', "Attempt " . $attempt. " to get totalRoyalties failed. Will try again" .  PHP_EOL, FILE_APPEND);
+
+                sleep(10); // wait for 1 second
+            }
+
+            if (!$royaltiesResponse) {
+
+                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', "Couldn't get totalRoyalties at all." .  PHP_EOL, FILE_APPEND);
+
+            }
+            
     
         } catch (Exception $e) {
             // If an exception was caught, set success to false and add the error message
@@ -335,7 +356,7 @@ class nftroyaltymanagementsystemajaxModuleFrontController extends ModuleFrontCon
             
         // Call the fundSmartContract function from your NftRoyaltymanagementsystem module
         $nftModule = new NftRoyaltymanagementsystem();
-        $fundResponse = $nftModule->fundSmartContract($contractABI, $contractAddress, $fromAddress, $privateKey, $weiAmount);
+        $fundResponse = $nftModule->tryFundSmartContract($contractABI, $contractAddress, $fromAddress, $privateKey, $weiAmount);
 
       // If no exception was thrown, assume success
       if ($fundResponse) {
@@ -404,7 +425,7 @@ class nftroyaltymanagementsystemajaxModuleFrontController extends ModuleFrontCon
           
 
             $nftModule = new NftRoyaltymanagementsystem();
-            $deployResponse = $nftModule->deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey);
+            $deployResponse = $nftModule->tryDeploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey);
 
            // $deployResponse = deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey);
 

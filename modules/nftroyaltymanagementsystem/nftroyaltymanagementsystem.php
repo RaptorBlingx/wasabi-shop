@@ -36,7 +36,7 @@ class NftRoyaltymanagementsystem extends Module {
     }
 
     public function install() {
-        if (!parent::install() || !$this->installAdminTab() || !$this->registerHook('displayBackOfficeHeader') || !$this->registerHook('actionValidateOrder') || !$this->registerHook('displayAdminProductsExtra')) {
+        if (!parent::install() || !$this->installAdminTab() || !$this->registerHook('displayBackOfficeHeader') || !$this->registerHook('actionValidateOrder') || !$this->registerHook('displayAdminProductsExtra') || !$this->registerHook('displayCustomerAccount')) {
             return false; 
         }
         
@@ -194,88 +194,215 @@ class NftRoyaltymanagementsystem extends Module {
         return $this->display(__FILE__, 'views/templates/admin/productmint.tpl');
 }
     
-    
+public function hookDisplayCustomerAccount($params)
+{
+    $this->context->smarty->assign(array(
+        'my_custom_link' => $this->context->link->getModuleLink('nftroyaltymanagementsystem', 'mycustompage')
+    ));
+    return $this->display(__FILE__, 'views/templates/front/myaccount_tab.tpl');
+}
 
 
-    public function getEthereumPrice()
-    {
-        $url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur"; // changed 'usd' to 'eur'
-    
+
+public function getEthereumPrice()
+{
+    $url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=eur"; // URL to fetch Ethereum price in EUR
+
+    $maxAttempts = 5; // Maximum number of retry attempts
+    $retryDelay = 2; // Delay between attempts in seconds
+    $attempt = 0; // Current attempt counter
+    $result = null; // To store the result of the request
+
+    while ($attempt < $maxAttempts && is_null($result)) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        $result = curl_exec($ch);
-    
-        if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
-        }
-        curl_close($ch);
         
+        $result = curl_exec($ch);
+        
+        if (curl_errno($ch)) {
+            // Log the error and reset the result to null if a cURL error occurs
+            echo 'Attempt ' . $attempt . ' failed: Error:' . curl_error($ch) . "\n";
+            $result = null; // Reset result to continue the loop
+            $attempt++;
+            sleep($retryDelay); // Wait for a specified delay before retrying
+        }
+        
+        curl_close($ch); // Always close the cURL handle
+        
+        // If result is successfully obtained, break the loop
+        if ($result) {
+            break;
+        }
+    }
+
+    // After exiting the loop, check if a result was successfully obtained
+    if (!is_null($result)) {
         $response = json_decode($result, true);
-    
+        
         if (isset($response['ethereum']['eur'])) {
             return $response['ethereum']['eur'];
-        } else {
-            // Handle the error case where the price isn't available
-            return null;
         }
     }
     
-    public function getEthereumPriceUSD()
-    {
-        $url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd";
-    
+    // If no result after all attempts or the 'eur' price isn't available, handle the error
+    echo "Error: Unable to retrieve Ethereum price in EUR after $maxAttempts attempts." . "\n";
+    return null;
+}
+public function getEthereumPriceBackup()
+{
+    $url = "https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=EUR";
+
+    $maxAttempts = 5; // Maximum number of retry attempts
+    $retryDelay = 2; // Delay between attempts in seconds
+    $attempt = 0; // Current attempt counter
+    $result = null; // To store the result of the request
+
+    while ($attempt < $maxAttempts && is_null($result)) {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
         $result = curl_exec($ch);
-    
+
         if (curl_errno($ch)) {
-            echo 'Error:' . curl_error($ch);
+            // Log the error
+            $error = 'Attempt ' . $attempt . ' failed: Error:' . curl_error($ch) . PHP_EOL;
+            echo $error;
+            $this->logMessage($error); // Log message to file
+            $result = null; // Reset result to continue the loop
+            $attempt++;
+            sleep($retryDelay); // Wait for a specified delay before retrying
         }
-        curl_close($ch);
         
-        $response = json_decode($result, true);
-    
-        if (isset($response['ethereum']['usd'])) {
-            return $response['ethereum']['usd'];
-        } else {
-            // Handle the error case where the price isn't available
-            return null;
+        curl_close($ch); // Always close the cURL handle
+
+        // If result is successfully obtained, break the loop
+        if ($result) {
+            break;
         }
     }
 
-    public function getRapidGasPrice()
-{
-    $url = "https://sepolia.beaconcha.in/api/v1/execution/gasnow";
-    
-    // Initialize cURL session
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    
-    // Execute cURL session
-    $result = curl_exec($ch);
-    
-    // Check for errors and close cURL session
-    if (curl_errno($ch)) {
-        echo 'Error:' . curl_error($ch);
+    if (!is_null($result)) {
+        $response = json_decode($result, true);
+
+        // Log the successful response
+        $this->logMessage("Using backup function: " . json_encode($response) . PHP_EOL);
+
+        if (isset($response['EUR'])) {
+            return $response['EUR'];
+        }
     }
-    curl_close($ch);
-    
-    // Decode the JSON response
-    $response = json_decode($result, true);
-    
-    // Check if the 'rapid' variable is set and return it
-    if (isset($response['data']['rapid'])) {
-        if ($response['data']['rapid'] == "0") $response['data']['rapid'] = $response['data']['standard'];
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Gas now: ' . $response['data']['rapid'] . PHP_EOL, FILE_APPEND);
-        return $response['data']['rapid'];
-    } else {
-        // Handle the error case where the 'rapid' variable isn't available
-        return "0";//"157216854719";
-    }
+
+    // If no result after all attempts or the 'EUR' price isn't available
+    $errorMessage = "Error: Unable to retrieve Ethereum price in EUR after $maxAttempts attempts." . PHP_EOL;
+    echo $errorMessage;
+    $this->logMessage($errorMessage); // Log error message to file
+    return null;
 }
+
+private function logMessage($message)
+{
+    $filePath = _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt'; // Define the file path
+    file_put_contents($filePath, $message, FILE_APPEND); // Append the log message to the file
+}
+    
+    
+    public function getEthereumPriceUSD()
+{
+    $url = "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd";
+
+    $maxAttempts = 5; // Maximum number of retry attempts
+    $retryDelay = 2; // Delay between attempts in seconds
+    $attempt = 0; // Current attempt counter
+    $result = null; // To store the result of the request
+
+    while ($attempt < $maxAttempts && is_null($result)) {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        
+        $result = curl_exec($ch);
+        
+        if (curl_errno($ch)) {
+            // If a cURL error occurs, log the error and reset the result to null
+            echo 'Attempt ' . $attempt . ' failed: Error:' . curl_error($ch) . PHP_EOL;
+            $result = null; // Reset result to continue the loop
+            $attempt++;
+            sleep($retryDelay); // Wait for a specified delay before retrying
+        }
+        
+        curl_close($ch); // Close the cURL handle
+
+        // If result is successfully obtained, break the loop
+        if ($result) {
+            break;
+        }
+    }
+
+    // After exiting the loop, check if a result was successfully obtained
+    if (!is_null($result)) {
+        $response = json_decode($result, true);
+        
+        if (isset($response['ethereum']['usd'])) {
+            return $response['ethereum']['usd'];
+        }
+    }
+    
+    // If no result after all attempts or the 'usd' price isn't available, handle the error
+    echo "Error: Unable to retrieve Ethereum price in USD after $maxAttempts attempts." . PHP_EOL;
+    return null;
+}
+
+
+    public function getRapidGasPrice()
+    {
+        $url = "https://sepolia.beaconcha.in/api/v1/execution/gasnow";
+    
+        $maxAttempts = 5; // Maximum number of retry attempts
+        $retryDelay = 2; // Delay between attempts in seconds
+        $attempt = 0; // Current attempt
+        $result = null; // Result of the cURL request
+    
+        while ($attempt < $maxAttempts && is_null($result)) {
+            // Initialize cURL session
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    
+            // Execute cURL session
+            $result = curl_exec($ch);
+    
+            // Check for errors
+            if (curl_errno($ch)) {
+                echo 'Attempt ' . $attempt . ' failed: Error:' . curl_error($ch) . "\n";
+                $result = null; // Ensure result is null to continue retrying
+                $attempt++; // Increment attempt counter
+                sleep($retryDelay); // Wait before retrying
+            }
+    
+            curl_close($ch); // Always close the cURL session
+        }
+    
+        if (is_null($result)) {
+            // If still no result after retries, handle as needed
+            return "0"; // Example fallback value
+        }
+    
+        // Decode the JSON response
+        $response = json_decode($result, true);
+    
+        // Check if the 'rapid' variable is set and return it
+        if (isset($response['data']['rapid'])) {
+            if ($response['data']['rapid'] == "0") $response['data']['rapid'] = $response['data']['standard'];
+            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Gas now: ' . $response['data']['rapid'] . PHP_EOL, FILE_APPEND);
+            return $response['data']['rapid'];
+        } else {
+            // Handle the error case where the 'rapid' variable isn't available
+            return "0";// Fallback value if 'rapid' not available
+        }
+    }
+    
 
 
     
@@ -347,7 +474,16 @@ public function hookActionValidateOrder($params) {
     }
 
     $ethPrice = $this->getEthereumPrice();
+    if ($ethPrice == null) $ethPrice = $this->getEthereumPriceBackup();
+    if ($ethPrice == null) {
+        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . 'Failed to fetch ETHER price'.PHP_EOL, FILE_APPEND);
+
+        return false;
+
+    }
     $db = Db::getInstance();
+    file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . 'Current ethPrice: '. $ethPrice .PHP_EOL, FILE_APPEND);
+
 
     //
     $sqlPrivateKey = "SELECT private_key FROM " . _DB_PREFIX_ . "wallet_private_key WHERE id = 1";
@@ -397,15 +533,19 @@ public function hookActionValidateOrder($params) {
             $checkoutPriceEth = null;
 
             if ($ethPrice !== null && $ethPrice > 0) {
+
                 $checkoutPriceEth = number_format($checkoutPrice / $ethPrice, 4, '.', '');
+                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . 'Checkout price: '. $checkoutPrice .PHP_EOL, FILE_APPEND);
+                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . 'Donation converted in ether value: '. $checkoutPriceEth .PHP_EOL, FILE_APPEND);
+
             }
             $weiConversionFactor = bcpow("10", "18"); // This is 10^18
 
             // Convert Ether to Wei
             $checkoutPriceWei = bcmul($checkoutPriceEth, $weiConversionFactor);
 
-            $this->donateSkill($contractaddress, $contractABI, $fromAddress, $privateKey, $productID, $checkoutPriceWei);
-            sleep(20);
+            $this->tryDonateSkill($contractaddress, $contractABI, $fromAddress, $privateKey, $productID, $checkoutPriceWei);
+            sleep(40);
             file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . '[' . date('Y-m-d H:i:s') . '] ' . 'Product ID: ' . $productID . ' - Total eth: ' . $checkoutPriceEth . PHP_EOL . PHP_EOL, FILE_APPEND);
         }
     }
@@ -433,6 +573,35 @@ public function hookActionValidateOrder($params) {
     }
 
 
+}
+public function tryDonateSkill($contractaddress, $contractABI, $fromAddress, $privateKey, $productID, $checkoutPriceWei) {
+    $maxAttempts = 5; // Maximum number of attempts
+    $attempt = 0; // Current attempt counter
+    $retryDelay = 2; // Delay between attempts in seconds
+    $success = false; // Flag to track if donateSkill was successful
+
+    // Convert Wei to Ether for logging purposes
+  
+
+    while (!$success && $attempt < $maxAttempts) {
+        $success = $this->donateSkill($contractaddress, $contractABI, $fromAddress, $privateKey, $productID, $checkoutPriceWei);
+        
+        if ($success) {
+            $logMessage = '[' . date('Y-m-d H:i:s') . '] Donation successful for Product ID: ' . $productID . ' - Total ETH: ' . $checkoutPriceEth . ' after ' . $attempt . ' attempts.' . PHP_EOL;
+            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', $logMessage, FILE_APPEND);
+            break; // Exit the loop if donateSkill returns true
+        } else {
+            $attempt++; // Increment the attempt counter if donateSkill returns false
+            $logMessage = '[' . date('Y-m-d H:i:s') . '] Attempt ' . $attempt . ' to donate for Product ID: ' . $productID . ' - Total ETH: ' . $checkoutPriceEth . ' failed, retrying...' . PHP_EOL;
+            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', $logMessage, FILE_APPEND);
+            sleep($retryDelay); // Wait for the specified delay before retrying
+        }
+    }
+
+    if (!$success) {
+        $logMessage = '[' . date('Y-m-d H:i:s') . '] Failed to complete donation for Product ID: ' . $productID . ' - Total ETH: ' . $checkoutPriceEth . ' after ' . $maxAttempts . ' attempts.' . PHP_EOL;
+        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', $logMessage, FILE_APPEND);
+    }
 }
 
 
@@ -522,7 +691,7 @@ public function hookActionProductSave($params)
     
             //
             file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . '[' . date('Y-m-d H:i:s') . '] '. 'A new skill has been uploaded.'. PHP_EOL . PHP_EOL, FILE_APPEND);
-            $this->mintSkill(
+            $this->tryMintSkill(
                 $contractaddress, // Replace with your contract address
                 $contractABI,
                 $fromAddress, // From address
@@ -548,6 +717,95 @@ public function hookActionProductSave($params)
     
 
 }
+public function tryMintSkill($contractaddress, $contractABI, $fromAddress, $privateKey, $productID, $developerWallets, $allocations, $dependentSkills, $dependencyAllocations) {
+    $maxAttempts = 5;
+    $attempt = 0;
+    $retryDelay = 2;
+
+    while ($attempt < $maxAttempts) {
+        $attempt++;
+        $success = false; // Explicitly set $success to false at the start of each attempt
+
+        $this->logMessage("Attempting to mint skill with identifier: $productID, attempt $attempt");
+
+        try {
+            $success = $this->mintSkill(
+                $contractaddress,
+                $contractABI,
+                $fromAddress,
+                $privateKey,
+                (string) $productID,
+                $developerWallets,
+                $allocations,
+                $dependentSkills,
+                $dependencyAllocations
+            );
+
+            if ($success === true) {
+                $this->logMessage("mintSkill successful for Product ID: $productID on attempt $attempt.");
+                return true;
+            } else {
+                $this->logMessage("Got this Minting skill response: " . var_export($success, true));
+            }
+        } catch (Exception $e) {
+            $this->logMessage("mintSkill attempt $attempt for Product ID: $productID threw an exception: " . $e->getMessage());
+        }
+
+        if (!$success && $attempt < $maxAttempts) {
+            $this->logMessage("Retrying in $retryDelay seconds...");
+            sleep($retryDelay);
+        }
+    }
+
+    $this->logMessage("Failed to mintSkill for Product ID: $productID after $maxAttempts attempts.");
+    return false;
+}
+
+
+public function tryDistributeSmartContractRoyalties($contractABI, $contractAddress, $fromAddress, $privateKey) {
+    $maxAttempts = 5; // Define the maximum number of retry attempts
+    $attempt = 0; // Initialize the attempt counter
+    $retryDelay = 2; // Define the delay between retry attempts in seconds
+    $success = false; // Flag to monitor success status
+
+    while (!$success && $attempt < $maxAttempts) {
+        $attempt++; // Increment attempt counter
+
+        $this->logMessage("Attempting to distribute royalties, attempt $attempt");
+
+        try {
+            $success = $this->distributeSmartContractRoyalties(
+                $contractABI, 
+                $contractAddress, 
+                $fromAddress, 
+                $privateKey
+            );
+
+            if ($success === true) {
+                $this->logMessage("Royalties distribution successful on attempt $attempt.");
+                return true; // Operation was successful, exit the loop and function
+            } else {
+                $this->logMessage("Royalties distribution attempt $attempt failed, retrying...");
+            }
+        } catch (Exception $e) {
+            $this->logMessage("Royalties distribution attempt $attempt failed with an exception: " . $e->getMessage());
+            // Explicitly set $success to false to ensure the loop can continue after an exception
+            $success = false;
+        }
+
+        if (!$success && $attempt < $maxAttempts) {
+            $this->logMessage("Retrying in $retryDelay seconds...");
+            sleep($retryDelay); // Wait before retrying if not the last attempt
+        }
+    }
+
+    if (!$success) {
+        $this->logMessage("Failed to distribute royalties after $maxAttempts attempts.");
+    }
+
+    return false; // Return false as the operation was not successful after all attempts
+}
+
 
     public function hookDisplayBackOfficeHeader($params) {
        
@@ -729,8 +987,47 @@ public function deploySmartContract($contractABI, $contractBytecode, $fromAddres
     }
     return $success;
 }
-
+public function tryDeploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey) {
+    $maxAttempts = 5; // Maximum number of retry attempts
+    $retryDelay = 2; // Delay between attempts in seconds
+    $attempt = 0; // Current attempt counter
+    $deployResponse = null; // Initialize deployment response
     
+    while ($attempt < $maxAttempts && is_null($deployResponse)) {
+        $attempt++; // Increment attempt counter at the beginning of each loop iteration
+        
+        try {
+            // Attempt to deploy the smart contract
+            $deployResponse = $this->deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey);
+            
+            // Assuming a false response indicates failure and should trigger a retry
+            if ($deployResponse === false) {
+                $deployResponse = null; // Ensure loop continues to retry
+                $this->logMessage("Attempt $attempt to deploy Smart Contract failed, retrying in $retryDelay seconds...");
+            } else if ($deployResponse) {
+                // A truthy $deployResponse indicates success
+                $this->logMessage("Smart Contract deployed successfully on attempt $attempt.");
+                break; // Exit the loop if deployment is successful
+            }
+        } catch (Exception $e) {
+            // Log any exceptions and ensure the loop can continue by resetting $deployResponse
+            $deployResponse = null;
+            $this->logMessage("Attempt $attempt to deploy Smart Contract failed with an exception: " . $e->getMessage());
+        }
+        
+        if (is_null($deployResponse) && $attempt < $maxAttempts) {
+            sleep($retryDelay); // Wait before retrying if not the last attempt
+        }
+    }
+    
+    if (is_null($deployResponse)) {
+        // Log failure after maximum attempts
+        $this->logMessage("Failed to deploy Smart Contract after $maxAttempts attempts.");
+    }
+    
+    return $deployResponse; // Return the deployment response, or null if unsuccessful
+}
+
     
     
     public function getEthBalance($address) {
@@ -907,7 +1204,7 @@ public function distributeSmartContractRoyalties($contractABI, $contractAddress,
             });
         });
     } catch (Exception $e) {
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', "Exception occured: " . var_export($e, true) . "\n", FILE_APPEND);
+        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', "Exception occured!" , FILE_APPEND);
 
         $success = false;
     }
@@ -915,6 +1212,47 @@ public function distributeSmartContractRoyalties($contractABI, $contractAddress,
 
     return $success;
 }
+public function tryFundSmartContract($contractABI, $contractAddress, $fromAddress, $privateKey, $weiAmount) {
+    $maxAttempts = 5; // Maximum number of retry attempts
+    $attempt = 0; // Current attempt counter
+    $retryDelay = 2; // Delay between attempts in seconds
+    $success = false; // Initialize success flag
+
+    while (!$success && $attempt < $maxAttempts) {
+        $attempt++; // Increment attempt counter
+
+        $this->logMessage("Attempting to fund smart contract with identifier: $contractAddress, attempt $attempt");
+
+        try {
+            // Call the existing fundSmartContract function
+            $success = $this->fundSmartContract(
+                $contractABI,
+                $contractAddress,
+                $fromAddress,
+                $privateKey,
+                $weiAmount
+            );
+
+            if ($success === true) {
+                $this->logMessage("fundSmartContract successful for Contract Address: $contractAddress on attempt $attempt.");
+                return true; // Successful funding, exit loop
+            } else {
+                $this->logMessage("Got this funding response: " . var_export($success, true));
+            }
+        } catch (Exception $e) {
+            $this->logMessage("fundSmartContract attempt $attempt for Contract Address: $contractAddress threw an exception: " . $e->getMessage());
+        }
+
+        if (!$success && $attempt < $maxAttempts) {
+            $this->logMessage("Retrying in $retryDelay seconds...");
+            sleep($retryDelay); // Wait before retrying
+        }
+    }
+
+    $this->logMessage("Failed to fundSmartContract for Contract Address: $contractAddress after $maxAttempts attempts.");
+    return false; // Return false if all attempts fail
+}
+
 
 public function fundSmartContract($contractABI, $contractAddress, $fromAddress, $privateKey, $weiAmount) {
     $success = true;
