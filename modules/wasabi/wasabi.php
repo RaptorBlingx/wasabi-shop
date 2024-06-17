@@ -58,7 +58,9 @@ class Wasabi extends Module
      */
     public function hookActionObjectProductAddAfter($params)
     {
-        Ets_MarketPlaceProductsModuleFrontControllerOverride::$productID = $params['object']->id;
+        if (class_exists('Ets_MarketPlaceProductsModuleFrontControllerOverride')) {
+            Ets_MarketPlaceProductsModuleFrontControllerOverride::$productID = $params['object']->id;
+        }
         if (self::$product_add) {
             return;
         }
