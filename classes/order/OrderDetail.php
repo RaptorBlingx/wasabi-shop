@@ -194,7 +194,7 @@ class OrderDetailCore extends ObjectModel
         'table' => 'order_detail',
         'primary' => 'id_order_detail',
         'fields' => [
-            'developer_id' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
+            'developer_id' => ['type' => self::TYPE_NOTHING, 'validate' => 'isUnsignedId'],
             'id_order' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true],
             'id_order_invoice' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId'],
             'id_warehouse' => ['type' => self::TYPE_INT, 'validate' => 'isUnsignedId', 'required' => true],
@@ -967,7 +967,7 @@ class OrderDetailCore extends ObjectModel
 
         $this->original_wholesale_price = $this->getWholeSalePrice();
 
-        return parent::add($autodate = true, $null_values = false);
+        return parent::add($autodate = true, $null_values = true);
     }
 
     //return the product OR product attribute whole sale price
