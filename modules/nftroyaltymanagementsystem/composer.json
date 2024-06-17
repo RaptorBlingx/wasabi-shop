@@ -1,0 +1,13 @@
+{
+    "name": "george/nftroyaltymanagementsystem",
+    "autoload": {
+        "psr-4": {
+            "George\\Testing\\": "src/"
+        }
+    },
+    "require": {
+        "web3p/web3.php": "dev-master",
+        "guzzlehttp/guzzle": "^7.8",
+        "web3p/ethereum-tx": "^0.4.3"
+    }
+}
