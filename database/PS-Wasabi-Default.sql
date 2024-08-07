@@ -38,7 +38,7 @@ CREATE TABLE `phinxlog` (
 
 LOCK TABLES `phinxlog` WRITE;
 /*!40000 ALTER TABLE `phinxlog` DISABLE KEYS */;
-INSERT INTO `phinxlog` VALUES (20240205121235,'AddSkillToProduct','2024-04-30 06:11:56','2024-04-30 06:11:57',0),(20240227110917,'AddDeveloperIdToOrderDetailTable','2024-04-30 06:11:57','2024-04-30 06:11:57',0);
+INSERT INTO `phinxlog` VALUES (20240205121235,'AddSkillToProduct','2024-04-30 06:11:56','2024-04-30 06:11:57',0),(20240227110917,'AddDeveloperIdToOrderDetailTable','2024-04-30 06:11:57','2024-04-30 06:11:57',0),(20240726081848,'AddWlsFieldsToCustomerTable','2024-07-26 10:37:15','2024-07-26 10:37:15',0);
 /*!40000 ALTER TABLE `phinxlog` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -53,7 +53,7 @@ CREATE TABLE `wa_access` (
   `id_profile` int unsigned NOT NULL,
   `id_authorization_role` int unsigned NOT NULL,
   PRIMARY KEY (`id_profile`,`id_authorization_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,7 +77,7 @@ CREATE TABLE `wa_accessory` (
   `id_product_1` int unsigned NOT NULL,
   `id_product_2` int unsigned NOT NULL,
   KEY `accessory_product` (`id_product_1`,`id_product_2`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `wa_address` (
   KEY `id_manufacturer` (`id_manufacturer`),
   KEY `id_supplier` (`id_supplier`),
   KEY `id_warehouse` (`id_warehouse`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `wa_address_format` (
   `id_country` int unsigned NOT NULL,
   `format` varchar(255) NOT NULL DEFAULT '',
   PRIMARY KEY (`id_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -653,7 +653,7 @@ CREATE TABLE `wa_alias` (
   `active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_alias`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1127,7 +1127,7 @@ CREATE TABLE `wa_attachment` (
   `file_size` bigint unsigned NOT NULL DEFAULT '0',
   `mime` varchar(128) NOT NULL,
   PRIMARY KEY (`id_attachment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1152,7 +1152,7 @@ CREATE TABLE `wa_attachment_lang` (
   `name` varchar(32) DEFAULT NULL,
   `description` text,
   PRIMARY KEY (`id_attachment`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1336,7 +1336,7 @@ CREATE TABLE `wa_authorization_role` (
   `slug` varchar(191) NOT NULL,
   PRIMARY KEY (`id_authorization_role`),
   UNIQUE KEY `slug` (`slug`)
-) ENGINE=InnoDB AUTO_INCREMENT=1077 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1077 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1380,7 +1380,7 @@ CREATE TABLE `wa_carrier` (
   PRIMARY KEY (`id_carrier`),
   KEY `deleted` (`deleted`,`active`),
   KEY `reference` (`id_reference`,`deleted`,`active`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1404,7 +1404,7 @@ CREATE TABLE `wa_carrier_group` (
   `id_carrier` int unsigned NOT NULL,
   `id_group` int unsigned NOT NULL,
   PRIMARY KEY (`id_carrier`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1430,7 +1430,7 @@ CREATE TABLE `wa_carrier_lang` (
   `id_lang` int unsigned NOT NULL,
   `delay` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id_lang`,`id_shop`,`id_carrier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1455,7 +1455,7 @@ CREATE TABLE `wa_carrier_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_carrier`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1480,7 +1480,7 @@ CREATE TABLE `wa_carrier_tax_rules_group_shop` (
   `id_tax_rules_group` int unsigned NOT NULL,
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_carrier`,`id_tax_rules_group`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1504,7 +1504,7 @@ CREATE TABLE `wa_carrier_zone` (
   `id_carrier` int unsigned NOT NULL,
   `id_zone` int unsigned NOT NULL,
   PRIMARY KEY (`id_carrier`,`id_zone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1556,7 +1556,7 @@ CREATE TABLE `wa_cart` (
   KEY `id_shop_group` (`id_shop_group`),
   KEY `id_shop_2` (`id_shop`,`date_upd`),
   KEY `id_shop` (`id_shop`,`date_add`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1581,7 +1581,7 @@ CREATE TABLE `wa_cart_cart_rule` (
   `id_cart_rule` int unsigned NOT NULL,
   PRIMARY KEY (`id_cart`,`id_cart_rule`),
   KEY `id_cart_rule` (`id_cart_rule`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1612,7 +1612,7 @@ CREATE TABLE `wa_cart_product` (
   PRIMARY KEY (`id_cart`,`id_product`,`id_product_attribute`,`id_customization`,`id_address_delivery`),
   KEY `id_product_attribute` (`id_product_attribute`),
   KEY `id_cart_order` (`id_cart`,`date_add`,`id_product`,`id_product_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1672,7 +1672,7 @@ CREATE TABLE `wa_cart_rule` (
   KEY `group_restriction_2` (`group_restriction`,`active`,`highlight`,`date_to`),
   KEY `date_from` (`date_from`),
   KEY `date_to` (`date_to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1695,7 +1695,7 @@ CREATE TABLE `wa_cart_rule_carrier` (
   `id_cart_rule` int unsigned NOT NULL,
   `id_carrier` int unsigned NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_carrier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1720,7 +1720,7 @@ CREATE TABLE `wa_cart_rule_combination` (
   PRIMARY KEY (`id_cart_rule_1`,`id_cart_rule_2`),
   KEY `id_cart_rule_1` (`id_cart_rule_1`),
   KEY `id_cart_rule_2` (`id_cart_rule_2`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1743,7 +1743,7 @@ CREATE TABLE `wa_cart_rule_country` (
   `id_cart_rule` int unsigned NOT NULL,
   `id_country` int unsigned NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1766,7 +1766,7 @@ CREATE TABLE `wa_cart_rule_group` (
   `id_cart_rule` int unsigned NOT NULL,
   `id_group` int unsigned NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1790,7 +1790,7 @@ CREATE TABLE `wa_cart_rule_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(254) NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1814,7 +1814,7 @@ CREATE TABLE `wa_cart_rule_product_rule` (
   `id_product_rule_group` int unsigned NOT NULL,
   `type` enum('products','categories','attributes','manufacturers','suppliers') NOT NULL,
   PRIMARY KEY (`id_product_rule`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1838,7 +1838,7 @@ CREATE TABLE `wa_cart_rule_product_rule_group` (
   `id_cart_rule` int unsigned NOT NULL,
   `quantity` int unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_product_rule_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1861,7 +1861,7 @@ CREATE TABLE `wa_cart_rule_product_rule_value` (
   `id_product_rule` int unsigned NOT NULL,
   `id_item` int unsigned NOT NULL,
   PRIMARY KEY (`id_product_rule`,`id_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1884,7 +1884,7 @@ CREATE TABLE `wa_cart_rule_shop` (
   `id_cart_rule` int unsigned NOT NULL,
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1922,7 +1922,7 @@ CREATE TABLE `wa_category` (
   KEY `nright` (`nright`),
   KEY `activenleft` (`active`,`nleft`),
   KEY `activenright` (`active`,`nright`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1948,7 +1948,7 @@ CREATE TABLE `wa_category_group` (
   PRIMARY KEY (`id_category`,`id_group`),
   KEY `id_category` (`id_category`),
   KEY `id_group` (`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1981,7 +1981,7 @@ CREATE TABLE `wa_category_lang` (
   `meta_description` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id_category`,`id_shop`,`id_lang`),
   KEY `category_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2008,7 +2008,7 @@ CREATE TABLE `wa_category_product` (
   PRIMARY KEY (`id_category`,`id_product`),
   KEY `id_product` (`id_product`),
   KEY `id_category` (`id_category`,`position`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2033,7 +2033,7 @@ CREATE TABLE `wa_category_shop` (
   `id_shop` int NOT NULL,
   `position` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_category`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2060,7 +2060,7 @@ CREATE TABLE `wa_cms` (
   `active` tinyint unsigned NOT NULL DEFAULT '0',
   `indexation` tinyint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_cms`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2090,7 +2090,7 @@ CREATE TABLE `wa_cms_category` (
   `position` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_cms_category`),
   KEY `category_parent` (`id_parent`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2122,7 +2122,7 @@ CREATE TABLE `wa_cms_category_lang` (
   `meta_description` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id_cms_category`,`id_shop`,`id_lang`),
   KEY `category_name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2147,7 +2147,7 @@ CREATE TABLE `wa_cms_category_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_cms_category`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2178,7 +2178,7 @@ CREATE TABLE `wa_cms_lang` (
   `content` longtext,
   `link_rewrite` varchar(128) NOT NULL,
   PRIMARY KEY (`id_cms`,`id_shop`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2204,7 +2204,7 @@ CREATE TABLE `wa_cms_role` (
   `id_cms` int unsigned NOT NULL,
   PRIMARY KEY (`id_cms_role`,`id_cms`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2230,7 +2230,7 @@ CREATE TABLE `wa_cms_role_lang` (
   `id_shop` int unsigned NOT NULL,
   `name` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id_cms_role`,`id_lang`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2254,7 +2254,7 @@ CREATE TABLE `wa_cms_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_cms`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2344,7 +2344,7 @@ CREATE TABLE `wa_configuration` (
   KEY `name` (`name`),
   KEY `id_shop` (`id_shop`),
   KEY `id_shop_group` (`id_shop_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=687 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=687 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2376,7 +2376,7 @@ CREATE TABLE `wa_configuration_kpi` (
   KEY `name` (`name`),
   KEY `id_shop` (`id_shop`),
   KEY `id_shop_group` (`id_shop_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2402,7 +2402,7 @@ CREATE TABLE `wa_configuration_kpi_lang` (
   `value` text,
   `date_upd` datetime DEFAULT NULL,
   PRIMARY KEY (`id_configuration_kpi`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2428,7 +2428,7 @@ CREATE TABLE `wa_configuration_lang` (
   `value` text,
   `date_upd` datetime DEFAULT NULL,
   PRIMARY KEY (`id_configuration`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2461,7 +2461,7 @@ CREATE TABLE `wa_connections` (
   KEY `id_guest` (`id_guest`),
   KEY `date_add` (`date_add`),
   KEY `id_page` (`id_page`)
-) ENGINE=InnoDB AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2470,7 +2470,7 @@ CREATE TABLE `wa_connections` (
 
 LOCK TABLES `wa_connections` WRITE;
 /*!40000 ALTER TABLE `wa_connections` DISABLE KEYS */;
-INSERT INTO `wa_connections` VALUES (1,1,1,1,1,2130706433,'2023-07-18 09:55:18','https://www.prestashop.com'),(2,1,1,3,1,0,'2023-07-18 10:01:30',''),(3,1,1,4,1,0,'2023-07-18 10:28:41',''),(4,1,1,3,2,0,'2023-07-18 10:54:41',''),(5,1,1,5,1,0,'2023-07-18 12:16:28',''),(6,1,1,6,1,1608726874,'2023-07-18 12:59:36',''),(7,1,1,7,1,600081493,'2023-07-18 13:00:44',''),(8,1,1,6,1,95147117,'2023-07-18 13:00:52',''),(9,1,1,9,3,1608726874,'2023-07-18 13:05:26',''),(10,1,1,22,1,1608726874,'2023-07-18 13:40:26',''),(11,1,1,11,1,2247265407,'2023-07-18 13:43:39',''),(12,1,1,12,1,661576293,'2023-07-18 13:43:40',''),(13,1,1,13,1,1608726874,'2023-07-18 14:12:47',''),(14,1,1,6,2,1608726874,'2023-07-18 14:36:12',''),(15,1,1,14,1,1608726874,'2023-07-18 15:53:27',''),(16,1,1,15,4,1608726874,'2023-07-18 16:34:41',''),(17,1,1,16,5,1608726874,'2023-07-18 16:49:54',''),(18,1,1,17,5,1608726874,'2023-07-18 16:54:51',''),(19,1,1,6,2,1608726874,'2023-07-18 16:54:54',''),(20,1,1,18,6,1608726874,'2023-07-18 17:10:39',''),(21,1,1,19,7,1608726874,'2023-07-18 17:37:51',''),(22,1,1,20,7,1608726874,'2023-07-18 17:42:26',''),(23,1,1,6,1,95147116,'2023-07-19 12:34:40',''),(24,1,1,22,8,1608726874,'2023-07-19 12:46:05',''),(25,1,1,21,1,1608726874,'2023-07-19 13:37:05',''),(26,1,1,6,2,1608726874,'2023-07-19 13:41:56',''),(27,1,1,22,9,1608726874,'2023-07-19 13:54:26',''),(28,1,1,23,1,1608726874,'2023-07-19 14:00:36',''),(29,1,1,22,8,1608726874,'2023-07-19 14:43:13',''),(30,1,1,24,8,1608726874,'2023-07-19 14:58:23',''),(31,1,1,25,9,1608726874,'2023-07-19 15:39:37',''),(32,1,1,26,10,1608726874,'2023-07-19 16:21:07',''),(33,1,1,22,1,1608726874,'2023-07-20 12:26:10',''),(34,1,1,22,1,1608726874,'2023-07-20 14:12:02',''),(35,1,1,27,4,1608726874,'2023-07-20 14:35:02',''),(36,1,1,22,8,1608726874,'2023-07-20 16:41:50',''),(37,1,1,27,1,1608726874,'2023-07-20 17:09:49',''),(38,1,1,22,1,1608726874,'2023-07-21 09:40:30',''),(39,1,1,29,8,2965970890,'2023-07-21 09:42:28',''),(40,1,1,27,1,1608726874,'2023-07-21 09:49:08',''),(41,1,1,22,9,1608726874,'2023-07-21 10:06:35',''),(42,1,1,31,8,1608726874,'2023-07-21 10:09:21',''),(43,1,1,22,1,1608726874,'2023-07-25 09:46:26',''),(44,1,1,22,2,1608726874,'2023-07-25 13:56:18',''),(45,1,1,22,9,1608726874,'2023-07-25 14:01:20',''),(46,1,1,22,1,1564362027,'2023-07-31 09:59:10',''),(47,1,1,22,1,1608726874,'2023-08-03 08:44:13',''),(48,1,1,22,1,1608726874,'2023-08-23 17:08:57',''),(49,1,1,35,9,1608726874,'2023-08-23 17:12:38',''),(50,1,1,36,9,1608726874,'2023-08-23 17:13:51',''),(51,1,1,35,9,1608726874,'2023-08-23 17:14:53',''),(52,1,1,35,2,1608726874,'2023-08-24 11:10:17',''),(53,1,1,36,9,1608726874,'2023-08-24 11:31:24',''),(54,1,1,22,9,1608726874,'2023-08-24 11:31:38',''),(55,1,1,36,9,1608726874,'2023-08-24 11:33:55',''),(56,1,1,35,9,1608726874,'2023-08-24 11:35:03',''),(57,1,1,36,9,1608726874,'2023-08-24 11:40:02',''),(58,1,1,35,9,1608726874,'2023-08-24 11:55:59',''),(59,1,1,36,9,1608726874,'2023-08-24 12:03:48',''),(60,1,1,35,9,1608726874,'2023-08-24 12:06:19',''),(61,1,1,36,1,46453139,'2023-08-24 12:36:45',''),(62,1,1,35,1,1608726874,'2023-08-24 12:40:10',''),(63,1,1,35,1,1608726874,'2023-08-24 15:11:26',''),(64,1,1,36,1,46453139,'2023-08-24 15:19:13',''),(65,1,1,36,1,46453139,'2023-08-24 16:13:36',''),(66,1,1,35,1,1608726874,'2023-08-24 17:22:38',''),(67,1,1,36,9,1608726874,'2023-08-24 17:34:58',''),(68,1,1,36,1,1608726874,'2023-08-25 09:24:58',''),(69,1,1,35,9,1608726874,'2023-08-25 09:40:14',''),(70,1,1,22,1,1608726874,'2023-08-25 10:18:43',''),(71,1,1,22,1,1608726874,'2023-09-04 09:21:45',''),(72,1,1,35,1,1608726874,'2023-09-04 09:24:24',''),(73,1,1,50,1,1608726874,'2023-09-04 09:28:17',''),(74,1,1,51,1,1608726874,'2023-09-04 09:47:43',''),(75,1,1,35,1,1608726874,'2023-09-04 09:58:01',''),(76,1,1,22,1,1608726874,'2023-09-04 09:58:58',''),(77,1,1,53,1,1608726874,'2023-09-04 10:05:16',''),(78,1,1,35,1,1608726874,'2023-09-04 14:46:36',''),(79,1,1,35,1,1608726874,'2023-09-04 15:19:52',''),(80,1,1,54,1,1608726874,'2023-09-04 15:27:18',''),(81,1,1,55,1,1608726874,'2023-09-04 15:41:03',''),(82,1,1,35,2,1608726874,'2023-09-04 15:54:46',''),(83,1,1,56,1,1608726874,'2023-09-04 16:17:27',''),(84,1,1,57,1,1608726874,'2023-09-04 16:18:19',''),(85,1,1,58,1,1476408998,'2023-09-05 10:41:52',''),(86,1,1,22,1,1608726874,'2023-09-07 10:58:06',''),(87,1,1,22,1,1608726874,'2023-09-12 13:57:16',''),(88,1,1,22,1,1608726874,'2023-09-13 14:01:25',''),(89,1,1,59,1,1608726874,'2023-09-27 10:56:17',''),(90,1,1,22,1,1608726874,'2023-10-03 09:52:49',''),(91,1,1,22,1,1562497157,'2023-10-06 16:59:13',''),(92,1,1,22,1,1564362027,'2023-10-11 15:08:56',''),(93,1,1,62,1,1608726874,'2023-10-23 14:13:58',''),(94,1,1,63,1,2130706433,'2023-10-27 09:57:30','');
+INSERT INTO `wa_connections` VALUES (1,1,1,1,1,2130706433,'2023-07-18 09:55:18','https://www.prestashop.com'),(2,1,1,3,1,0,'2023-07-18 10:01:30',''),(3,1,1,4,1,0,'2023-07-18 10:28:41',''),(4,1,1,3,2,0,'2023-07-18 10:54:41',''),(5,1,1,5,1,0,'2023-07-18 12:16:28',''),(6,1,1,6,1,1608726874,'2023-07-18 12:59:36',''),(7,1,1,7,1,600081493,'2023-07-18 13:00:44',''),(8,1,1,6,1,95147117,'2023-07-18 13:00:52',''),(9,1,1,9,3,1608726874,'2023-07-18 13:05:26',''),(10,1,1,22,1,1608726874,'2023-07-18 13:40:26',''),(11,1,1,11,1,2247265407,'2023-07-18 13:43:39',''),(12,1,1,12,1,661576293,'2023-07-18 13:43:40',''),(13,1,1,13,1,1608726874,'2023-07-18 14:12:47',''),(14,1,1,6,2,1608726874,'2023-07-18 14:36:12',''),(15,1,1,14,1,1608726874,'2023-07-18 15:53:27',''),(16,1,1,15,4,1608726874,'2023-07-18 16:34:41',''),(17,1,1,16,5,1608726874,'2023-07-18 16:49:54',''),(18,1,1,17,5,1608726874,'2023-07-18 16:54:51',''),(19,1,1,6,2,1608726874,'2023-07-18 16:54:54',''),(20,1,1,18,6,1608726874,'2023-07-18 17:10:39',''),(21,1,1,19,7,1608726874,'2023-07-18 17:37:51',''),(22,1,1,20,7,1608726874,'2023-07-18 17:42:26',''),(23,1,1,6,1,95147116,'2023-07-19 12:34:40',''),(24,1,1,22,8,1608726874,'2023-07-19 12:46:05',''),(25,1,1,21,1,1608726874,'2023-07-19 13:37:05',''),(26,1,1,6,2,1608726874,'2023-07-19 13:41:56',''),(27,1,1,22,9,1608726874,'2023-07-19 13:54:26',''),(28,1,1,23,1,1608726874,'2023-07-19 14:00:36',''),(29,1,1,22,8,1608726874,'2023-07-19 14:43:13',''),(30,1,1,24,8,1608726874,'2023-07-19 14:58:23',''),(31,1,1,25,9,1608726874,'2023-07-19 15:39:37',''),(32,1,1,26,10,1608726874,'2023-07-19 16:21:07',''),(33,1,1,22,1,1608726874,'2023-07-20 12:26:10',''),(34,1,1,22,1,1608726874,'2023-07-20 14:12:02',''),(35,1,1,27,4,1608726874,'2023-07-20 14:35:02',''),(36,1,1,22,8,1608726874,'2023-07-20 16:41:50',''),(37,1,1,27,1,1608726874,'2023-07-20 17:09:49',''),(38,1,1,22,1,1608726874,'2023-07-21 09:40:30',''),(39,1,1,29,8,2965970890,'2023-07-21 09:42:28',''),(40,1,1,27,1,1608726874,'2023-07-21 09:49:08',''),(41,1,1,22,9,1608726874,'2023-07-21 10:06:35',''),(42,1,1,31,8,1608726874,'2023-07-21 10:09:21',''),(43,1,1,22,1,1608726874,'2023-07-25 09:46:26',''),(44,1,1,22,2,1608726874,'2023-07-25 13:56:18',''),(45,1,1,22,9,1608726874,'2023-07-25 14:01:20',''),(46,1,1,22,1,1564362027,'2023-07-31 09:59:10',''),(47,1,1,22,1,1608726874,'2023-08-03 08:44:13',''),(48,1,1,22,1,1608726874,'2023-08-23 17:08:57',''),(49,1,1,35,9,1608726874,'2023-08-23 17:12:38',''),(50,1,1,36,9,1608726874,'2023-08-23 17:13:51',''),(51,1,1,35,9,1608726874,'2023-08-23 17:14:53',''),(52,1,1,35,2,1608726874,'2023-08-24 11:10:17',''),(53,1,1,36,9,1608726874,'2023-08-24 11:31:24',''),(54,1,1,22,9,1608726874,'2023-08-24 11:31:38',''),(55,1,1,36,9,1608726874,'2023-08-24 11:33:55',''),(56,1,1,35,9,1608726874,'2023-08-24 11:35:03',''),(57,1,1,36,9,1608726874,'2023-08-24 11:40:02',''),(58,1,1,35,9,1608726874,'2023-08-24 11:55:59',''),(59,1,1,36,9,1608726874,'2023-08-24 12:03:48',''),(60,1,1,35,9,1608726874,'2023-08-24 12:06:19',''),(61,1,1,36,1,46453139,'2023-08-24 12:36:45',''),(62,1,1,35,1,1608726874,'2023-08-24 12:40:10',''),(63,1,1,35,1,1608726874,'2023-08-24 15:11:26',''),(64,1,1,36,1,46453139,'2023-08-24 15:19:13',''),(65,1,1,36,1,46453139,'2023-08-24 16:13:36',''),(66,1,1,35,1,1608726874,'2023-08-24 17:22:38',''),(67,1,1,36,9,1608726874,'2023-08-24 17:34:58',''),(68,1,1,36,1,1608726874,'2023-08-25 09:24:58',''),(69,1,1,35,9,1608726874,'2023-08-25 09:40:14',''),(70,1,1,22,1,1608726874,'2023-08-25 10:18:43',''),(71,1,1,22,1,1608726874,'2023-09-04 09:21:45',''),(72,1,1,35,1,1608726874,'2023-09-04 09:24:24',''),(73,1,1,50,1,1608726874,'2023-09-04 09:28:17',''),(74,1,1,51,1,1608726874,'2023-09-04 09:47:43',''),(75,1,1,35,1,1608726874,'2023-09-04 09:58:01',''),(76,1,1,22,1,1608726874,'2023-09-04 09:58:58',''),(77,1,1,53,1,1608726874,'2023-09-04 10:05:16',''),(78,1,1,35,1,1608726874,'2023-09-04 14:46:36',''),(79,1,1,35,1,1608726874,'2023-09-04 15:19:52',''),(80,1,1,54,1,1608726874,'2023-09-04 15:27:18',''),(81,1,1,55,1,1608726874,'2023-09-04 15:41:03',''),(82,1,1,35,2,1608726874,'2023-09-04 15:54:46',''),(83,1,1,56,1,1608726874,'2023-09-04 16:17:27',''),(84,1,1,57,1,1608726874,'2023-09-04 16:18:19',''),(85,1,1,58,1,1476408998,'2023-09-05 10:41:52',''),(86,1,1,22,1,1608726874,'2023-09-07 10:58:06',''),(87,1,1,22,1,1608726874,'2023-09-12 13:57:16',''),(88,1,1,22,1,1608726874,'2023-09-13 14:01:25',''),(89,1,1,59,1,1608726874,'2023-09-27 10:56:17',''),(90,1,1,22,1,1608726874,'2023-10-03 09:52:49',''),(91,1,1,22,1,1562497157,'2023-10-06 16:59:13',''),(92,1,1,22,1,1564362027,'2023-10-11 15:08:56',''),(93,1,1,62,1,1608726874,'2023-10-23 14:13:58',''),(94,1,1,63,1,2130706433,'2023-10-27 09:57:30',''),(95,1,1,64,11,3232252161,'2024-07-26 10:13:18','');
 /*!40000 ALTER TABLE `wa_connections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2487,7 +2487,7 @@ CREATE TABLE `wa_connections_page` (
   `time_start` datetime NOT NULL,
   `time_end` datetime DEFAULT NULL,
   PRIMARY KEY (`id_connections`,`id_page`,`time_start`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2518,7 +2518,7 @@ CREATE TABLE `wa_connections_source` (
   KEY `orderby` (`date_add`),
   KEY `http_referer` (`http_referer`),
   KEY `request_uri` (`request_uri`)
-) ENGINE=InnoDB AUTO_INCREMENT=369 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=372 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2527,7 +2527,7 @@ CREATE TABLE `wa_connections_source` (
 
 LOCK TABLES `wa_connections_source` WRITE;
 /*!40000 ALTER TABLE `wa_connections_source` DISABLE KEYS */;
-INSERT INTO `wa_connections_source` VALUES (1,3,'','wasabi.ll/','','2023-07-18 10:28:41'),(2,4,'','wasabi.ll/cdn-cgi/challenge-platform/scripts/invisible.js','','2023-07-18 10:54:41'),(3,5,'','wasabi.ll/','','2023-07-18 12:16:28'),(4,6,'','wasabi.i-dealsrl.com/','','2023-07-18 12:59:36'),(5,6,'','wasabi.i-dealsrl.com/','','2023-07-18 12:59:39'),(6,6,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:27'),(7,7,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:44'),(8,8,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:52'),(9,6,'','wasabi.i-dealsrl.com/','','2023-07-18 13:05:09'),(10,9,'','wasabi.i-dealsrl.com/2-home','','2023-07-18 13:05:26'),(11,10,'','wasabi.i-dealsrl.com/','','2023-07-18 13:40:26'),(12,11,'','wasabi.i-dealsrl.com/','','2023-07-18 13:43:39'),(13,12,'','wasabi.i-dealsrl.com/','','2023-07-18 13:43:40'),(14,13,'','wasabi.i-dealsrl.com/','','2023-07-18 14:12:47'),(15,14,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-18 14:36:12'),(16,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-18 14:36:12'),(17,15,'','wasabi.i-dealsrl.com/','','2023-07-18 15:53:27'),(18,16,'','wasabi.i-dealsrl.com/carrello?action=show','','2023-07-18 16:34:41'),(19,17,'','wasabi.i-dealsrl.com/prodotti-virtuali/21-lorem-ipsul-doloret-sit-amet.html','','2023-07-18 16:49:54'),(20,18,'','wasabi.i-dealsrl.com/prodotti-virtuali/21-lorem-ipsul-doloret-sit-amet.html','','2023-07-18 16:54:51'),(21,19,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:54:54'),(22,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:57:45'),(23,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:58:19'),(24,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:09'),(25,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:11'),(26,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:12'),(27,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:17'),(28,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:12'),(29,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:51'),(30,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:53'),(31,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:06'),(32,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:07'),(33,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:09'),(34,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:20'),(35,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:43'),(36,20,'','wasabi.i-dealsrl.com/contattaci','','2023-07-18 17:10:39'),(37,21,'','wasabi.i-dealsrl.com/content/6-documenti-legali','','2023-07-18 17:37:51'),(38,22,'','wasabi.i-dealsrl.com/content/6-documenti-legali','','2023-07-18 17:42:26'),(39,23,'','wasabi.i-dealsrl.com/','','2023-07-19 12:34:40'),(40,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:38:09'),(41,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:38:09'),(42,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:38:09'),(43,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:38:46'),(44,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:38:46'),(45,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:38:46'),(46,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:39:11'),(47,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:39:11'),(48,23,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:26'),(49,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:34'),(50,6,'','wasabi.i-dealsrl.com/shop/','','2023-07-19 12:42:37'),(51,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:39'),(52,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:43'),(53,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:45'),(54,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:49'),(55,6,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-19 12:44:00'),(56,24,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:46:05'),(57,24,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-19 12:46:10'),(58,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:47:30'),(59,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:47:30'),(60,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:47:30'),(61,6,'','wasabi.i-dealsrl.com/it/','','2023-07-19 12:50:13'),(62,6,'','wasabi.i-dealsrl.com/en/','','2023-07-19 12:50:20'),(63,6,'','wasabi.i-dealsrl.com/en/','','2023-07-19 12:50:37'),(64,25,'','wasabi.i-dealsrl.com/','','2023-07-19 13:37:05'),(65,26,'','wasabi.i-dealsrl.com/contatct-us','','2023-07-19 13:41:56'),(66,6,'','wasabi.i-dealsrl.com/contact-us','','2023-07-19 13:41:59'),(67,6,'','wasabi.i-dealsrl.com/contatct-us','','2023-07-19 13:42:02'),(68,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 13:52:27'),(69,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 13:53:05'),(70,28,'','wasabi.i-dealsrl.com/','','2023-07-19 14:00:36'),(71,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:13'),(72,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:14'),(73,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:58'),(74,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:59'),(75,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:19'),(76,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:21'),(77,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:36'),(78,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:44'),(79,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:45:22'),(80,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:46:21'),(81,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:47:34'),(82,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:47:35'),(83,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:48:10'),(84,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:49:23'),(85,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:50:52'),(86,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:50:53'),(87,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:23'),(88,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:24'),(89,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:26'),(90,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:59'),(91,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:52:12'),(92,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:53:53'),(93,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:54:43'),(94,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:00'),(95,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:01'),(96,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:02'),(97,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:07'),(98,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:08'),(99,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:46'),(100,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:56:34'),(101,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:57:21'),(102,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:57:40'),(103,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:58:10'),(104,30,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:58:23'),(105,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:59:34'),(106,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 15:00:16'),(107,31,'','wasabi.i-dealsrl.com/login?back=my-account','','2023-07-19 15:39:37'),(108,32,'','wasabi.i-dealsrl.com/10-prodotti-fisici','','2023-07-19 16:21:07'),(109,33,'','wasabi.i-dealsrl.com/','','2023-07-20 12:26:10'),(110,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:12:02'),(111,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:13:12'),(112,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:15:54'),(113,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:16:09'),(114,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:16:21'),(115,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:18:07'),(116,36,'','wasabi.i-dealsrl.com/shops','','2023-07-20 16:41:50'),(117,37,'','wasabi.i-dealsrl.com/','','2023-07-20 17:09:49'),(118,38,'','wasabi.i-dealsrl.com/','','2023-07-21 09:40:30'),(119,38,'','wasabi.i-dealsrl.com/','','2023-07-21 09:40:44'),(120,39,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-21 09:42:28'),(121,40,'','wasabi.i-dealsrl.com/','','2023-07-21 09:49:08'),(122,40,'','wasabi.i-dealsrl.com/','','2023-07-21 10:05:22'),(123,40,'','wasabi.i-dealsrl.com/','','2023-07-21 10:05:42'),(124,42,'','wasabi.i-dealsrl.com/shops/1-andrea-s-shop','','2023-07-21 10:09:21'),(125,43,'','wasabi.i-dealsrl.com/','','2023-07-25 09:46:26'),(126,43,'','wasabi.i-dealsrl.com/','','2023-07-25 09:47:19'),(127,44,'','wasabi.i-dealsrl.com/orangeSHOP','','2023-07-25 13:56:18'),(128,43,'','wasabi.i-dealsrl.com/idealSHOP','','2023-07-25 13:56:23'),(129,43,'','wasabi.i-dealsrl.com/idealSHOP','','2023-07-25 13:56:33'),(130,43,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-25 14:00:54'),(131,43,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-25 14:00:54'),(132,43,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-25 14:00:54'),(133,46,'','wasabi.i-dealsrl.com/','','2023-07-31 09:59:10'),(134,46,'','wasabi.i-dealsrl.com/','','2023-07-31 10:07:06'),(135,46,'','wasabi.i-dealsrl.com/','','2023-07-31 10:09:07'),(136,47,'','wasabi.i-dealsrl.com/','','2023-08-03 08:44:13'),(137,48,'','wasabi.i-dealsrl.com/','','2023-08-23 17:08:57'),(138,48,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-23 17:09:28'),(139,48,'','wasabi.i-dealsrl.com/ideal/','','2023-08-23 17:09:32'),(140,52,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 11:10:17'),(141,51,'','wasabi.i-dealsrl.com/','','2023-08-24 11:30:56'),(142,61,'','wasabi.i-dealsrl.com/','','2023-08-24 12:36:45'),(143,62,'','wasabi.i-dealsrl.com/','','2023-08-24 12:40:10'),(144,62,'','wasabi.i-dealsrl.com/seller-orders','','2023-08-24 12:41:59'),(145,62,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 12:43:24'),(146,63,'','wasabi.i-dealsrl.com/','','2023-08-24 15:11:26'),(147,63,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 15:11:31'),(148,63,'','wasabi.i-dealsrl.com/','','2023-08-24 15:13:01'),(149,63,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 15:13:06'),(150,64,'','wasabi.i-dealsrl.com/','','2023-08-24 15:19:13'),(151,65,'','wasabi.i-dealsrl.com/','','2023-08-24 16:13:36'),(152,66,'','wasabi.i-dealsrl.com/','','2023-08-24 17:22:38'),(153,68,'','wasabi.i-dealsrl.com/','','2023-08-25 09:24:58'),(154,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:18:43'),(155,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:34:16'),(156,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:34:21'),(157,71,'','wasabi.i-dealsrl.com/','','2023-09-04 09:21:45'),(158,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:24:24'),(159,73,'','wasabi.i-dealsrl.com/','','2023-09-04 09:28:17'),(160,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:32'),(161,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:32'),(162,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:35'),(163,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:36'),(164,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:46'),(165,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:46'),(166,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:37:28'),(167,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:37:29'),(168,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:39:48'),(169,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:39:49'),(170,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:39:52'),(171,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:39:53'),(172,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:40:05'),(173,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:40:06'),(174,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:40:19'),(175,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:40:20'),(176,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:06'),(177,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:07'),(178,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:10'),(179,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:11'),(180,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:52'),(181,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:52'),(182,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:43:34'),(183,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:43:34'),(184,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:05'),(185,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:05'),(186,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:16'),(187,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:16'),(188,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:38'),(189,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:39'),(190,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:05'),(191,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:06'),(192,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:19'),(193,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:20'),(194,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:38'),(195,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:38'),(196,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:46:27'),(197,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:46:27'),(198,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:46:29'),(199,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:46:30'),(200,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:04'),(201,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:31'),(202,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:35'),(203,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:47:43'),(204,74,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:43'),(205,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:48:18'),(206,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:48:19'),(207,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:49:37'),(208,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:49:38'),(209,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:50:45'),(210,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:50:46'),(211,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:15'),(212,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:15'),(213,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:17'),(214,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:18'),(215,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:28'),(216,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:29'),(217,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:50'),(218,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:51'),(219,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:55'),(220,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:56'),(221,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:53:37'),(222,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:53:38'),(223,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:54:15'),(224,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:54:16'),(225,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:54:29'),(226,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:54:29'),(227,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:01'),(228,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:02'),(229,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:20'),(230,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:21'),(231,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:30'),(232,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:33'),(233,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:57'),(234,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:58'),(235,76,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:58'),(236,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:00:28'),(237,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:00:29'),(238,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:01:04'),(239,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:01:05'),(240,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:01:41'),(241,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:01:41'),(242,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:18'),(243,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:18'),(244,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:18'),(245,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:19'),(246,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:20'),(247,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:21'),(248,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:03:30'),(249,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:31'),(250,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:03:34'),(251,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:34'),(252,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:37'),(253,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:37'),(254,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:39'),(255,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:40'),(256,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:40'),(257,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:59'),(258,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:04:00'),(259,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:04:00'),(260,77,'','wasabi.i-dealsrl.com/','','2023-09-04 10:05:16'),(261,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:11'),(262,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:06:11'),(263,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:06:11'),(264,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:06:12'),(265,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:13'),(266,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:06:13'),(267,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:06:24'),(268,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:25'),(269,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:07:41'),(270,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:07:41'),(271,78,'','wasabi.i-dealsrl.com/','','2023-09-04 14:46:36'),(272,78,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-04 15:14:31'),(273,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:19:52'),(274,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:20:09'),(275,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:24:22'),(276,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:24:43'),(277,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:27:18'),(278,80,'','wasabi.i-dealsrl.com/','','2023-09-04 15:27:18'),(279,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:29:44'),(280,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:29:45'),(281,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:29:57'),(282,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:29:58'),(283,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:30:06'),(284,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:30:07'),(285,79,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-04 15:30:20'),(286,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:36:58'),(287,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:36:59'),(288,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:16'),(289,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:17'),(290,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:19'),(291,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:20'),(292,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:22'),(293,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:23'),(294,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:34'),(295,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:35'),(296,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:39:25'),(297,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:39:25'),(298,81,'','wasabi.i-dealsrl.com/','','2023-09-04 15:41:03'),(299,82,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:54:46'),(300,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:56:00'),(301,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:56:01'),(302,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:01:34'),(303,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:01:35'),(304,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:01:40'),(305,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:01:41'),(306,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:15'),(307,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:15'),(308,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:20'),(309,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:21'),(310,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:39'),(311,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:39'),(312,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:04:19'),(313,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:04:19'),(314,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:04:40'),(315,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:04:41'),(316,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:05:42'),(317,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:05:42'),(318,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:14'),(319,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:15'),(320,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:44'),(321,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:45'),(322,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:55'),(323,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:56'),(324,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:07:11'),(325,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:07:12'),(326,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:07:44'),(327,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:07:45'),(328,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:08:36'),(329,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:08:36'),(330,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:34'),(331,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:35'),(332,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:43'),(333,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:44'),(334,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:58'),(335,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:59'),(336,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:16:14'),(337,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:16:52'),(338,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:01'),(339,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:10'),(340,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:24'),(341,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:17:27'),(342,83,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:27'),(343,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:53'),(344,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:17:54'),(345,84,'','wasabi.i-dealsrl.com/','','2023-09-04 16:18:19'),(346,84,'','wasabi.i-dealsrl.com/','','2023-09-04 16:18:22'),(347,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:21:05'),(348,85,'','wasabi.i-dealsrl.com/','','2023-09-05 10:41:52'),(349,86,'','wasabi.i-dealsrl.com/','','2023-09-07 10:58:06'),(350,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:16'),(351,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:25'),(352,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:55'),(353,88,'','wasabi.i-dealsrl.com/','','2023-09-13 14:01:25'),(354,89,'','wasabi.i-dealsrl.com/','','2023-09-27 10:56:17'),(355,89,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-27 11:00:30'),(356,90,'','wasabi.i-dealsrl.com/','','2023-10-03 09:52:49'),(357,91,'','wasabi.i-dealsrl.com/','','2023-10-06 16:59:13'),(358,92,'','wasabi.i-dealsrl.com/','','2023-10-11 15:08:56'),(359,93,'','wasabi.i-dealsrl.com/','','2023-10-23 14:13:58'),(360,94,'','wasabi.ll/','','2023-10-27 09:57:30'),(361,94,'','wasabi.ll/orangeSHOP/','','2023-10-27 10:02:35'),(362,94,'','wasabi.ll/','','2023-10-27 10:11:36'),(363,95,'http://localhost:8080/wasabiSHOP/index.php?controller=AdminDashboard&token=0032eeb3c3f68ad71093b1c3fc8eb297','localhost:8080/','','2024-06-17 14:41:40'),(364,95,'http://localhost:8080/themes/orange-theme-8/modules/arproductlists/views/css/styles.css','localhost:8080/themes/orange-theme-8/modules/arproductlists/views/img/ring-alt.gif','','2024-06-17 14:41:41'),(365,95,'http://localhost:8080/','localhost:8080/login?back=http://localhost:8080/','','2024-06-17 14:41:57'),(366,95,'http://localhost:8080/login?back=http://localhost:8080/','localhost:8080/registration','','2024-06-17 14:41:59'),(367,95,'http://localhost:8080/registration','localhost:8080/','','2024-06-17 14:43:00'),(368,95,'http://localhost:8080/','localhost:8080/my-account','','2024-06-17 14:43:04');
+INSERT INTO `wa_connections_source` VALUES (1,3,'','wasabi.ll/','','2023-07-18 10:28:41'),(2,4,'','wasabi.ll/cdn-cgi/challenge-platform/scripts/invisible.js','','2023-07-18 10:54:41'),(3,5,'','wasabi.ll/','','2023-07-18 12:16:28'),(4,6,'','wasabi.i-dealsrl.com/','','2023-07-18 12:59:36'),(5,6,'','wasabi.i-dealsrl.com/','','2023-07-18 12:59:39'),(6,6,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:27'),(7,7,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:44'),(8,8,'','wasabi.i-dealsrl.com/','','2023-07-18 13:00:52'),(9,6,'','wasabi.i-dealsrl.com/','','2023-07-18 13:05:09'),(10,9,'','wasabi.i-dealsrl.com/2-home','','2023-07-18 13:05:26'),(11,10,'','wasabi.i-dealsrl.com/','','2023-07-18 13:40:26'),(12,11,'','wasabi.i-dealsrl.com/','','2023-07-18 13:43:39'),(13,12,'','wasabi.i-dealsrl.com/','','2023-07-18 13:43:40'),(14,13,'','wasabi.i-dealsrl.com/','','2023-07-18 14:12:47'),(15,14,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-18 14:36:12'),(16,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-18 14:36:12'),(17,15,'','wasabi.i-dealsrl.com/','','2023-07-18 15:53:27'),(18,16,'','wasabi.i-dealsrl.com/carrello?action=show','','2023-07-18 16:34:41'),(19,17,'','wasabi.i-dealsrl.com/prodotti-virtuali/21-lorem-ipsul-doloret-sit-amet.html','','2023-07-18 16:49:54'),(20,18,'','wasabi.i-dealsrl.com/prodotti-virtuali/21-lorem-ipsul-doloret-sit-amet.html','','2023-07-18 16:54:51'),(21,19,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:54:54'),(22,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:57:45'),(23,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:58:19'),(24,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:09'),(25,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:11'),(26,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:12'),(27,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 16:59:17'),(28,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:12'),(29,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:51'),(30,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:00:53'),(31,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:06'),(32,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:07'),(33,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:09'),(34,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:20'),(35,6,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-18 17:01:43'),(36,20,'','wasabi.i-dealsrl.com/contattaci','','2023-07-18 17:10:39'),(37,21,'','wasabi.i-dealsrl.com/content/6-documenti-legali','','2023-07-18 17:37:51'),(38,22,'','wasabi.i-dealsrl.com/content/6-documenti-legali','','2023-07-18 17:42:26'),(39,23,'','wasabi.i-dealsrl.com/','','2023-07-19 12:34:40'),(40,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:38:09'),(41,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:38:09'),(42,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:38:09'),(43,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:38:46'),(44,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:38:46'),(45,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:38:46'),(46,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:39:11'),(47,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:39:11'),(48,23,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:26'),(49,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:34'),(50,6,'','wasabi.i-dealsrl.com/shop/','','2023-07-19 12:42:37'),(51,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:39'),(52,6,'','wasabi.i-dealsrl.com/shops/','','2023-07-19 12:42:43'),(53,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:45'),(54,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:42:49'),(55,6,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-19 12:44:00'),(56,24,'','wasabi.i-dealsrl.com/shops','','2023-07-19 12:46:05'),(57,24,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-19 12:46:10'),(58,23,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-19 12:47:30'),(59,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-19 12:47:30'),(60,23,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-19 12:47:30'),(61,6,'','wasabi.i-dealsrl.com/it/','','2023-07-19 12:50:13'),(62,6,'','wasabi.i-dealsrl.com/en/','','2023-07-19 12:50:20'),(63,6,'','wasabi.i-dealsrl.com/en/','','2023-07-19 12:50:37'),(64,25,'','wasabi.i-dealsrl.com/','','2023-07-19 13:37:05'),(65,26,'','wasabi.i-dealsrl.com/contatct-us','','2023-07-19 13:41:56'),(66,6,'','wasabi.i-dealsrl.com/contact-us','','2023-07-19 13:41:59'),(67,6,'','wasabi.i-dealsrl.com/contatct-us','','2023-07-19 13:42:02'),(68,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 13:52:27'),(69,6,'','wasabi.i-dealsrl.com/shops','','2023-07-19 13:53:05'),(70,28,'','wasabi.i-dealsrl.com/','','2023-07-19 14:00:36'),(71,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:13'),(72,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:14'),(73,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:58'),(74,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:43:59'),(75,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:19'),(76,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:21'),(77,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:36'),(78,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:44:44'),(79,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:45:22'),(80,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:46:21'),(81,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:47:34'),(82,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:47:35'),(83,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:48:10'),(84,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:49:23'),(85,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:50:52'),(86,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:50:53'),(87,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:23'),(88,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:24'),(89,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:26'),(90,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:51:59'),(91,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:52:12'),(92,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:53:53'),(93,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:54:43'),(94,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:00'),(95,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:01'),(96,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:02'),(97,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:07'),(98,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:08'),(99,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:55:46'),(100,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:56:34'),(101,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:57:21'),(102,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:57:40'),(103,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:58:10'),(104,30,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:58:23'),(105,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 14:59:34'),(106,29,'','wasabi.i-dealsrl.com/shops/2-orangepix-seller','','2023-07-19 15:00:16'),(107,31,'','wasabi.i-dealsrl.com/login?back=my-account','','2023-07-19 15:39:37'),(108,32,'','wasabi.i-dealsrl.com/10-prodotti-fisici','','2023-07-19 16:21:07'),(109,33,'','wasabi.i-dealsrl.com/','','2023-07-20 12:26:10'),(110,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:12:02'),(111,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:13:12'),(112,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:15:54'),(113,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:16:09'),(114,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:16:21'),(115,34,'','wasabi.i-dealsrl.com/','','2023-07-20 14:18:07'),(116,36,'','wasabi.i-dealsrl.com/shops','','2023-07-20 16:41:50'),(117,37,'','wasabi.i-dealsrl.com/','','2023-07-20 17:09:49'),(118,38,'','wasabi.i-dealsrl.com/','','2023-07-21 09:40:30'),(119,38,'','wasabi.i-dealsrl.com/','','2023-07-21 09:40:44'),(120,39,'','wasabi.i-dealsrl.com/shops/1-andrea-s','','2023-07-21 09:42:28'),(121,40,'','wasabi.i-dealsrl.com/','','2023-07-21 09:49:08'),(122,40,'','wasabi.i-dealsrl.com/','','2023-07-21 10:05:22'),(123,40,'','wasabi.i-dealsrl.com/','','2023-07-21 10:05:42'),(124,42,'','wasabi.i-dealsrl.com/shops/1-andrea-s-shop','','2023-07-21 10:09:21'),(125,43,'','wasabi.i-dealsrl.com/','','2023-07-25 09:46:26'),(126,43,'','wasabi.i-dealsrl.com/','','2023-07-25 09:47:19'),(127,44,'','wasabi.i-dealsrl.com/orangeSHOP','','2023-07-25 13:56:18'),(128,43,'','wasabi.i-dealsrl.com/idealSHOP','','2023-07-25 13:56:23'),(129,43,'','wasabi.i-dealsrl.com/idealSHOP','','2023-07-25 13:56:33'),(130,43,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-07-25 14:00:54'),(131,43,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-07-25 14:00:54'),(132,43,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-07-25 14:00:54'),(133,46,'','wasabi.i-dealsrl.com/','','2023-07-31 09:59:10'),(134,46,'','wasabi.i-dealsrl.com/','','2023-07-31 10:07:06'),(135,46,'','wasabi.i-dealsrl.com/','','2023-07-31 10:09:07'),(136,47,'','wasabi.i-dealsrl.com/','','2023-08-03 08:44:13'),(137,48,'','wasabi.i-dealsrl.com/','','2023-08-23 17:08:57'),(138,48,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-23 17:09:28'),(139,48,'','wasabi.i-dealsrl.com/ideal/','','2023-08-23 17:09:32'),(140,52,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 11:10:17'),(141,51,'','wasabi.i-dealsrl.com/','','2023-08-24 11:30:56'),(142,61,'','wasabi.i-dealsrl.com/','','2023-08-24 12:36:45'),(143,62,'','wasabi.i-dealsrl.com/','','2023-08-24 12:40:10'),(144,62,'','wasabi.i-dealsrl.com/seller-orders','','2023-08-24 12:41:59'),(145,62,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 12:43:24'),(146,63,'','wasabi.i-dealsrl.com/','','2023-08-24 15:11:26'),(147,63,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 15:11:31'),(148,63,'','wasabi.i-dealsrl.com/','','2023-08-24 15:13:01'),(149,63,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-08-24 15:13:06'),(150,64,'','wasabi.i-dealsrl.com/','','2023-08-24 15:19:13'),(151,65,'','wasabi.i-dealsrl.com/','','2023-08-24 16:13:36'),(152,66,'','wasabi.i-dealsrl.com/','','2023-08-24 17:22:38'),(153,68,'','wasabi.i-dealsrl.com/','','2023-08-25 09:24:58'),(154,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:18:43'),(155,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:34:16'),(156,70,'','wasabi.i-dealsrl.com/','','2023-08-25 10:34:21'),(157,71,'','wasabi.i-dealsrl.com/','','2023-09-04 09:21:45'),(158,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:24:24'),(159,73,'','wasabi.i-dealsrl.com/','','2023-09-04 09:28:17'),(160,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:32'),(161,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:32'),(162,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:35'),(163,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:36'),(164,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:34:46'),(165,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:34:46'),(166,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:37:28'),(167,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:37:29'),(168,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:39:48'),(169,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:39:49'),(170,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:39:52'),(171,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:39:53'),(172,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:40:05'),(173,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:40:06'),(174,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:40:19'),(175,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:40:20'),(176,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:06'),(177,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:07'),(178,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:10'),(179,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:11'),(180,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:41:52'),(181,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:41:52'),(182,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:43:34'),(183,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:43:34'),(184,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:05'),(185,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:05'),(186,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:16'),(187,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:16'),(188,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:44:38'),(189,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:44:39'),(190,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:05'),(191,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:06'),(192,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:19'),(193,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:20'),(194,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:45:38'),(195,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:45:38'),(196,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:46:27'),(197,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:46:27'),(198,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:46:29'),(199,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:46:30'),(200,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:04'),(201,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:31'),(202,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:35'),(203,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:47:43'),(204,74,'','wasabi.i-dealsrl.com/','','2023-09-04 09:47:43'),(205,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:48:18'),(206,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:48:19'),(207,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:49:37'),(208,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:49:38'),(209,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:50:45'),(210,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:50:46'),(211,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:15'),(212,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:15'),(213,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:17'),(214,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:18'),(215,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:28'),(216,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:29'),(217,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:50'),(218,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:51'),(219,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:51:55'),(220,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:51:56'),(221,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:53:37'),(222,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:53:38'),(223,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:54:15'),(224,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:54:16'),(225,72,'','wasabi.i-dealsrl.com/','','2023-09-04 09:54:29'),(226,72,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:54:29'),(227,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:01'),(228,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:02'),(229,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:20'),(230,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:21'),(231,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:30'),(232,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:33'),(233,75,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:57'),(234,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 09:58:58'),(235,76,'','wasabi.i-dealsrl.com/','','2023-09-04 09:58:58'),(236,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:00:28'),(237,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:00:29'),(238,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:01:04'),(239,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:01:05'),(240,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:01:41'),(241,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:01:41'),(242,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:18'),(243,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:18'),(244,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:18'),(245,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:19'),(246,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:20'),(247,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:21'),(248,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:03:30'),(249,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:31'),(250,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:03:34'),(251,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:34'),(252,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:37'),(253,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:37'),(254,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:39'),(255,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:03:40'),(256,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:03:40'),(257,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:03:59'),(258,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:04:00'),(259,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:04:00'),(260,77,'','wasabi.i-dealsrl.com/','','2023-09-04 10:05:16'),(261,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:11'),(262,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:06:11'),(263,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:06:11'),(264,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.css.map','','2023-09-04 10:06:12'),(265,76,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:13'),(266,76,'','wasabi.i-dealsrl.com/modules/blockreassurance/views/dist/front.js.map','','2023-09-04 10:06:13'),(267,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:06:24'),(268,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:06:25'),(269,75,'','wasabi.i-dealsrl.com/','','2023-09-04 10:07:41'),(270,75,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 10:07:41'),(271,78,'','wasabi.i-dealsrl.com/','','2023-09-04 14:46:36'),(272,78,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-04 15:14:31'),(273,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:19:52'),(274,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:20:09'),(275,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:24:22'),(276,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:24:43'),(277,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:27:18'),(278,80,'','wasabi.i-dealsrl.com/','','2023-09-04 15:27:18'),(279,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:29:44'),(280,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:29:45'),(281,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:29:57'),(282,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:29:58'),(283,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:30:06'),(284,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:30:07'),(285,79,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-04 15:30:20'),(286,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:36:58'),(287,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:36:59'),(288,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:16'),(289,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:17'),(290,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:19'),(291,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:20'),(292,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:22'),(293,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:23'),(294,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:38:34'),(295,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:38:35'),(296,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:39:25'),(297,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:39:25'),(298,81,'','wasabi.i-dealsrl.com/','','2023-09-04 15:41:03'),(299,82,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:54:46'),(300,79,'','wasabi.i-dealsrl.com/','','2023-09-04 15:56:00'),(301,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 15:56:01'),(302,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:01:34'),(303,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:01:35'),(304,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:01:40'),(305,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:01:41'),(306,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:15'),(307,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:15'),(308,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:20'),(309,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:21'),(310,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:02:39'),(311,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:02:39'),(312,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:04:19'),(313,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:04:19'),(314,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:04:40'),(315,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:04:41'),(316,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:05:42'),(317,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:05:42'),(318,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:14'),(319,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:15'),(320,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:44'),(321,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:45'),(322,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:06:55'),(323,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:06:56'),(324,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:07:11'),(325,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:07:12'),(326,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:07:44'),(327,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:07:45'),(328,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:08:36'),(329,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:08:36'),(330,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:34'),(331,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:35'),(332,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:43'),(333,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:44'),(334,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:10:58'),(335,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:10:59'),(336,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:16:14'),(337,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:16:52'),(338,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:01'),(339,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:10'),(340,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:24'),(341,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:17:27'),(342,83,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:27'),(343,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:17:53'),(344,79,'','wasabi.i-dealsrl.com/themes/core.js.map','','2023-09-04 16:17:54'),(345,84,'','wasabi.i-dealsrl.com/','','2023-09-04 16:18:19'),(346,84,'','wasabi.i-dealsrl.com/','','2023-09-04 16:18:22'),(347,79,'','wasabi.i-dealsrl.com/','','2023-09-04 16:21:05'),(348,85,'','wasabi.i-dealsrl.com/','','2023-09-05 10:41:52'),(349,86,'','wasabi.i-dealsrl.com/','','2023-09-07 10:58:06'),(350,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:16'),(351,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:25'),(352,87,'','wasabi.i-dealsrl.com/','','2023-09-12 13:57:55'),(353,88,'','wasabi.i-dealsrl.com/','','2023-09-13 14:01:25'),(354,89,'','wasabi.i-dealsrl.com/','','2023-09-27 10:56:17'),(355,89,'','wasabi.i-dealsrl.com/orangeSHOP/','','2023-09-27 11:00:30'),(356,90,'','wasabi.i-dealsrl.com/','','2023-10-03 09:52:49'),(357,91,'','wasabi.i-dealsrl.com/','','2023-10-06 16:59:13'),(358,92,'','wasabi.i-dealsrl.com/','','2023-10-11 15:08:56'),(359,93,'','wasabi.i-dealsrl.com/','','2023-10-23 14:13:58'),(360,94,'','wasabi.ll/','','2023-10-27 09:57:30'),(361,94,'','wasabi.ll/orangeSHOP/','','2023-10-27 10:02:35'),(362,94,'','wasabi.ll/','','2023-10-27 10:11:36'),(363,95,'http://localhost:8080/wasabiSHOP/index.php?controller=AdminDashboard&token=0032eeb3c3f68ad71093b1c3fc8eb297','localhost:8080/','','2024-06-17 14:41:40'),(364,95,'http://localhost:8080/themes/orange-theme-8/modules/arproductlists/views/css/styles.css','localhost:8080/themes/orange-theme-8/modules/arproductlists/views/img/ring-alt.gif','','2024-06-17 14:41:41'),(365,95,'http://localhost:8080/','localhost:8080/login?back=http://localhost:8080/','','2024-06-17 14:41:57'),(366,95,'http://localhost:8080/login?back=http://localhost:8080/','localhost:8080/registration','','2024-06-17 14:41:59'),(367,95,'http://localhost:8080/registration','localhost:8080/','','2024-06-17 14:43:00'),(368,95,'http://localhost:8080/','localhost:8080/my-account','','2024-06-17 14:43:04'),(369,95,'','localhost:8080/registration','','2024-07-26 10:13:18'),(370,95,'','localhost:8080/registration','','2024-07-26 10:14:15'),(371,95,'','localhost:8080/registration','','2024-07-26 10:14:28');
 /*!40000 ALTER TABLE `wa_connections_source` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2544,7 +2544,7 @@ CREATE TABLE `wa_contact` (
   `customer_service` tinyint(1) NOT NULL DEFAULT '0',
   `position` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_contact`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2570,7 +2570,7 @@ CREATE TABLE `wa_contact_lang` (
   `name` varchar(255) NOT NULL,
   `description` text,
   PRIMARY KEY (`id_contact`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2595,7 +2595,7 @@ CREATE TABLE `wa_contact_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_contact`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2630,7 +2630,7 @@ CREATE TABLE `wa_country` (
   PRIMARY KEY (`id_country`),
   KEY `country_iso_code` (`iso_code`),
   KEY `country_` (`id_zone`)
-) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=242 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2655,7 +2655,7 @@ CREATE TABLE `wa_country_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id_country`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2680,7 +2680,7 @@ CREATE TABLE `wa_country_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_country`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2713,7 +2713,7 @@ CREATE TABLE `wa_currency` (
   `modified` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_currency`),
   KEY `currency_iso_code` (`iso_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2740,7 +2740,7 @@ CREATE TABLE `wa_currency_lang` (
   `symbol` varchar(255) NOT NULL,
   `pattern` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_currency`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2766,7 +2766,7 @@ CREATE TABLE `wa_currency_shop` (
   `conversion_rate` decimal(13,6) NOT NULL,
   PRIMARY KEY (`id_currency`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2820,6 +2820,8 @@ CREATE TABLE `wa_customer` (
   `date_upd` datetime NOT NULL,
   `reset_password_token` varchar(40) DEFAULT NULL,
   `reset_password_validity` datetime DEFAULT NULL,
+  `wls_id` varchar(255) NOT NULL,
+  `wls_url` varchar(255) NOT NULL,
   PRIMARY KEY (`id_customer`),
   KEY `customer_email` (`email`),
   KEY `customer_login` (`email`,`passwd`),
@@ -2827,7 +2829,7 @@ CREATE TABLE `wa_customer` (
   KEY `id_gender` (`id_gender`),
   KEY `id_shop_group` (`id_shop_group`),
   KEY `id_shop` (`id_shop`,`date_add`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2836,7 +2838,7 @@ CREATE TABLE `wa_customer` (
 
 LOCK TABLES `wa_customer` WRITE;
 /*!40000 ALTER TABLE `wa_customer` DISABLE KEYS */;
-INSERT INTO `wa_customer` VALUES (1,1,1,1,3,1,0,'','','','Anonymous','Anonymous','anonymous@psgdpr.com','$2y$10$vmyvLUpYyy8KbvkTL1ljxOT7ghrMBPqJHgNJiQqDqKIr20HHOvc32','2023-07-17 23:54:10','0000-00-00',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'462a2e6026dc3683a85ebfb443f74009','',0,0,0,'2023-07-18 09:54:10','2023-07-18 09:54:10','','0000-00-00 00:00:00'),(2,1,1,1,3,1,0,'','','','John','DOE','pub@prestashop.com','$2y$10$zE04CSv7rp68G0KU9leJvus6eHGpPvcBoHTZfS2p8mSa.GZ9Z9g7a','2023-07-17 23:55:17','1970-01-15',1,'','2013-12-13 08:19:15',1,'',0.000000,0,0,'4bca5d9806fbb7d7796187ba5fe37fe6','',1,0,0,'2023-07-18 09:55:17','2023-07-18 09:55:17','','0000-00-00 00:00:00'),(6,1,1,1,3,2,0,'','','','Seller','Wasabi','seller@wasabi.test','$2y$10$iAA84usqFt6JiWRmbWIAgu9xeqNUihkEklCjjoDs5QjuQObhN6GEe','2023-08-23 07:13:44','1970-11-11',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'6e5fd089b459328667e8bd42420cab82','',1,0,0,'2023-08-23 17:13:44','2023-08-23 17:13:44','','0000-00-00 00:00:00'),(7,1,1,1,3,2,0,'','','','Client','Wasabi','client@wasabi.test','$2y$10$AQc0KjJkRypI15v82B9jeuYcTwEh9/PjiULwqyLUvN3hZiRcWVo8W','2023-08-23 07:14:43','1970-11-11',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'4dc861de37f6efbaef39aa32a68da000','',1,0,0,'2023-08-23 17:14:43','2023-08-23 17:14:43','','0000-00-00 00:00:00');
+INSERT INTO `wa_customer` VALUES (1,1,1,1,3,1,0,'','','','Anonymous','Anonymous','anonymous@psgdpr.com','$2y$10$vmyvLUpYyy8KbvkTL1ljxOT7ghrMBPqJHgNJiQqDqKIr20HHOvc32','2023-07-17 23:54:10','0000-00-00',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'462a2e6026dc3683a85ebfb443f74009','',0,0,0,'2023-07-18 09:54:10','2023-07-18 09:54:10','','0000-00-00 00:00:00','47a51445-89a0-4a0f-8948-f9c301f0dac0','https://example.com/pllrxwqy8y'),(2,1,1,1,3,1,0,'','','','John','DOE','pub@prestashop.com','$2y$10$zE04CSv7rp68G0KU9leJvus6eHGpPvcBoHTZfS2p8mSa.GZ9Z9g7a','2023-07-17 23:55:17','1970-01-15',1,'','2013-12-13 08:19:15',1,'',0.000000,0,0,'4bca5d9806fbb7d7796187ba5fe37fe6','',1,0,0,'2023-07-18 09:55:17','2023-07-18 09:55:17','','0000-00-00 00:00:00','543210fe-dcba-9876-5432-10fedcba9876','https://example.com/9j8h7g6f5'),(6,1,1,1,3,2,0,'','','','Seller','Wasabi','seller@wasabi.test','$2y$10$iAA84usqFt6JiWRmbWIAgu9xeqNUihkEklCjjoDs5QjuQObhN6GEe','2023-08-23 07:13:44','1970-11-11',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'6e5fd089b459328667e8bd42420cab82','',1,0,0,'2023-08-23 17:13:44','2023-08-23 17:13:44','','0000-00-00 00:00:00','bbbb-aaaa-cccc-dddd-eeeeeeeeeeee','https://example.com/qwertyuiop'),(7,1,1,1,3,2,0,'','','','Client','Wasabi','client@wasabi.test','$2y$10$AQc0KjJkRypI15v82B9jeuYcTwEh9/PjiULwqyLUvN3hZiRcWVo8W','2023-08-23 07:14:43','1970-11-11',0,'','0000-00-00 00:00:00',0,'',0.000000,0,0,'4dc861de37f6efbaef39aa32a68da000','',1,0,0,'2023-08-23 17:14:43','2023-08-23 17:14:43','','0000-00-00 00:00:00','f0f1f2f3-f4f5f6f7-f8f9fafb-fcfdfeff','https://example.com/asdfghjkl');
 /*!40000 ALTER TABLE `wa_customer` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2853,7 +2855,7 @@ CREATE TABLE `wa_customer_group` (
   PRIMARY KEY (`id_customer`,`id_group`),
   KEY `customer_login` (`id_group`),
   KEY `id_customer` (`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2888,7 +2890,7 @@ CREATE TABLE `wa_customer_message` (
   PRIMARY KEY (`id_customer_message`),
   KEY `id_customer_thread` (`id_customer_thread`),
   KEY `id_employee` (`id_employee`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2911,7 +2913,7 @@ DROP TABLE IF EXISTS `wa_customer_message_sync_imap`;
 CREATE TABLE `wa_customer_message_sync_imap` (
   `md5_header` varbinary(32) NOT NULL,
   KEY `md5_header_index` (`md5_header`(4))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2937,7 +2939,7 @@ CREATE TABLE `wa_customer_session` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_customer_session`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2977,7 +2979,7 @@ CREATE TABLE `wa_customer_thread` (
   KEY `id_customer` (`id_customer`),
   KEY `id_order` (`id_order`),
   KEY `id_product` (`id_product`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3010,7 +3012,7 @@ CREATE TABLE `wa_customization` (
   PRIMARY KEY (`id_customization`,`id_cart`,`id_product`,`id_address_delivery`),
   KEY `id_product_attribute` (`id_product_attribute`),
   KEY `id_cart_product` (`id_cart`,`id_product`,`id_product_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3038,7 +3040,7 @@ CREATE TABLE `wa_customization_field` (
   `is_deleted` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_customization_field`),
   KEY `id_product` (`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3063,7 +3065,7 @@ CREATE TABLE `wa_customization_field_lang` (
   `id_shop` int unsigned NOT NULL DEFAULT '1',
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_customization_field`,`id_lang`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3091,7 +3093,7 @@ CREATE TABLE `wa_customized_data` (
   `price` decimal(20,6) NOT NULL DEFAULT '0.000000',
   `weight` decimal(20,6) NOT NULL DEFAULT '0.000000',
   PRIMARY KEY (`id_customization`,`type`,`index`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3115,7 +3117,7 @@ CREATE TABLE `wa_date_range` (
   `time_start` datetime NOT NULL,
   `time_end` datetime NOT NULL,
   PRIMARY KEY (`id_date_range`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3148,7 +3150,7 @@ CREATE TABLE `wa_delivery` (
   KEY `id_carrier` (`id_carrier`,`id_zone`),
   KEY `id_range_price` (`id_range_price`),
   KEY `id_range_weight` (`id_range_weight`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3202,7 +3204,7 @@ CREATE TABLE `wa_employee` (
   KEY `employee_login` (`email`,`passwd`),
   KEY `id_employee_passwd` (`id_employee`,`passwd`),
   KEY `id_profile` (`id_profile`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3256,7 +3258,7 @@ CREATE TABLE `wa_employee_session` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_employee_session`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3281,7 +3283,7 @@ CREATE TABLE `wa_employee_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_employee`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3305,7 +3307,7 @@ CREATE TABLE `wa_ets_mp_attachment_seller` (
   `id_attachment` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_attachment`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3328,7 +3330,7 @@ CREATE TABLE `wa_ets_mp_attribute_group_seller` (
   `id_attribute_group` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_attribute_group`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3351,7 +3353,7 @@ CREATE TABLE `wa_ets_mp_attribute_seller` (
   `id_attribute` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_attribute`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3374,7 +3376,7 @@ CREATE TABLE `wa_ets_mp_carrier_seller` (
   `id_carrier_reference` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_carrier_reference`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3398,7 +3400,7 @@ CREATE TABLE `wa_ets_mp_cart_rule_seller` (
   `id_cart_rule` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_cart_rule`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3421,7 +3423,7 @@ CREATE TABLE `wa_ets_mp_category_commission` (
   `id_category` int NOT NULL,
   `commission_rate` float(10,2) NOT NULL,
   PRIMARY KEY (`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3445,7 +3447,7 @@ CREATE TABLE `wa_ets_mp_category_commission_group` (
   `id_group` int NOT NULL,
   `commission_rate` float(10,2) NOT NULL,
   PRIMARY KEY (`id_category`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3469,7 +3471,7 @@ CREATE TABLE `wa_ets_mp_category_commission_seller` (
   `id_seller` int NOT NULL,
   `commission_rate` float(10,2) NOT NULL,
   PRIMARY KEY (`id_category`,`id_seller`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3511,7 +3513,7 @@ CREATE TABLE `wa_ets_mp_commission_usage` (
   KEY `id_currency` (`id_currency`),
   KEY `status` (`status`),
   KEY `deleted` (`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3535,7 +3537,7 @@ CREATE TABLE `wa_ets_mp_feature_seller` (
   `id_feature` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_feature`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3558,7 +3560,7 @@ CREATE TABLE `wa_ets_mp_manufacturer_seller` (
   `id_manufacturer` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_manufacturer`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3593,7 +3595,7 @@ CREATE TABLE `wa_ets_mp_payment_method` (
   KEY `enable` (`enable`),
   KEY `deleted` (`deleted`),
   KEY `sort` (`sort`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3627,7 +3629,7 @@ CREATE TABLE `wa_ets_mp_payment_method_field` (
   KEY `required` (`required`),
   KEY `enable` (`enable`),
   KEY `deleted` (`deleted`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3653,7 +3655,7 @@ CREATE TABLE `wa_ets_mp_payment_method_field_lang` (
   `title` varchar(222) NOT NULL,
   `description` text NOT NULL,
   PRIMARY KEY (`id_ets_mp_payment_method_field`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3680,7 +3682,7 @@ CREATE TABLE `wa_ets_mp_payment_method_lang` (
   `description` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
   `note` text CHARACTER SET utf8mb3 COLLATE utf8mb3_bin,
   PRIMARY KEY (`id_ets_mp_payment_method`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3730,7 +3732,7 @@ CREATE TABLE `wa_ets_mp_product` (
   KEY `id_tax_rules_group` (`id_tax_rules_group`),
   KEY `is_virtual` (`is_virtual`),
   KEY `status` (`status`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3753,7 +3755,7 @@ CREATE TABLE `wa_ets_mp_product_image` (
   `id_product` int NOT NULL,
   `id_image` int NOT NULL,
   PRIMARY KEY (`id_product`,`id_image`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3787,7 +3789,7 @@ CREATE TABLE `wa_ets_mp_product_lang` (
   `delivery_in_stock` varchar(255) NOT NULL,
   `delivery_out_stock` varchar(255) NOT NULL,
   PRIMARY KEY (`id_ets_mp_product`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3836,7 +3838,7 @@ CREATE TABLE `wa_ets_mp_registration` (
   KEY `id_shop` (`id_shop`),
   KEY `active` (`active`),
   KEY `id_shop_category` (`id_shop_category`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3909,7 +3911,7 @@ CREATE TABLE `wa_ets_mp_seller` (
   KEY `mail_wait_pay` (`mail_wait_pay`),
   KEY `id_shop_category` (`id_shop_category`),
   KEY `id_group` (`id_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3952,7 +3954,7 @@ CREATE TABLE `wa_ets_mp_seller_billing` (
   KEY `active` (`active`),
   KEY `used` (`used`),
   KEY `id_employee` (`id_employee`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -3999,7 +4001,7 @@ CREATE TABLE `wa_ets_mp_seller_commission` (
   KEY `id_shop` (`id_shop`),
   KEY `id_product_attribute` (`id_product_attribute`),
   KEY `status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4033,7 +4035,7 @@ CREATE TABLE `wa_ets_mp_seller_contact` (
   KEY `id_seller` (`id_seller`),
   KEY `id_product` (`id_product`),
   KEY `id_order` (`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4074,7 +4076,7 @@ CREATE TABLE `wa_ets_mp_seller_contact_message` (
   KEY `id_manager` (`id_manager`),
   KEY `read` (`read`),
   KEY `customer_read` (`customer_read`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4097,7 +4099,7 @@ CREATE TABLE `wa_ets_mp_seller_customer_follow` (
   `id_seller` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_seller`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4122,7 +4124,7 @@ CREATE TABLE `wa_ets_mp_seller_customer_message` (
   `id_customer_message` int NOT NULL,
   PRIMARY KEY (`id_customer`,`id_customer_message`),
   KEY `id_manager` (`id_manager`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4160,7 +4162,7 @@ CREATE TABLE `wa_ets_mp_seller_group` (
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_ets_mp_seller_group`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4186,7 +4188,7 @@ CREATE TABLE `wa_ets_mp_seller_group_lang` (
   `level_name` text,
   `description` text NOT NULL,
   PRIMARY KEY (`id_ets_mp_seller_group`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4215,7 +4217,7 @@ CREATE TABLE `wa_ets_mp_seller_lang` (
   `shop_address` text,
   `vacation_notifications` text,
   PRIMARY KEY (`id_seller`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4247,7 +4249,7 @@ CREATE TABLE `wa_ets_mp_seller_manager` (
   KEY `id_user` (`id_user`),
   KEY `id_customer` (`id_customer`),
   KEY `active` (`active`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4270,7 +4272,7 @@ CREATE TABLE `wa_ets_mp_seller_order` (
   `id_customer` int NOT NULL,
   `id_order` int NOT NULL,
   PRIMARY KEY (`id_customer`,`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4304,7 +4306,7 @@ CREATE TABLE `wa_ets_mp_seller_product` (
   KEY `approved` (`approved`),
   KEY `active` (`active`),
   KEY `is_admin` (`is_admin`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4337,7 +4339,7 @@ CREATE TABLE `wa_ets_mp_seller_report` (
   KEY `id_customer` (`id_customer`),
   KEY `id_product` (`id_product`),
   KEY `id_seller` (`id_seller`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4361,7 +4363,7 @@ CREATE TABLE `wa_ets_mp_shop_category` (
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_ets_mp_shop_category`),
   KEY `active` (`active`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4385,7 +4387,7 @@ CREATE TABLE `wa_ets_mp_shop_category_lang` (
   `id_lang` int NOT NULL,
   `name` varchar(1000) NOT NULL,
   PRIMARY KEY (`id_ets_mp_shop_category`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4408,7 +4410,7 @@ CREATE TABLE `wa_ets_mp_supplier_seller` (
   `id_supplier` int NOT NULL,
   `id_customer` int NOT NULL,
   PRIMARY KEY (`id_supplier`,`id_customer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4438,7 +4440,7 @@ CREATE TABLE `wa_ets_mp_withdrawal` (
   PRIMARY KEY (`id_ets_mp_withdrawal`),
   KEY `id_ets_mp_payment_method` (`id_ets_mp_payment_method`),
   KEY `status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4467,7 +4469,7 @@ CREATE TABLE `wa_ets_mp_withdrawal_field` (
   PRIMARY KEY (`id_ets_mp_withdrawal_field`),
   KEY `id_ets_mp_withdrawal` (`id_ets_mp_withdrawal`),
   KEY `id_ets_mp_payment_method_field` (`id_ets_mp_payment_method_field`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4621,7 +4623,7 @@ CREATE TABLE `wa_feature` (
   `id_feature` int unsigned NOT NULL AUTO_INCREMENT,
   `position` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_feature`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4678,7 +4680,7 @@ CREATE TABLE `wa_feature_lang` (
   `name` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id_feature`,`id_lang`),
   KEY `id_lang` (`id_lang`,`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4705,7 +4707,7 @@ CREATE TABLE `wa_feature_product` (
   PRIMARY KEY (`id_feature`,`id_product`,`id_feature_value`),
   KEY `id_feature_value` (`id_feature_value`),
   KEY `id_product` (`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4729,7 +4731,7 @@ CREATE TABLE `wa_feature_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_feature`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4755,7 +4757,7 @@ CREATE TABLE `wa_feature_value` (
   `custom` tinyint unsigned DEFAULT NULL,
   PRIMARY KEY (`id_feature_value`),
   KEY `feature` (`id_feature`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4780,7 +4782,7 @@ CREATE TABLE `wa_feature_value_lang` (
   `id_lang` int unsigned NOT NULL,
   `value` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_feature_value`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4860,7 +4862,7 @@ CREATE TABLE `wa_gender` (
   `id_gender` int NOT NULL AUTO_INCREMENT,
   `type` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_gender`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4886,7 +4888,7 @@ CREATE TABLE `wa_gender_lang` (
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id_gender`,`id_lang`),
   KEY `id_gender` (`id_gender`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4914,7 +4916,7 @@ CREATE TABLE `wa_group` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4939,7 +4941,7 @@ CREATE TABLE `wa_group_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id_group`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4966,7 +4968,7 @@ CREATE TABLE `wa_group_reduction` (
   `reduction` decimal(5,4) NOT NULL,
   PRIMARY KEY (`id_group_reduction`),
   UNIQUE KEY `id_group` (`id_group`,`id_category`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -4990,7 +4992,7 @@ CREATE TABLE `wa_group_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_group`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5053,7 +5055,7 @@ CREATE TABLE `wa_guest` (
   KEY `id_customer` (`id_customer`),
   KEY `id_operating_system` (`id_operating_system`),
   KEY `id_web_browser` (`id_web_browser`)
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5082,7 +5084,7 @@ CREATE TABLE `wa_hook` (
   `position` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_hook`),
   UNIQUE KEY `hook_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=1029 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1029 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5108,7 +5110,7 @@ CREATE TABLE `wa_hook_alias` (
   `name` varchar(191) NOT NULL,
   PRIMARY KEY (`id_hook_alias`),
   UNIQUE KEY `alias` (`alias`)
-) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=89 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5137,7 +5139,7 @@ CREATE TABLE `wa_hook_module` (
   KEY `id_hook` (`id_hook`),
   KEY `id_module` (`id_module`),
   KEY `position` (`id_shop`,`position`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5166,7 +5168,7 @@ CREATE TABLE `wa_hook_module_exceptions` (
   PRIMARY KEY (`id_hook_module_exceptions`),
   KEY `id_module` (`id_module`),
   KEY `id_hook` (`id_hook`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5247,7 +5249,7 @@ CREATE TABLE `wa_image` (
   UNIQUE KEY `id_product_cover` (`id_product`,`cover`),
   UNIQUE KEY `idx_product_image` (`id_image`,`id_product`,`cover`),
   KEY `image_product` (`id_product`)
-) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5273,7 +5275,7 @@ CREATE TABLE `wa_image_lang` (
   `legend` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id_image`,`id_lang`),
   KEY `id_image` (`id_image`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5301,7 +5303,7 @@ CREATE TABLE `wa_image_shop` (
   PRIMARY KEY (`id_image`,`id_shop`),
   UNIQUE KEY `id_product` (`id_product`,`id_shop`,`cover`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5333,7 +5335,7 @@ CREATE TABLE `wa_image_type` (
   `stores` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_image_type`),
   KEY `image_type_name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5359,7 +5361,7 @@ CREATE TABLE `wa_import_match` (
   `match` text NOT NULL,
   `skip` int NOT NULL,
   PRIMARY KEY (`id_import_match`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5450,7 +5452,7 @@ CREATE TABLE `wa_log` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_log`)
-) ENGINE=InnoDB AUTO_INCREMENT=2092 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2092 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5479,7 +5481,7 @@ CREATE TABLE `wa_mail` (
   `date_add` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id_mail`),
   KEY `recipient` (`recipient`(10))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5533,7 +5535,7 @@ CREATE TABLE `wa_manufacturer` (
   `date_upd` datetime NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_manufacturer`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5562,7 +5564,7 @@ CREATE TABLE `wa_manufacturer_lang` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id_manufacturer`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5587,7 +5589,7 @@ CREATE TABLE `wa_manufacturer_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_manufacturer`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5781,7 +5783,7 @@ CREATE TABLE `wa_memcached_servers` (
   `port` int unsigned NOT NULL,
   `weight` int unsigned NOT NULL,
   PRIMARY KEY (`id_memcached_server`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5814,7 +5816,7 @@ CREATE TABLE `wa_message` (
   KEY `id_cart` (`id_cart`),
   KEY `id_customer` (`id_customer`),
   KEY `id_employee` (`id_employee`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5838,7 +5840,7 @@ CREATE TABLE `wa_message_readed` (
   `id_employee` int unsigned NOT NULL,
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_message`,`id_employee`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5863,7 +5865,7 @@ CREATE TABLE `wa_meta` (
   `configurable` tinyint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_meta`),
   UNIQUE KEY `page` (`page`)
-) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=70 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5894,7 +5896,7 @@ CREATE TABLE `wa_meta_lang` (
   PRIMARY KEY (`id_meta`,`id_shop`,`id_lang`),
   KEY `id_shop` (`id_shop`),
   KEY `id_lang` (`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5922,7 +5924,7 @@ CREATE TABLE `wa_module` (
   PRIMARY KEY (`id_module`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5946,7 +5948,7 @@ CREATE TABLE `wa_module_access` (
   `id_profile` int unsigned NOT NULL,
   `id_authorization_role` int unsigned NOT NULL,
   PRIMARY KEY (`id_profile`,`id_authorization_role`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5971,7 +5973,7 @@ CREATE TABLE `wa_module_carrier` (
   `id_shop` int unsigned NOT NULL DEFAULT '1',
   `id_reference` int NOT NULL,
   PRIMARY KEY (`id_module`,`id_shop`,`id_reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -5996,7 +5998,7 @@ CREATE TABLE `wa_module_country` (
   `id_shop` int unsigned NOT NULL DEFAULT '1',
   `id_country` int unsigned NOT NULL,
   PRIMARY KEY (`id_module`,`id_shop`,`id_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6022,7 +6024,7 @@ CREATE TABLE `wa_module_currency` (
   `id_currency` int NOT NULL,
   PRIMARY KEY (`id_module`,`id_shop`,`id_currency`),
   KEY `id_module` (`id_module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6047,7 +6049,7 @@ CREATE TABLE `wa_module_group` (
   `id_shop` int unsigned NOT NULL DEFAULT '1',
   `id_group` int unsigned NOT NULL,
   PRIMARY KEY (`id_module`,`id_shop`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6102,7 +6104,7 @@ CREATE TABLE `wa_module_preference` (
   `favorite` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id_module_preference`),
   UNIQUE KEY `employee_module` (`id_employee`,`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6127,7 +6129,7 @@ CREATE TABLE `wa_module_shop` (
   `enable_device` tinyint(1) NOT NULL DEFAULT '7',
   PRIMARY KEY (`id_module`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6151,7 +6153,7 @@ CREATE TABLE `wa_operating_system` (
   `id_operating_system` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_operating_system`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6265,7 +6267,7 @@ CREATE TABLE `wa_order_carrier` (
   KEY `id_order` (`id_order`),
   KEY `id_carrier` (`id_carrier`),
   KEY `id_order_invoice` (`id_order_invoice`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6298,7 +6300,7 @@ CREATE TABLE `wa_order_cart_rule` (
   PRIMARY KEY (`id_order_cart_rule`),
   KEY `id_order` (`id_order`),
   KEY `id_cart_rule` (`id_cart_rule`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6376,7 +6378,7 @@ CREATE TABLE `wa_order_detail` (
   KEY `id_order_id_order_detail` (`id_order`,`id_order_detail`),
   KEY `order_detail_customer` (`developer_id`),
   CONSTRAINT `order_detail_customer` FOREIGN KEY (`developer_id`) REFERENCES `wa_customer` (`id_customer`) ON DELETE SET NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6403,7 +6405,7 @@ CREATE TABLE `wa_order_detail_tax` (
   `total_amount` decimal(16,6) NOT NULL DEFAULT '0.000000',
   KEY `id_order_detail` (`id_order_detail`),
   KEY `id_tax` (`id_tax`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6433,7 +6435,7 @@ CREATE TABLE `wa_order_history` (
   KEY `order_history_order` (`id_order`),
   KEY `id_employee` (`id_employee`),
   KEY `id_order_state` (`id_order_state`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6475,7 +6477,7 @@ CREATE TABLE `wa_order_invoice` (
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_order_invoice`),
   KEY `id_order` (`id_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6502,7 +6504,7 @@ CREATE TABLE `wa_order_invoice_payment` (
   PRIMARY KEY (`id_order_invoice`,`id_order_payment`),
   KEY `order_payment` (`id_order_payment`),
   KEY `id_order` (`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6527,7 +6529,7 @@ CREATE TABLE `wa_order_invoice_tax` (
   `id_tax` int NOT NULL,
   `amount` decimal(10,6) NOT NULL DEFAULT '0.000000',
   KEY `id_tax` (`id_tax`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6551,7 +6553,7 @@ CREATE TABLE `wa_order_message` (
   `id_order_message` int unsigned NOT NULL AUTO_INCREMENT,
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_order_message`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6577,7 +6579,7 @@ CREATE TABLE `wa_order_message_lang` (
   `name` varchar(128) NOT NULL,
   `message` text NOT NULL,
   PRIMARY KEY (`id_order_message`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6612,7 +6614,7 @@ CREATE TABLE `wa_order_payment` (
   `date_add` datetime NOT NULL,
   PRIMARY KEY (`id_order_payment`),
   KEY `order_reference` (`order_reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6642,7 +6644,7 @@ CREATE TABLE `wa_order_return` (
   PRIMARY KEY (`id_order_return`),
   KEY `order_return_customer` (`id_customer`),
   KEY `id_order` (`id_order`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6667,7 +6669,7 @@ CREATE TABLE `wa_order_return_detail` (
   `id_customization` int unsigned NOT NULL DEFAULT '0',
   `product_quantity` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_order_return`,`id_order_detail`,`id_customization`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6690,7 +6692,7 @@ CREATE TABLE `wa_order_return_state` (
   `id_order_return_state` int unsigned NOT NULL AUTO_INCREMENT,
   `color` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_order_return_state`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6715,7 +6717,7 @@ CREATE TABLE `wa_order_return_state_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(64) NOT NULL,
   PRIMARY KEY (`id_order_return_state`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6754,7 +6756,7 @@ CREATE TABLE `wa_order_slip` (
   PRIMARY KEY (`id_order_slip`),
   KEY `order_slip_customer` (`id_customer`),
   KEY `id_order` (`id_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6785,7 +6787,7 @@ CREATE TABLE `wa_order_slip_detail` (
   `amount_tax_excl` decimal(20,6) DEFAULT NULL,
   `amount_tax_incl` decimal(20,6) DEFAULT NULL,
   PRIMARY KEY (`id_order_slip`,`id_order_detail`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6822,7 +6824,7 @@ CREATE TABLE `wa_order_state` (
   `deleted` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_order_state`),
   KEY `module_name` (`module_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6848,7 +6850,7 @@ CREATE TABLE `wa_order_state_lang` (
   `name` varchar(64) NOT NULL,
   `template` varchar(64) NOT NULL,
   PRIMARY KEY (`id_order_state`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6929,7 +6931,7 @@ CREATE TABLE `wa_orders` (
   KEY `current_state` (`current_state`),
   KEY `id_shop` (`id_shop`),
   KEY `date_add` (`date_add`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6956,7 +6958,7 @@ CREATE TABLE `wa_pack` (
   `quantity` int unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_product_pack`,`id_product_item`,`id_product_attribute_item`),
   KEY `product_item` (`id_product_item`,`id_product_attribute_item`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6982,7 +6984,7 @@ CREATE TABLE `wa_page` (
   PRIMARY KEY (`id_page`),
   KEY `id_page_type` (`id_page_type`),
   KEY `id_object` (`id_object`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -6991,7 +6993,7 @@ CREATE TABLE `wa_page` (
 
 LOCK TABLES `wa_page` WRITE;
 /*!40000 ALTER TABLE `wa_page` DISABLE KEYS */;
-INSERT INTO `wa_page` VALUES (1,1,NULL),(2,2,NULL),(3,3,2),(4,4,NULL),(5,5,21),(6,6,NULL),(7,7,NULL),(8,8,NULL),(9,9,NULL),(10,3,10);
+INSERT INTO `wa_page` VALUES (1,1,NULL),(2,2,NULL),(3,3,2),(4,4,NULL),(5,5,21),(6,6,NULL),(7,7,NULL),(8,8,NULL),(9,9,NULL),(10,3,10),(11,10,NULL);
 /*!40000 ALTER TABLE `wa_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7007,7 +7009,7 @@ CREATE TABLE `wa_page_type` (
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id_page_type`),
   KEY `name` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7016,7 +7018,7 @@ CREATE TABLE `wa_page_type` (
 
 LOCK TABLES `wa_page_type` WRITE;
 /*!40000 ALTER TABLE `wa_page_type` DISABLE KEYS */;
-INSERT INTO `wa_page_type` VALUES (9,'authentication'),(4,'cart'),(3,'category'),(7,'cms'),(6,'contact'),(1,'index'),(2,'pagenotfound'),(5,'product'),(8,'shop');
+INSERT INTO `wa_page_type` VALUES (9,'authentication'),(4,'cart'),(3,'category'),(7,'cms'),(6,'contact'),(1,'index'),(2,'pagenotfound'),(5,'product'),(10,'registration'),(8,'shop');
 /*!40000 ALTER TABLE `wa_page_type` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -7034,7 +7036,7 @@ CREATE TABLE `wa_page_viewed` (
   `id_date_range` int unsigned NOT NULL,
   `counter` int unsigned NOT NULL,
   PRIMARY KEY (`id_page`,`id_date_range`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7149,7 +7151,7 @@ CREATE TABLE `wa_product` (
   KEY `indexed` (`indexed`),
   KEY `date_add` (`date_add`),
   KEY `state` (`state`,`date_upd`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7173,7 +7175,7 @@ CREATE TABLE `wa_product_attachment` (
   `id_product` int unsigned NOT NULL,
   `id_attachment` int unsigned NOT NULL,
   PRIMARY KEY (`id_product`,`id_attachment`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7217,7 +7219,7 @@ CREATE TABLE `wa_product_attribute` (
   KEY `reference` (`reference`),
   KEY `supplier_reference` (`supplier_reference`),
   KEY `id_product_id_product_attribute` (`id_product_attribute`,`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7241,7 +7243,7 @@ CREATE TABLE `wa_product_attribute_combination` (
   `id_product_attribute` int unsigned NOT NULL,
   PRIMARY KEY (`id_attribute`,`id_product_attribute`),
   KEY `id_product_attribute` (`id_product_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7265,7 +7267,7 @@ CREATE TABLE `wa_product_attribute_image` (
   `id_image` int unsigned NOT NULL,
   PRIMARY KEY (`id_product_attribute`,`id_image`),
   KEY `id_image` (`id_image`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7300,7 +7302,7 @@ CREATE TABLE `wa_product_attribute_shop` (
   `available_date` date DEFAULT NULL,
   PRIMARY KEY (`id_product_attribute`,`id_shop`),
   UNIQUE KEY `id_product` (`id_product`,`id_shop`,`default_on`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7324,7 +7326,7 @@ CREATE TABLE `wa_product_carrier` (
   `id_carrier_reference` int unsigned NOT NULL,
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_product`,`id_carrier_reference`,`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7348,7 +7350,7 @@ CREATE TABLE `wa_product_country_tax` (
   `id_country` int NOT NULL,
   `id_tax` int NOT NULL,
   PRIMARY KEY (`id_product`,`id_country`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7379,7 +7381,7 @@ CREATE TABLE `wa_product_download` (
   `active` tinyint unsigned NOT NULL DEFAULT '1',
   `is_shareable` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_product_download`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7403,7 +7405,7 @@ CREATE TABLE `wa_product_group_reduction_cache` (
   `id_group` int unsigned NOT NULL,
   `reduction` decimal(5,4) NOT NULL,
   PRIMARY KEY (`id_product`,`id_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7462,7 +7464,7 @@ CREATE TABLE `wa_product_lang` (
   PRIMARY KEY (`id_product`,`id_shop`,`id_lang`),
   KEY `id_lang` (`id_lang`),
   KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7489,7 +7491,7 @@ CREATE TABLE `wa_product_sale` (
   `date_upd` date DEFAULT NULL,
   PRIMARY KEY (`id_product`),
   KEY `quantity` (`quantity`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7547,7 +7549,7 @@ CREATE TABLE `wa_product_shop` (
   KEY `id_category_default` (`id_category_default`),
   KEY `date_add` (`date_add`,`active`,`visibility`),
   KEY `indexed` (`indexed`,`active`,`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7578,7 +7580,7 @@ CREATE TABLE `wa_product_supplier` (
   PRIMARY KEY (`id_product_supplier`),
   UNIQUE KEY `id_product` (`id_product`,`id_product_attribute`,`id_supplier`),
   KEY `id_supplier` (`id_supplier`,`id_product`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7604,7 +7606,7 @@ CREATE TABLE `wa_product_tag` (
   PRIMARY KEY (`id_product`,`id_tag`),
   KEY `id_tag` (`id_tag`),
   KEY `id_lang` (`id_lang`,`id_tag`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7626,7 +7628,7 @@ DROP TABLE IF EXISTS `wa_profile`;
 CREATE TABLE `wa_profile` (
   `id_profile` int unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id_profile`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7651,7 +7653,7 @@ CREATE TABLE `wa_profile_lang` (
   `id_profile` int unsigned NOT NULL,
   `name` varchar(128) NOT NULL,
   PRIMARY KEY (`id_profile`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7903,7 +7905,7 @@ CREATE TABLE `wa_quick_access` (
   `new_window` tinyint(1) NOT NULL DEFAULT '0',
   `link` varchar(255) NOT NULL,
   PRIMARY KEY (`id_quick_access`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7928,7 +7930,7 @@ CREATE TABLE `wa_quick_access_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id_quick_access`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7955,7 +7957,7 @@ CREATE TABLE `wa_range_price` (
   `delimiter2` decimal(20,6) NOT NULL,
   PRIMARY KEY (`id_range_price`),
   UNIQUE KEY `id_carrier` (`id_carrier`,`delimiter1`,`delimiter2`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -7982,7 +7984,7 @@ CREATE TABLE `wa_range_weight` (
   `delimiter2` decimal(20,6) NOT NULL,
   PRIMARY KEY (`id_range_weight`),
   UNIQUE KEY `id_carrier` (`id_carrier`,`delimiter1`,`delimiter2`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8007,7 +8009,7 @@ CREATE TABLE `wa_request_sql` (
   `name` varchar(200) NOT NULL,
   `sql` text NOT NULL,
   PRIMARY KEY (`id_request_sql`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8032,7 +8034,7 @@ CREATE TABLE `wa_required_field` (
   `field_name` varchar(32) NOT NULL,
   PRIMARY KEY (`id_required_field`),
   KEY `object_name` (`object_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8056,7 +8058,7 @@ CREATE TABLE `wa_risk` (
   `percent` tinyint NOT NULL,
   `color` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_risk`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8082,7 +8084,7 @@ CREATE TABLE `wa_risk_lang` (
   `name` varchar(20) NOT NULL,
   PRIMARY KEY (`id_risk`,`id_lang`),
   KEY `id_risk` (`id_risk`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8131,7 +8133,7 @@ CREATE TABLE `wa_search_engine` (
   `server` varchar(64) NOT NULL,
   `getvar` varchar(16) NOT NULL,
   PRIMARY KEY (`id_search_engine`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8157,7 +8159,7 @@ CREATE TABLE `wa_search_index` (
   `weight` smallint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id_word`,`id_product`),
   KEY `id_product` (`id_product`,`weight`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8184,7 +8186,7 @@ CREATE TABLE `wa_search_word` (
   `word` varchar(30) NOT NULL,
   PRIMARY KEY (`id_word`),
   UNIQUE KEY `id_lang` (`id_lang`,`id_shop`,`word`)
-) ENGINE=InnoDB AUTO_INCREMENT=7934 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7934 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8276,7 +8278,7 @@ CREATE TABLE `wa_shop_url` (
   `active` tinyint(1) NOT NULL,
   PRIMARY KEY (`id_shop_url`),
   KEY `IDX_2DFF5D8C274A50A0` (`id_shop`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8330,7 +8332,7 @@ CREATE TABLE `wa_smarty_cache` (
   KEY `name` (`name`),
   KEY `cache_id` (`cache_id`),
   KEY `modified` (`modified`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8353,7 +8355,7 @@ CREATE TABLE `wa_smarty_last_flush` (
   `type` enum('compile','template') NOT NULL,
   `last_flush` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8379,7 +8381,7 @@ CREATE TABLE `wa_smarty_lazy_cache` (
   `filepath` varchar(255) NOT NULL DEFAULT '',
   `last_update` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`template_hash`,`cache_id`,`compile_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8428,7 +8430,7 @@ CREATE TABLE `wa_specific_price` (
   KEY `id_customer` (`id_customer`),
   KEY `from` (`from`),
   KEY `to` (`to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8453,7 +8455,7 @@ CREATE TABLE `wa_specific_price_priority` (
   `priority` varchar(80) NOT NULL,
   PRIMARY KEY (`id_specific_price_priority`,`id_product`),
   UNIQUE KEY `id_product` (`id_product`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8489,7 +8491,7 @@ CREATE TABLE `wa_specific_price_rule` (
   `to` datetime NOT NULL,
   PRIMARY KEY (`id_specific_price_rule`),
   KEY `id_product` (`id_shop`,`id_currency`,`id_country`,`id_group`,`from_quantity`,`from`,`to`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8515,7 +8517,7 @@ CREATE TABLE `wa_specific_price_rule_condition` (
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id_specific_price_rule_condition`),
   KEY `id_specific_price_rule_condition_group` (`id_specific_price_rule_condition_group`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8538,7 +8540,7 @@ CREATE TABLE `wa_specific_price_rule_condition_group` (
   `id_specific_price_rule_condition_group` int unsigned NOT NULL AUTO_INCREMENT,
   `id_specific_price_rule` int unsigned NOT NULL,
   PRIMARY KEY (`id_specific_price_rule_condition_group`,`id_specific_price_rule`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8569,7 +8571,7 @@ CREATE TABLE `wa_state` (
   KEY `id_country` (`id_country`),
   KEY `name` (`name`),
   KEY `id_zone` (`id_zone`)
-) ENGINE=InnoDB AUTO_INCREMENT=353 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=353 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8634,7 +8636,7 @@ CREATE TABLE `wa_stock` (
   KEY `id_warehouse` (`id_warehouse`),
   KEY `id_product` (`id_product`),
   KEY `id_product_attribute` (`id_product_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8671,7 +8673,7 @@ CREATE TABLE `wa_stock_available` (
   KEY `id_shop_group` (`id_shop_group`),
   KEY `id_product` (`id_product`),
   KEY `id_product_attribute` (`id_product_attribute`)
-) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=86 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8737,7 +8739,7 @@ CREATE TABLE `wa_stock_mvt_reason` (
   `date_upd` datetime NOT NULL,
   `deleted` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_stock_mvt_reason`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8762,7 +8764,7 @@ CREATE TABLE `wa_stock_mvt_reason_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
   PRIMARY KEY (`id_stock_mvt_reason`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8797,7 +8799,7 @@ CREATE TABLE `wa_store` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_store`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8826,7 +8828,7 @@ CREATE TABLE `wa_store_lang` (
   `hours` text,
   `note` text,
   PRIMARY KEY (`id_store`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8851,7 +8853,7 @@ CREATE TABLE `wa_store_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_store`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8878,7 +8880,7 @@ CREATE TABLE `wa_supplier` (
   `date_upd` datetime NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_supplier`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8906,7 +8908,7 @@ CREATE TABLE `wa_supplier_lang` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `meta_description` varchar(512) DEFAULT NULL,
   PRIMARY KEY (`id_supplier`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8931,7 +8933,7 @@ CREATE TABLE `wa_supplier_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_supplier`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -8975,7 +8977,7 @@ CREATE TABLE `wa_supply_order` (
   KEY `id_supplier` (`id_supplier`),
   KEY `id_warehouse` (`id_warehouse`),
   KEY `reference` (`reference`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9024,7 +9026,7 @@ CREATE TABLE `wa_supply_order_detail` (
   KEY `id_supply_order` (`id_supply_order`,`id_product`),
   KEY `id_product_attribute` (`id_product_attribute`),
   KEY `id_product_product_attribute` (`id_product`,`id_product_attribute`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9055,7 +9057,7 @@ CREATE TABLE `wa_supply_order_history` (
   KEY `id_supply_order` (`id_supply_order`),
   KEY `id_employee` (`id_employee`),
   KEY `id_state` (`id_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9086,7 +9088,7 @@ CREATE TABLE `wa_supply_order_receipt_history` (
   PRIMARY KEY (`id_supply_order_receipt_history`),
   KEY `id_supply_order_detail` (`id_supply_order_detail`),
   KEY `id_supply_order_state` (`id_supply_order_state`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9114,7 +9116,7 @@ CREATE TABLE `wa_supply_order_state` (
   `enclosed` tinyint(1) NOT NULL DEFAULT '0',
   `color` varchar(32) DEFAULT NULL,
   PRIMARY KEY (`id_supply_order_state`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9139,7 +9141,7 @@ CREATE TABLE `wa_supply_order_state_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(128) DEFAULT NULL,
   PRIMARY KEY (`id_supply_order_state`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9249,7 +9251,7 @@ CREATE TABLE `wa_tab_module_preference` (
   `module` varchar(191) NOT NULL,
   PRIMARY KEY (`id_tab_module_preference`),
   UNIQUE KEY `employee_module` (`id_employee`,`id_tab`,`module`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9275,7 +9277,7 @@ CREATE TABLE `wa_tag` (
   PRIMARY KEY (`id_tag`),
   KEY `tag_name` (`name`),
   KEY `id_lang` (`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9302,7 +9304,7 @@ CREATE TABLE `wa_tag_count` (
   `counter` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_group`,`id_tag`),
   KEY `id_group` (`id_group`,`id_lang`,`id_shop`,`counter`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9327,7 +9329,7 @@ CREATE TABLE `wa_tax` (
   `active` tinyint unsigned NOT NULL DEFAULT '1',
   `deleted` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_tax`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9352,7 +9354,7 @@ CREATE TABLE `wa_tax_lang` (
   `id_lang` int unsigned NOT NULL,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id_tax`,`id_lang`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9386,7 +9388,7 @@ CREATE TABLE `wa_tax_rule` (
   KEY `id_tax_rules_group` (`id_tax_rules_group`),
   KEY `id_tax` (`id_tax`),
   KEY `category_getproducts` (`id_tax_rules_group`,`id_country`,`id_state`,`zipcode_from`)
-) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=175 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9414,7 +9416,7 @@ CREATE TABLE `wa_tax_rules_group` (
   `date_add` datetime NOT NULL,
   `date_upd` datetime NOT NULL,
   PRIMARY KEY (`id_tax_rules_group`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9439,7 +9441,7 @@ CREATE TABLE `wa_tax_rules_group_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_tax_rules_group`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9463,7 +9465,7 @@ CREATE TABLE `wa_timezone` (
   `id_timezone` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(32) NOT NULL,
   PRIMARY KEY (`id_timezone`)
-) ENGINE=InnoDB AUTO_INCREMENT=561 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=561 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9570,7 +9572,7 @@ CREATE TABLE `wa_warehouse` (
   `management_type` enum('WA','FIFO','LIFO') NOT NULL DEFAULT 'WA',
   `deleted` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_warehouse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9595,7 +9597,7 @@ CREATE TABLE `wa_warehouse_carrier` (
   PRIMARY KEY (`id_warehouse`,`id_carrier`),
   KEY `id_warehouse` (`id_warehouse`),
   KEY `id_carrier` (`id_carrier`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9622,7 +9624,7 @@ CREATE TABLE `wa_warehouse_product_location` (
   `location` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_warehouse_product_location`),
   UNIQUE KEY `id_product` (`id_product`,`id_product_attribute`,`id_warehouse`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9647,7 +9649,7 @@ CREATE TABLE `wa_warehouse_shop` (
   PRIMARY KEY (`id_warehouse`,`id_shop`),
   KEY `id_warehouse` (`id_warehouse`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9670,7 +9672,7 @@ CREATE TABLE `wa_web_browser` (
   `id_web_browser` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(64) DEFAULT NULL,
   PRIMARY KEY (`id_web_browser`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9700,7 +9702,7 @@ CREATE TABLE `wa_webservice_account` (
   `active` tinyint NOT NULL,
   PRIMARY KEY (`id_webservice_account`),
   KEY `key` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9724,7 +9726,7 @@ CREATE TABLE `wa_webservice_account_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_webservice_account`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9753,7 +9755,7 @@ CREATE TABLE `wa_webservice_permission` (
   KEY `resource` (`resource`),
   KEY `method` (`method`),
   KEY `id_webservice_account` (`id_webservice_account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9777,7 +9779,7 @@ CREATE TABLE `wa_zone` (
   `name` varchar(64) NOT NULL,
   `active` tinyint unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id_zone`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9802,7 +9804,7 @@ CREATE TABLE `wa_zone_shop` (
   `id_shop` int unsigned NOT NULL,
   PRIMARY KEY (`id_zone`,`id_shop`),
   KEY `id_shop` (`id_shop`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -9824,4 +9826,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-17 16:32:10
+-- Dump completed on 2024-07-26  8:39:36

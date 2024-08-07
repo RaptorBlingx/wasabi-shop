@@ -37,9 +37,15 @@
         <tr>
           <td>
             <strong>
-              <a {if isset($product.download_link)}href="{$product.download_link}"{/if}>
+              <a href="{$urls.pages.product}&id_product={$product.id_product}">
                 {$product.name}
               </a>
+              {if isset($product.download_link)}
+                <br>
+                <a href="{$product.download_link}">
+                    {l s='Download' d='Admin.Actions'}
+                </a>
+              {/if}
             </strong><br/>
             {if $product.reference}
               {l s='Reference' d='Shop.Theme.Catalog'}: {$product.reference}<br/>

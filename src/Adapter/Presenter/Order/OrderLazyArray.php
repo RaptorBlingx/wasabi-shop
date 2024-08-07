@@ -26,27 +26,29 @@
 
 namespace PrestaShop\PrestaShop\Adapter\Presenter\Order;
 
-use Address;
-use AddressFormat;
-use Carrier;
 use Cart;
-use Configuration;
+use Order;
+use Tools;
+use Address;
+use Carrier;
 use Context;
 use Currency;
-use CustomerMessage;
-use Doctrine\Common\Annotations\AnnotationException;
-use Order;
+use Customer;
 use OrderReturn;
+use AddressFormat;
+use Configuration;
+use Ets_mp_product;
+use CustomerMessage;
+use ProductDownload;
+use TaxConfiguration;
+use PrestaShopException;
+use ReflectionException;
+use Doctrine\Common\Annotations\AnnotationException;
+use PrestaShopBundle\Translation\TranslatorComponent;
+use PrestaShop\PrestaShop\Adapter\Product\PriceFormatter;
 use PrestaShop\PrestaShop\Adapter\Presenter\AbstractLazyArray;
 use PrestaShop\PrestaShop\Adapter\Presenter\Cart\CartPresenter;
 use PrestaShop\PrestaShop\Adapter\Presenter\Object\ObjectPresenter;
-use PrestaShop\PrestaShop\Adapter\Product\PriceFormatter;
-use PrestaShopBundle\Translation\TranslatorComponent;
-use PrestaShopException;
-use ProductDownload;
-use ReflectionException;
-use TaxConfiguration;
-use Tools;
 
 class OrderLazyArray extends AbstractLazyArray
 {
@@ -197,6 +199,12 @@ class OrderLazyArray extends AbstractLazyArray
                         $product_download->getTextLink(false, $orderProduct['download_hash'])
                         . '&id_order=' . (int) $order->id
                         . '&secure_key=' . $order->secure_key;
+                } else {
+                    // TODO: build real skill link
+                    $customer = new Customer($order->id_customer);
+                    $idShopOwner = Ets_mp_product::getProductSellerByIDProduct($orderProduct['id_product'], false, true);
+                    $shopOwner = new Customer($idShopOwner);
+                    $orderProduct['download_link'] = rtrim($customer->wls_url, '/') . "/NegoateTransfer/WASABI::{$shopOwner->wls_id}::{$orderProduct['id_product']}";
                 }
             }
 

@@ -198,6 +198,22 @@ class CustomerFormatterCore implements FormFormatterInterface
                 );
         }
 
+        $format['wls_id'] = (new FormField())
+            ->setName('wls_id')
+            ->setType('text')
+            ->setLabel(
+                'WLS_ID'
+            )
+            ->setRequired(true);
+
+        $format['wls_url'] = (new FormField())
+            ->setName('wls_url')
+            ->setType('text')
+            ->setLabel(
+                'WLS_URL'
+            )
+            ->setRequired(true);
+
         if ($this->ask_for_birthdate) {
             $format['birthday'] = (new FormField())
                 ->setName('birthday')

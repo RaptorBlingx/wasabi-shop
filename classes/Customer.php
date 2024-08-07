@@ -31,6 +31,12 @@ use PrestaShop\PrestaShop\Adapter\ServiceLocator;
  */
 class CustomerCore extends ObjectModel
 {
+    /** @var string WLS ID */
+    public $wls_id;
+
+    /** @var string WLS URL */
+    public $wls_url;
+
     /** @var int Customer ID */
     public $id;
 
@@ -208,6 +214,8 @@ class CustomerCore extends ObjectModel
             'date_upd' => ['type' => self::TYPE_DATE, 'validate' => 'isDate', 'copy_post' => false],
             'reset_password_token' => ['type' => self::TYPE_STRING, 'validate' => 'isSha1', 'size' => 40, 'copy_post' => false],
             'reset_password_validity' => ['type' => self::TYPE_DATE, 'validate' => 'isDateOrNull', 'copy_post' => false],
+            'wls_id' => ['type' => self::TYPE_STRING],
+            'wls_url' => ['type' => self::TYPE_STRING],
         ],
     ];
 
