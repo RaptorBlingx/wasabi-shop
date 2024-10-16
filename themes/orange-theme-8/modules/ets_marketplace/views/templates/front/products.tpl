@@ -19,12 +19,13 @@
 {extends file="page.tpl"}
 {block name="content"}
     <div class="row">
-    <div class="ets_mp_content_left col-lg-3" >
-        {hook h='displayMPLeftContent'}
-    </div>
-    <div class="ets_mp_content_left col-lg-9" >
-        {$html_content nofilter}
-    </div>
+        <div class="ets_mp_content_left col-lg-3" >
+            {hook h='displayMPLeftContent'}
+        </div>
+        <div class="ets_mp_content_left col-lg-9" >
+            {include file="themes/orange-theme-8/modules/ets_marketplace/views/templates/front/_dataspace_form.tpl"}
+            {$html_content nofilter}
+        </div>
     </div>
     {hook h='displayETSMPFooterYourAccount'}
 {/block}

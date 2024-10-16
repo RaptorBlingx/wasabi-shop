@@ -35,6 +35,18 @@ class Ets_MarketPlaceProductsModuleFrontControllerOverride extends Ets_MarketPla
         }
     }
 
+    public function initContent()
+    {
+        $seller = $this->context->customer;
+        $this->context->smarty->assign(
+            array(
+                'dataspaceHubAddress' => rtrim($seller->wls_url, '/'),
+                'participantDataspaceId' => $seller->wls_id,
+            )
+        );
+        return parent::initContent();
+    }
+
     public function renderProductForm()
     {
         $is_skill = $this->product->getType() == Product::PTYPE_VIRTUAL && ! empty($this->product->skill);
