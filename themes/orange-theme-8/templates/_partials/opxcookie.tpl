@@ -21,5 +21,6 @@ YETT_WHITELIST = [
     /payment-payment-option-\d+-form/,
     /payplug.com/,
     /\/themes\/8342d42b17603f2993b0-chunk.js/,
+]
 </script>
 <script src="https://cdn.orangepix.it/cookie/opx_cookie.min.js" type="application/javascript" charset="utf-8"></script>
