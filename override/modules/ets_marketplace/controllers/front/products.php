@@ -42,6 +42,7 @@ class Ets_MarketPlaceProductsModuleFrontControllerOverride extends Ets_MarketPla
             array(
                 'dataspaceHubAddress' => rtrim($seller->wls_url, '/'),
                 'participantDataspaceId' => $seller->wls_id,
+                'hubURL' => Configuration::get('WASABI_DATASPACE_HUB_URL'),
             )
         );
         return parent::initContent();
