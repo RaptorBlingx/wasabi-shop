@@ -42,8 +42,8 @@
               </a>
               {if isset($product.download_link)}
                 <br>
-                <a href="{$product.download_link}">
-                    {l s='Download' d='Admin.Actions'}
+                <a class="btn btn-outline-primary" href="{$product.download_link}" target="_blank">
+                    Download with your Connector Software
                 </a>
               {/if}
             </strong><br/>

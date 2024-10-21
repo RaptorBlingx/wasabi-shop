@@ -204,7 +204,9 @@ class OrderLazyArray extends AbstractLazyArray
                     $customer = new Customer($order->id_customer);
                     $idShopOwner = Ets_mp_product::getProductSellerByIDProduct($orderProduct['id_product'], false, true);
                     $shopOwner = new Customer($idShopOwner);
-                    $orderProduct['download_link'] = rtrim($customer->wls_url, '/') . "/NegoateTransfer/WASABI::{$shopOwner->wls_id}::{$orderProduct['id_product']}";
+                    $skillID = 'SKILL-ID';
+                    $purchaseToken = 'PURCHASE-TOKEN';
+                    $orderProduct['download_link'] = rtrim($shopOwner->wls_url, '/') . "/UI/DATASET/{$skillID}/{$purchaseToken}";
                 }
             }
 
