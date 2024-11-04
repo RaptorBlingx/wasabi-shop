@@ -8,6 +8,7 @@ if (getenv('wasabi_host') === 'wasabi-db') {
     $_POST['dbuser'] = getenv('wasabi_dbuser');
     $_POST['dbpass'] = getenv('wasabi_dbpass');
     $_POST['dbname'] = getenv('wasabi_dbname');
+    $_POST['dataspace_hub_url'] = getenv('wasabi_dataspace_hub_url');
     $_POST['shopurl'] = 'localhost:8080';
     $_POST['submit'] = true;
 }
@@ -37,6 +38,21 @@ if (isset($_POST['submit'])) {
         if (! $response) {
             $hasErrors = true;
             VarDumper::dump($dbLink->error);
+        }
+        if ($_POST['dataspace_hub_url'] && ! $hasErrors) {
+            $response = $dbLink->query("SELECT EXISTS (SELECT * FROM `wa_configuration` WHERE `name` = 'WASABI_DATASPACE_HUB_URL')");
+            if (! $response) {
+                $hasErrors = true;
+                VarDumper::dump($dbLink->error);
+            } elseif($exists = $response->fetch_row()[0]) {
+                $response = $dbLink->query(sprintf("UPDATE `wa_configuration` SET `value` = '%s' WHERE `name` = 'WASABI_DATASPACE_HUB_URL'", $_POST['dataspace_hub_url']));
+            } else {
+                $response = $dbLink->query(sprintf("INSERT INTO `wa_configuration` (`name`, `value`) VALUES ('WASABI_DATASPACE_HUB_URL', '%s')", $_POST['dataspace_hub_url']));
+            }
+            if (! $response && ! $hasErrors) {
+                $hasErrors = true;
+                VarDumper::dump($dbLink->error);
+            }
         }
         if (! $hasErrors) {
             $content = file_get_contents(__DIR__ . '/app/config/parameters.php.example');
@@ -99,6 +115,10 @@ if (isset($_POST['submit'])) {
             <label>
                 Database password
                 <input type="password" name="dbpass" value="<?= $_POST['dbpass'] ?? '' ?>" placeholder="Insert database password" required>
+            </label>
+            <label>
+                WASABI DATASPACE HUB URL
+                <input type="text" name="dataspace_hub_url" value="<?= $_POST['dataspace_hub_url'] ?? '' ?>" placeholder="Insert dataspace hub URL" required>
             </label>
             <button name="submit" type="submit">Continue</button>
         </form>
