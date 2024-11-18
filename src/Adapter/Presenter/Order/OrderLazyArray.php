@@ -200,12 +200,28 @@ class OrderLazyArray extends AbstractLazyArray
                         . '&id_order=' . (int) $order->id
                         . '&secure_key=' . $order->secure_key;
                 } else {
-                    // TODO: build real skill link
+                    // TODO: build real skill link (WIP)
                     $customer = new Customer($order->id_customer);
                     $idShopOwner = Ets_mp_product::getProductSellerByIDProduct($orderProduct['id_product'], false, true);
                     $shopOwner = new Customer($idShopOwner);
-                    $skillID = 'SKILL-ID';
-                    $purchaseToken = 'PURCHASE-TOKEN';
+                    $skillID = $orderProduct['product_id'];
+                    $privateKeyPEMFilePath = rtrim(_PS_ROOT_DIR_, '/') . '/secrets/private_key.pem';
+                    // Load the private key from a PEM file, if it is supplied in another way load it appropriately
+                    $privateKey = openssl_pkey_get_private(file_get_contents($privateKeyPEMFilePath));
+                    // This is the object that contains the information of the purchase
+                    $data = [
+                        "Purchase" => [
+                            "skillID" => $skillID,
+                            "participantID" => $customer->wls_id
+                        ]
+                    ];
+                    // encode it in json 
+                    $json_desc = json_encode($data);
+                    // Sign the message with the private key
+                    $signature = '';
+                    openssl_sign($json_desc, $signature, $privateKey, OPENSSL_ALGO_SHA256);
+                    //Encode the signature as the purchase token
+                    $purchaseToken = base64_encode($signature);
                     $orderProduct['download_link'] = rtrim($shopOwner->wls_url, '/') . "/UI/DATASET/{$skillID}/{$purchaseToken}";
                 }
             }
