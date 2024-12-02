@@ -211,17 +211,20 @@ class OrderLazyArray extends AbstractLazyArray
                     // This is the object that contains the information of the purchase
                     $data = [
                         "Purchase" => [
-                            "skillID" => $skillID,
+                            "skillID" => $skillID."",
                             "participantID" => $customer->wls_id
                         ]
                     ];
                     // encode it in json 
                     $json_desc = json_encode($data);
+
+
                     // Sign the message with the private key
                     $signature = '';
                     openssl_sign($json_desc, $signature, $privateKey, OPENSSL_ALGO_SHA256);
                     //Encode the signature as the purchase token
                     $purchaseToken = base64_encode($signature);
+                    $purchaseToken = str_replace(['+', '/', '+'], ['-', '_', ''], $purchaseToken);
                     $orderProduct['download_link'] = rtrim($shopOwner->wls_url, '/') . "/UI/DATASET/{$skillID}/{$purchaseToken}";
                 }
             }
