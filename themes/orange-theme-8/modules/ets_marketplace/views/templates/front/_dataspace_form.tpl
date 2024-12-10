@@ -17,18 +17,31 @@
             //! The ID of the participant, supplied in registration
             participantID: {$participantDataspaceId|json_encode nofilter},
             
-            //! The URL of the participant, supplied in registration
-            participantURL: {$dataspaceHubAddress|json_encode nofilter},
-            
-            
-            //!In the purchase screen this should be the ID of the skill
-            skillID: "wasabi:CONNECTOR_TEST1:6",  //???????????????
-            purchaseToken: "55fd7a87-fffe-4a13-af1e-9f113c46f812",//???????????????
-            
-         };
+        };
 
-         function Add_Skill(sk){
-                console.log("Adding ",sk);
+         async function Add_Skill(sk){
+
+            console.log("Adding ",sk);
+
+            var url = `/AddProductFromDataspace.php`;
+
+
+            let call = await fetch(
+                url,
+                {
+                    method: 'POST',
+                    body:JSON.stringify(sk)
+                }
+            );
+            let reply = await call.json();
+            if(reply.success!=undefined){
+                alert('Product created with id: '+reply.success);
+            }
+            else{
+                alert('Error creating product  '+reply.error);
+            }
+
+
          }
 
 
@@ -54,7 +67,12 @@
             let query = document.getElementById('wfm-query').value;
             var url = wls_server_data.hubURL + `/Broker/FindSkills?Participant=${ wls_server_data.participantID }&Query=${ query }`;
 
-            let call = await fetch(url, { method: 'GET' } );
+            let call = await fetch(
+                url,
+                {
+                    method: 'GET'
+                 }
+            );
             let reply = await call.json();
             shown_skills = Object.fromEntries(reply.map(x=>[x.SkillID,x]));
             let tableBody = `
@@ -73,22 +91,18 @@
                 </tbody>
             `;
 
-            let table = `<div class="mt-4" style='width:100%; overflow:auto; padding-inline: 5px; border:thin solid rgb(230,230,230);'>
+            let table = `<br/><div class="mt-4" style='width:100%; overflow:auto; padding-inline: 5px; border:thin solid rgb(230,230,230);'>
                 <table class="table m-0">
                     ${ tableHeader } 
                     ${ tableBody } 
                 </table>
-                </div>`;
+                </div><br/><br/><br/>`;
             const tableDiv = document.getElementById('results');
             tableDiv.innerHTML = table;
             console.log("found", reply);
 
 
          }
-
-
-        //FOR THE PURCHASE LINK
-
 
         function Open_Connector_Link() {
             window.open(`${ wls_server_data.participantURL }/UI/DATASET/${ wls_server_data.skillID }/${ wls_server_data.purchaseToken }`, '_blank');
@@ -106,13 +120,5 @@
 
     </div>
 
-    <div class="mt-4" style="border: thin dashed gray; padding:50px; margin-inline: -15px;">
-        <h5>This is a sample of what the purchased item screen should contain: </h5>
-        <div id="TOKEN"> </div>
-        <button type="submit" onclick="Open_Connector_Link()">Download with your Connector Software</button>
-    </div>
 </div>
 
-<script>
-    document.getElementById('TOKEN').textContent = wls_server_data.purchaseToken;
-</script>
