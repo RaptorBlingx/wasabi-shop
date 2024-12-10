@@ -253,3 +253,5 @@ php-cs-fixer
 
 /Docker/mysql_dumps/*
 !/Docker/mysql_dumps/.keep
+modules/amazzingfilter/cache/indexationColumns_adjust_0
+modules/amazzingfilter/cache/indexationColumns_getAvailableSuffixesCount_0
