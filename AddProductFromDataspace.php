@@ -24,7 +24,8 @@ require_once dirname(__FILE__) . '/init.php';
 require_once dirname(__FILE__) . '/modules/ets_marketplace/classes/Ets_mp_product.php';
 require_once dirname(__FILE__) . '/modules/ets_marketplace/classes/seller.php';
 
-
+$sellerID = $data->Candidate_Seller_ID;
+unset($data->Candidate_Seller_ID);
 $productId = Product::getIdByReference($data->SkillID);
 
 if ($productId) {
@@ -58,8 +59,12 @@ $product->description_short = array_fill_keys(
 );
 $product->product_type = ProductType::TYPE_VIRTUAL;
 $product->is_virtual = true;
-$product->skill = "{}"; // Replace with skill in json format
 
+//this needs to be a pre + maybe if we had the existing one we could limit the list in the ui?
+
+$product->skill = json_encode($data, JSON_PRETTY_PRINT);//"{}"; // Replace with skill in json format
+
+$product->price =  $data->Price_Declared;
 
 if ($product->add()) {
     // Assign the product to categories
@@ -67,7 +72,7 @@ if ($product->add()) {
     StockAvailable::setQuantity($product->id, 0, 100); // 100 is the stock quantity
 
     // Search seller by WLS_ID
-    $seller = (new PrestaShopCollection('Customer'))->where('wls_id', '=', $data->OwnerID)->getFirst();
+    $seller = (new PrestaShopCollection('Customer'))->where('wls_id', '=', $sellerID)->getFirst();
     if ($seller instanceof Customer) {
         Ets_mp_product::addProductSeller($product->id, $seller->id);
     }

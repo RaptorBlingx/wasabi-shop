@@ -30,7 +30,7 @@
                 url,
                 {
                     method: 'POST',
-                    body:JSON.stringify(sk)
+                    body:JSON.stringify({ ...sk , Candidate_Seller_ID:wls_server_data.participantID})
                 }
             );
             let reply = await call.json();
@@ -104,9 +104,6 @@
 
          }
 
-        function Open_Connector_Link() {
-            window.open(`${ wls_server_data.participantURL }/UI/DATASET/${ wls_server_data.skillID }/${ wls_server_data.purchaseToken }`, '_blank');
-         }
 
 
     </script>
