@@ -202,7 +202,7 @@ class CustomerFormatterCore implements FormFormatterInterface
             ->setName('wls_id')
             ->setType('text')
             ->setLabel(
-                'WLS_ID'
+                'Dataspace ID'
             )
             ->setRequired(true);
 
@@ -210,7 +210,7 @@ class CustomerFormatterCore implements FormFormatterInterface
             ->setName('wls_url')
             ->setType('text')
             ->setLabel(
-                'WLS_URL'
+                'Dataspace URL'
             )
             ->setRequired(true);
 
