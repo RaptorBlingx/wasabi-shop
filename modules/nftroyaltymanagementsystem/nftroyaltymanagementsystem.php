@@ -841,152 +841,298 @@ public function tryDistributeSmartContractRoyalties($contractABI, $contractAddre
     }
 
     
+    public function deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey)
+    {
+        $success = true;
 
+        // Log some startup info
+        file_put_contents(
+            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+            '±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±'
+            . PHP_EOL,
+            FILE_APPEND
+        );
+        file_put_contents(
+            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+            PHP_EOL . '[' . date('Y-m-d H:i:s') . '] BOOTSTRAPPING NFT ROYALTY MANAGEMENT SYSTEM' . PHP_EOL . PHP_EOL,
+            FILE_APPEND
+        );
+        file_put_contents(
+            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+            '±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±'
+            . PHP_EOL . PHP_EOL,
+            FILE_APPEND
+        );
 
-public function deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey) {
-    $success = true;
-    try {
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±' . PHP_EOL, FILE_APPEND);
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . '[' . date('Y-m-d H:i:s') . '] '. 'BOOTSTRAPPING NFT ROYALTY MANAGEMENT SYSTEM' . PHP_EOL . PHP_EOL, FILE_APPEND);
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±±' . PHP_EOL. PHP_EOL, FILE_APPEND);
+        try {
+            // Initialize web3 + contract bytecode
+            $web3    = new Web3('https://sepolia.infura.io/v3/' . $this->infuraKey);
+            $eth     = $web3->eth;
+            $contract = new Contract($web3->provider, $contractABI);
+            $deployData = '0x' . $contractBytecode;
 
-        $web3 = new Web3('https://sepolia.infura.io/v3/' . $this->infuraKey);
-        $eth = $web3->eth;
-      
-        // Initialize the contract with the ABI and Bytecode
-        $contract = new Contract($web3->provider, $contractABI);
-        $data = '0x' . $contractBytecode;
-
-        // Get the current nonce
-        $eth->getTransactionCount($fromAddress, function ($err, $nonce) use ($eth, $fromAddress, $data, $privateKey, &$success) {
-            if ($err !== null) {
-                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Error: ' . $err->getMessage() . PHP_EOL, FILE_APPEND);
-                $success = false;
-                return;
-            }
-
-            // Create the transaction
-            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '[' . date('Y-m-d H:i:s') . '] '.'Preparing admin wallet deployment transaction with nonce: ' . $nonce . PHP_EOL, FILE_APPEND);
-           
-            $transaction = [
-                'nonce' => '0x' . dechex($nonce->toString()),
-                'from' => $fromAddress,
-                'data' => $data,
-                'gas' => '0x' . dechex(8000000), 
-                'gasPrice' => '0x' . dechex($this->getRapidGasPrice()),  //https://sepolia.beaconcha.in/gasnow
-                'chainId' => 11155111, // chain ID here
-            ];
-            // Sign the transaction using ethereum-tx
-            $tx2 = new Transaction($transaction);
-           
-            $signedTransaction = $tx2->sign($privateKey);
-           
-            // Send the transaction
-            $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use ($eth, &$success) {
+            // 1) Get the current nonce
+            $eth->getTransactionCount($fromAddress, function ($err, $nonce) use (
+                $eth,
+                $fromAddress,
+                $deployData,
+                $privateKey,
+                &$success
+            ) {
                 if ($err !== null) {
-                    file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Send Error: ' . $err->getMessage() . PHP_EOL, FILE_APPEND);
+                    file_put_contents(
+                        _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                        'Error getting nonce: ' . $err->getMessage() . PHP_EOL,
+                        FILE_APPEND
+                    );
                     $success = false;
                     return;
                 }
-                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '[' . date('Y-m-d H:i:s') . '] '.'Transaction has been submitted with hash: '. $txHash . PHP_EOL, FILE_APPEND);
-            
-                // Initialize polling variables
-                $retryCount = 0;
-                $maxRetries = 12;
-                $interval = 15; // seconds
-                $receipt = null;
-            
-                while ($retryCount < $maxRetries && !$receipt) {
-                    $eth->getTransactionReceipt($txHash, function ($err, $r) use ($eth, &$receipt, &$retryCount, &$success) {
-                        if ($err !== null) {
-                            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Waiting for transaction to be verified on-chain..' . $err->getMessage() . PHP_EOL, FILE_APPEND);
-                        } elseif ($r) {
-                            $receipt = $r;
-                            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '[' . date('Y-m-d H:i:s') . '] '. 'Transaction has been succesfully verified on-chain: ' . json_encode($receipt) . PHP_EOL, FILE_APPEND);
-                        }
-                    });
-            
-                    if ($receipt) break; // Exit if receipt is found
-            
-                    sleep($interval); // Wait for the next retry
-                    $retryCount++;
-                }
-            
-                if (!$receipt) {
-                    $success = false;
-                    file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Max retries reached without obtaining a receipt - SYSTEM FAIL' . PHP_EOL, FILE_APPEND);
-                    return;
-                }
-            
-                if ($receipt && isset($receipt->contractAddress)) {
-                    $etherscanKey = "WD2EHXDMAAGN37R5DKYT6A6FF6163227EY";
-                    $apiEtherscanUrl = 'https://api-sepolia.etherscan.io/api';
-                    $contractAddress = $receipt->contractAddress;
-                    $filePath = _PS_ROOT_DIR_ . '/modules/nftroyaltymanagementsystem/solidityCode.sol';
-                    $flattenedSourceCode = file_get_contents($filePath);
-            
-                    $verificationData = [
-                        'apikey' => $etherscanKey,
-                        'module' => 'contract',
-                        'action' => 'verifysourcecode',
-                        'contractaddress' => $contractAddress,
-                        'sourceCode' => $flattenedSourceCode,
-                        'contractName' => 'YourContractName',
-                        'compilerVersion' => 'v0.8.19+commit.7dd6d404',
-                        'optimizationUsed' => 1, // 1 for 'Yes', 0 for 'No'
-                        'runs' => 20, // Number of optimization runs
-                        // Include any other required fields
-                    ];
-            
-                    $client = new Client();
-                    $verificationRetryCount = 0;
-                    $verificationMaxRetries = 10;
-                    $verificationInterval = 10; // seconds
-            
-                    while ($verificationRetryCount < $verificationMaxRetries) {
-                        try {
-                            $response = $client->request('POST', $apiEtherscanUrl, [
-                                'form_params' => $verificationData
-                            ]);
-            
-                            $responseBody = $response->getBody()->getContents();
-                            $responseData = json_decode($responseBody, true);
-                           
-            
-                            if ($responseData['status'] == "1") {
-                                file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', '[' . date('Y-m-d H:i:s') . '] '. 'Contract source code has been succesfully verified on Etherscan. Response from verification API request: '.json_encode($responseData) . PHP_EOL, FILE_APPEND);
-                                break; // Successful response, exit loop
-                            }
-                        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
-                            file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Attempting to verify contract source code on Etherscan..' . PHP_EOL, FILE_APPEND);
-                        }
-            
-                        sleep($verificationInterval);
-                        $verificationRetryCount++;
-                    } // Loop end
-            
-                   
-            
-                    if ($verificationRetryCount == $verificationMaxRetries) {
+
+                file_put_contents(
+                    _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                    '[' . date('Y-m-d H:i:s') . '] Preparing admin wallet deployment tx with nonce: ' . $nonce . PHP_EOL,
+                    FILE_APPEND
+                );
+
+                // 2) Create and sign the deployment transaction
+                $transaction = [
+                    'nonce'    => '0x' . dechex($nonce->toString()),
+                    'from'     => $fromAddress,
+                    'data'     => $deployData,
+                    'gas'      => '0x' . dechex(8000000),
+                    'gasPrice' => '0x' . dechex($this->getRapidGasPrice()),
+                    'chainId'  => 11155111, // Sepolia chain ID
+                ];
+
+                $tx2             = new Transaction($transaction);
+                $signedTransaction = $tx2->sign($privateKey);
+
+                // 3) Send the raw transaction
+                $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use ($eth, &$success) {
+                    if ($err !== null) {
+                        file_put_contents(
+                            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                            'Send Error: ' . $err->getMessage() . PHP_EOL,
+                            FILE_APPEND
+                        );
                         $success = false;
-                        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Maximum verification retries reached without success - SYSTEM FAIL.' . PHP_EOL, FILE_APPEND);
                         return;
                     }
-                    $this->saveContractAddress($contractAddress);
 
-                } else {
-                    file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Something has gone wrong while bootstrapping the system' . PHP_EOL, FILE_APPEND);
-                }
+                    file_put_contents(
+                        _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                        '[' . date('Y-m-d H:i:s') . '] Transaction submitted, hash: ' . $txHash . PHP_EOL,
+                        FILE_APPEND
+                    );
+
+                    // 4) Poll for the tx receipt
+                    $maxRetries = 12;
+                    $interval   = 15;
+                    $receipt    = null;
+                    $retryCount = 0;
+
+                    while ($retryCount < $maxRetries && !$receipt) {
+                        $eth->getTransactionReceipt($txHash, function ($err2, $r) use (&$receipt) {
+                            if ($err2 === null && $r) {
+                                $receipt = $r;
+                                file_put_contents(
+                                    _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                    '[' . date('Y-m-d H:i:s') . '] Transaction verified on-chain: '
+                                    . json_encode($r) . PHP_EOL,
+                                    FILE_APPEND
+                                );
+                            }
+                        });
+
+                        if ($receipt) {
+                            break;
+                        }
+                        sleep($interval);
+                        $retryCount++;
+                    }
+
+                    if (!$receipt) {
+                        file_put_contents(
+                            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                            'Max retries reached without obtaining a receipt - SYSTEM FAIL' . PHP_EOL,
+                            FILE_APPEND
+                        );
+                        $success = false;
+                        return;
+                    }
+
+                    // 5) Check if we got contractAddress
+                    if ($receipt && isset($receipt->contractAddress)) {
+                        $contractAddress = $receipt->contractAddress;
+                        file_put_contents(
+                            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                            '[' . date('Y-m-d H:i:s') . '] Deployed new contract at: ' . $contractAddress . PHP_EOL,
+                            FILE_APPEND
+                        );
+
+                        // 6) Give Etherscan time to index:
+                        sleep(30); // wait 30s before first verification attempt
+
+                        // We'll do up to 3 attempts to "verifysourcecode" if Etherscan can't see it yet
+                        $etherscanKey    = 'AT7FHZXJ3W78D1FVTFH2RH3TM7CSBM3ICJ';
+                        $apiEtherscanUrl = 'https://api-sepolia.etherscan.io/api';
+                        $filePath        = _PS_ROOT_DIR_ . '/modules/nftroyaltymanagementsystem/solidityCode.sol';
+                        $flattenedSourceCode = file_get_contents($filePath);
+
+                        $client = new Client();
+
+                        // We'll attempt up to 3 times to see if code is indexed
+                        $submissionSuccess = false;
+                        for ($subAttempt = 1; $subAttempt <= 3; $subAttempt++) {
+                            // 6a) Submit verification (verifysourcecode)
+                            $submissionData = [
+                                'apikey'          => $etherscanKey,
+                                'module'          => 'contract',
+                                'action'          => 'verifysourcecode',
+                                'contractaddress' => $contractAddress,
+                                'sourceCode'      => $flattenedSourceCode,
+                                'codeformat'      => 'solidity-single-file',
+                                // MUST match "filename.sol:ContractName" if using single-file
+                                'contractname'    => 'solidityCode.sol:RoyaltyNFT',
+                                'compilerversion' => 'v0.8.19+commit.7dd6d404',
+                                'optimizationUsed'=> 1,
+                                'runs'            => 200,
+                                'licenseType'     => 3, // 3=MIT
+                            ];
+
+                            try {
+                                $verifyResp = $client->request('POST', $apiEtherscanUrl, [
+                                    'form_params' => $submissionData
+                                ]);
+                                $verifyBody = $verifyResp->getBody()->getContents();
+                                $verifyData = json_decode($verifyBody, true);
+
+                                if (isset($verifyData['status']) && $verifyData['status'] === '1') {
+                                    // If we get status=1, we proceed to checkverifystatus
+                                    $submissionSuccess = true;
+                                    file_put_contents(
+                                        _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                        '[' . date('Y-m-d H:i:s') . '] Verification submission successful (GUID): ' . $verifyData['result'] . PHP_EOL,
+                                        FILE_APPEND
+                                    );
+
+                                  // 6b) Poll checkverifystatus with the GUID
+                                    $guid                 = $verifyData['result'];
+                                    $verificationMaxRetries = 10;
+                                    $verificationInterval  = 10;
+
+                                    for ($i = 0; $i < $verificationMaxRetries; $i++) {
+                                        sleep($verificationInterval);
+
+                                        $checkData = [
+                                            'apikey' => $etherscanKey,
+                                            'module' => 'contract',
+                                            'action' => 'checkverifystatus',
+                                            'guid'   => $guid,
+                                        ];
+
+                                        $checkResp   = $client->request('POST', $apiEtherscanUrl, [
+                                            'form_params' => $checkData
+                                        ]);
+                                        $checkBody   = $checkResp->getBody()->getContents();
+                                        $checkResult = json_decode($checkBody, true);
+
+                                        // ******* CHANGE BELOW: Treat "Already Verified" as success *******
+                                        // If status=1 => success
+                                        if (isset($checkResult['status']) && $checkResult['status'] === '1') {
+                                            file_put_contents(
+                                                _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                                '[' . date('Y-m-d H:i:s') . '] Contract verified: ' . $checkBody . PHP_EOL,
+                                                FILE_APPEND
+                                            );
+                                            break;
+                                        }
+                                        // Otherwise, if result says "Already Verified", also treat as success
+                                        elseif (
+                                            isset($checkResult['result']) 
+                                            && is_string($checkResult['result']) 
+                                            && stripos($checkResult['result'], 'Already Verified') !== false
+                                        ) {
+                                            file_put_contents(
+                                                _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                                '[' . date('Y-m-d H:i:s') . '] Contract is already verified; treating as success.' . PHP_EOL,
+                                                FILE_APPEND
+                                            );
+                                            break;
+                                        }
+                                        // ******* END OF CHANGE *******
+
+                                        // If neither of those conditions is met, log the attempt and keep retrying
+                                        file_put_contents(
+                                            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                            'Verification check attempt #' . ($i+1) . ' => ' . $checkBody . PHP_EOL,
+                                            FILE_APPEND
+                                        );
+
+                                        if ($i === $verificationMaxRetries - 1) {
+                                            file_put_contents(
+                                                _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                                'Maximum verification retries reached without success - continuing anyway.' . PHP_EOL,
+                                                FILE_APPEND
+                                            );
+                                        }
+                                    }
+                                    // done checking verification
+
+                                    // done checking verification
+                                    break; // exit for submission
+                                } else {
+                                    file_put_contents(
+                                        _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                        'Etherscan verifysourcecode attempt #' . $subAttempt . ' => ' . $verifyBody . PHP_EOL,
+                                        FILE_APPEND
+                                    );
+                                }
+                            } catch (\Exception $ex) {
+                                file_put_contents(
+                                    _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                    'Exception during verification submission attempt #' . $subAttempt . ': ' . $ex->getMessage() . PHP_EOL,
+                                    FILE_APPEND
+                                );
+                            }
+
+                            // If still not success, wait 30s, try again
+                            if (!$submissionSuccess && $subAttempt < 3) {
+                                file_put_contents(
+                                    _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                                    'Verification attempt #' . $subAttempt . ' failed; waiting 30s to retry...' . PHP_EOL,
+                                    FILE_APPEND
+                                );
+                                sleep(30);
+                            }
+                        } // end for submission attempts
+
+                        // 7) Save contract address (even if Etherscan not verified yet)
+                        $this->saveContractAddress($contractAddress);
+
+                    } else {
+                        file_put_contents(
+                            _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                            'Something went wrong: no contractAddress in the receipt.' . PHP_EOL,
+                            FILE_APPEND
+                        );
+                    }
+                });
             });
-            
-        });
-    } 
-    catch (Exception $e) {
-        $success = false;
-        file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Exception: ' . $e->getMessage() . PHP_EOL, FILE_APPEND);
+
+        } catch (Exception $e) {
+            $success = false;
+            file_put_contents(
+                _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
+                'Exception: ' . $e->getMessage() . PHP_EOL,
+                FILE_APPEND
+            );
+        }
+
+        return $success;
     }
-    return $success;
-}
+
 public function tryDeploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey) {
     $maxAttempts = 5; // Maximum number of retry attempts
     $retryDelay = 2; // Delay between attempts in seconds
