@@ -839,8 +839,49 @@ public function tryDistributeSmartContractRoyalties($contractABI, $contractAddre
         $this->getEthBalance("0x07D7DBAE2a0203280c0783b0a2d1F2a8E09dC312");*/
         
     }
+/**
+ * Return [$baseFeeWei, $priorityFeeWei, $maxFeeWei] for the next Sepolia block.
+ * Works in PHP 7.x, uses only Guzzle.
+ */
 
-    
+
+private function getEip1559Fees(string $rpcUrl): array
+{
+    $client = new \GuzzleHttp\Client();
+
+    // (a) baseFeePerGas from the pending block
+    $resp1   = $client->post($rpcUrl, [
+        'json' => [
+            'jsonrpc' => '2.0',
+            'method'  => 'eth_getBlockByNumber',
+            'params'  => ['pending', false],
+            'id'      => 1,
+        ],
+    ]);
+    $baseWei = hexdec(json_decode($resp1->getBody(), true)['result']['baseFeePerGas']);
+
+    // (b) priority-fee suggestion
+    $resp2      = $client->post($rpcUrl, [
+        'json' => [
+            'jsonrpc' => '2.0',
+            'method'  => 'eth_maxPriorityFeePerGas',
+            'params'  => [],
+            'id'      => 2,
+        ],
+    ]);
+    $priorityWei = hexdec(json_decode($resp2->getBody(), true)['result']);
+
+    // (c) ceiling for the next ~6 blocks
+    $maxWei = $baseWei * 2 + $priorityWei;
+
+    return [$baseWei, $priorityWei, $maxWei];
+}
+
+/** Cast to hex with 0x-prefix (works on PHP 7) */
+private static function hex($int): string
+{
+    return '0x' . dechex((int) $int);
+}
     public function deploySmartContract($contractABI, $contractBytecode, $fromAddress, $privateKey)
     {
         $success = true;
@@ -894,22 +935,40 @@ public function tryDistributeSmartContractRoyalties($contractABI, $contractAddre
                     '[' . date('Y-m-d H:i:s') . '] Preparing admin wallet deployment tx with nonce: ' . $nonce . PHP_EOL,
                     FILE_APPEND
                 );
+                $rpcUrl = 'https://sepolia.infura.io/v3/' . $this->infuraKey;
+                [, $priority, $max] = $this->getEip1559Fees($rpcUrl);   
+                
+// -------- 2.1  build the *original* array (keeps your key names) -------------
+$transaction = [
+    'type'                 => '0x2',                          // EIP-1559
+    'nonce' => self::hex($nonce->toString()),   // <- convert before hex-encoding
+    'from'                 => $fromAddress,
+    'data'                 => $deployData,
+    'gas'                  => self::hex(8000000),             // KEEP name "gas"
+    'maxPriorityFeePerGas' => self::hex($priority),           // we’ll fill next
+    'maxFeePerGas'         => self::hex($max),                //               "
+    'chainId'              => 11155111,                       // KEEP decimal
+];
 
-                // 2) Create and sign the deployment transaction
-                $transaction = [
-                    'nonce'    => '0x' . dechex($nonce->toString()),
-                    'from'     => $fromAddress,
-                    'data'     => $deployData,
-                    'gas'      => '0x' . dechex(8000000),
-                    'gasPrice' => '0x' . dechex($this->getRapidGasPrice()),
-                    'chainId'  => 11155111, // Sepolia chain ID
-                ];
+// -------- 2.2  fetch fees and patch those two fields ------------------------
 
-                $tx2             = new Transaction($transaction);
-                $signedTransaction = $tx2->sign($privateKey);
 
-                // 3) Send the raw transaction
-                $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use ($eth, &$success) {
+$transaction['maxPriorityFeePerGas'] = self::hex($priority);
+$transaction['maxFeePerGas']         = self::hex($max);
+
+// -------- 2.3  clone + adapt for the signer (no key renames outside) --------
+$tx1559               = $transaction;        // shallow copy
+$tx1559['gasLimit']   = $tx1559['gas'];      // alias required by signer
+$tx1559['to']         = '';                  // contract creation
+$tx1559['value']      = '0x0';               // 0 ETH
+$tx1559['accessList'] = [];                  // empty list
+$tx1559['chainId']    = self::hex($tx1559['chainId']);  // hex for signer
+
+// -------- 2.4  sign and send -------------------------------------------------
+$txObj  = new \Web3p\EthereumTx\EIP1559Transaction($tx1559);
+$signed = '0x' . $txObj->sign($privateKey);
+
+$eth->sendRawTransaction($signed, function ($err, $txHash) use ($eth, &$success) {
                     if ($err !== null) {
                         file_put_contents(
                             _PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt',
@@ -1267,20 +1326,32 @@ public function distributeSmartContractRoyalties($contractABI, $contractAddress,
             }
 
             // Prepare the transaction
-            $transaction = [
-                'nonce' => '0x' . dechex($nonce->toString()),
-                'from' => $fromAddress,
-                'to' => $contractAddress,
-                'data' => '0x' . $data,
-                'gas' => '0x' . dechex(8000000), // Adjust as needed
-                'gasPrice' => '0x' . dechex($this->getRapidGasPrice()), // Adjust as needed
-                'chainId' => 11155111, // chain ID here
-            ];
+           // Sepolia fee hints
+[, $priorityWei, $maxWei] = $this->getEip1559Fees('https://sepolia.infura.io/v3/' . $this->infuraKey);
 
-            // Sign and send the transaction
-            $tx = new Transaction($transaction);
-            $signedTransaction = $tx->sign($privateKey);
-            $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use (&$success) {
+/* -------------- EIP-1559 tx -------------- */
+$transaction = [
+    'type'                 => '0x2',
+    'nonce'                => self::hex($nonce->toString()),
+    'from'                 => $fromAddress,
+    'to'                   => $contractAddress,
+    'data'                 => $data,
+    'gas'                  => self::hex(8000000),
+    'maxPriorityFeePerGas' => self::hex($priorityWei),
+    'maxFeePerGas'         => self::hex($maxWei),
+    'chainId'              => 11155111,
+];
+
+/* signer copy */
+$tx1559               = $transaction;
+$tx1559['gasLimit']   = $tx1559['gas'];
+$tx1559['accessList'] = [];
+$tx1559['chainId']    = self::hex($tx1559['chainId']);
+
+$signedTransaction = '0x' .
+    (new \Web3p\EthereumTx\EIP1559Transaction($tx1559))->sign($privateKey);
+
+            $eth->sendRawTransaction($signedTransaction, function ($err, $txHash) use (&$success) {
                 if ($err !== null) {
                     file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Error: ' . $err->getMessage() . "\n", FILE_APPEND);
                     $success = false;
@@ -1324,23 +1395,34 @@ public function distributeSmartContractRoyalties($contractABI, $contractAddress,
                 return;
             }
 
-            // Create the transaction
-            $transaction = [
-                'nonce' => '0x' . dechex($nonce->toString()),
-                'from' => $fromAddress,
-                'to' => $contractAddress, // Contract address
-                'data' => '0x' .$data,
-                'gas' => '0x' . dechex(8000000), // Adjust gas as needed
-                'gasPrice' => '0x' . dechex($this->getRapidGasPrice()), // Adjust gas price as needed
-                'chainId' => 11155111, // Replace with actual chain ID
-            ];
+            // Sepolia fee hints
+[, $priorityWei, $maxWei] = $this->getEip1559Fees('https://sepolia.infura.io/v3/' . $this->infuraKey);
 
-            // Sign the transaction
-            $tx = new Transaction($transaction);
-            $signedTransaction = $tx->sign($privateKey);
+/* ---------- EIP-1559 version (original keys kept) ---------- */
+$transaction = [
+    'type'                 => '0x2',
+    'nonce'                => self::hex($nonce->toString()),
+    'from'                 => $fromAddress,
+    'to'                   => $contractAddress,
+    'data'                 => $data,
+    'gas'                  => self::hex(8000000),
+    'maxPriorityFeePerGas' => self::hex($priorityWei),
+    'maxFeePerGas'         => self::hex($maxWei),
+    'chainId'              => 11155111,
+];
+
+/* signer-ready copy */
+$tx1559               = $transaction;
+$tx1559['gasLimit']   = $tx1559['gas'];
+$tx1559['accessList'] = [];
+$tx1559['chainId']    = self::hex($tx1559['chainId']);
+
+$signedTransaction = '0x' .
+    (new \Web3p\EthereumTx\EIP1559Transaction($tx1559))->sign($privateKey);
+
 
             // Send the transaction
-            $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use ($id,&$success) {
+            $eth->sendRawTransaction($signedTransaction, function ($err, $txHash) use ($id,&$success) {
                 if ($err !== null) {
                     $success = false;
                     return;
@@ -1421,21 +1503,33 @@ public function fundSmartContract($contractABI, $contractAddress, $fromAddress, 
             }
 
             // Prepare the transaction
-            $transaction = [
-                'nonce' => '0x' . dechex($nonce->toString()),
-                'from' => $fromAddress,
-                'to' => $contractAddress,
-                'value' => '0x' . dechex($weiAmount),
-                'data' => '0x' . $data,
-                'gas' => '0x' . dechex(8000000), // Adjust as needed
-                'gasPrice' => '0x' . dechex($this->getRapidGasPrice()), // Adjust as needed
-                'chainId' => 11155111, // chain ID here
-            ];
+          // fees
+[, $priorityWei, $maxWei] = $this->getEip1559Fees('https://sepolia.infura.io/v3/' . $this->infuraKey);
 
-            // Sign and send the transaction
-            $tx = new Transaction($transaction);
-            $signedTransaction = $tx->sign($privateKey);
-            $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use (&$success) {
+/* ----------- build EIP-1559 tx (keep your key names) ----------- */
+$transaction = [
+    'type'                 => '0x2',
+    'nonce'                => self::hex($nonce->toString()),
+    'from'                 => $fromAddress,
+    'to'                   => $contractAddress,
+    'value'                => self::hex($weiAmount),
+    'data'                 => $data,
+    'gas'                  => self::hex(8000000),
+    'maxPriorityFeePerGas' => self::hex($priorityWei),
+    'maxFeePerGas'         => self::hex($maxWei),
+    'chainId'              => 11155111,
+];
+
+/* signer-ready copy */
+$tx1559               = $transaction;
+$tx1559['gasLimit']   = $tx1559['gas'];
+$tx1559['accessList'] = [];
+$tx1559['chainId']    = self::hex($tx1559['chainId']);
+
+$signedTransaction = '0x' .
+    (new \Web3p\EthereumTx\EIP1559Transaction($tx1559))->sign($privateKey);
+
+            $eth->sendRawTransaction($signedTransaction, function ($err, $txHash) use (&$success) {
                 if ($err !== null) {
                     $success = false;
                     file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', 'Error: ' . $err->getMessage() . "\n", FILE_APPEND);
@@ -1476,23 +1570,35 @@ public function donateSkill($contractAddress, $contractABI, $fromAddress, $priva
                 return;
             }
 
-            // Create the transaction
-            $transaction = [
-                'nonce' => '0x' . dechex($nonce->toString()),
-                'from' => $fromAddress,
-                'to' => $contractAddress,
-                'data' => '0x' . $data,
-                'gas' => '0x' . dechex(8000000),
-                'gasPrice' => '0x' . dechex($this->getRapidGasPrice()),
-                'chainId' => 11155111, // Adjust as needed
-            ];
+            // get Sepolia fee hints
+$rpcUrl = 'https://sepolia.infura.io/v3/' . $this->infuraKey;
+[, $priorityWei, $maxWei] = $this->getEip1559Fees($rpcUrl);
 
-            // Sign the transaction
-            $tx = new Transaction($transaction);
-            $signedTransaction = $tx->sign($privateKey);
+/* ---------- EIP-1559 transaction ---------- */
+$transaction = [
+    'type'                 => '0x2',
+    'nonce'                => self::hex($nonce->toString()),
+    'from'                 => $fromAddress,
+    'to'                   => $contractAddress,
+    'data'                 => $data,
+    'gas'                  => self::hex(8000000),           // keep key name “gas”
+    'maxPriorityFeePerGas' => self::hex($priorityWei),
+    'maxFeePerGas'         => self::hex($maxWei),
+    'chainId'              => 11155111,
+];
+
+/* signer-friendly copy */
+$tx1559               = $transaction;
+$tx1559['gasLimit']   = $tx1559['gas'];   // alias for signer
+$tx1559['value']      = '0x0';
+$tx1559['accessList'] = [];
+$tx1559['chainId']    = self::hex($tx1559['chainId']);
+
+$signedTransaction = '0x' .
+    (new \Web3p\EthereumTx\EIP1559Transaction($tx1559))->sign($privateKey);
 
             // Send the transaction
-            $eth->sendRawTransaction('0x' . $signedTransaction, function ($err, $txHash) use ($id,&$success) {
+            $eth->sendRawTransaction($signedTransaction, function ($err, $txHash) use ($id,&$success) {
                 if ($err !== null) {
                     $success = false;
                     file_put_contents(_PS_ROOT_DIR_ . '/RoyaltySystemActionLog.txt', PHP_EOL . '[' . date('Y-m-d H:i:s') . '] '. 'Donation for skill failed ' . $err. PHP_EOL . PHP_EOL, FILE_APPEND);
