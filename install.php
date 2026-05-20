@@ -9,7 +9,7 @@ if (getenv('wasabi_host') === 'wasabi-db') {
     $_POST['dbpass'] = getenv('wasabi_dbpass');
     $_POST['dbname'] = getenv('wasabi_dbname');
     $_POST['dataspace_hub_url'] = getenv('wasabi_dataspace_hub_url');
-    $_POST['shopurl'] = 'localhost:8080';
+    $_POST['shopurl'] = getenv('wasabi_shop_url') ?: ($_SERVER['HTTP_HOST'] ?? 'localhost:18080');
     $_POST['submit'] = true;
 }
 if (isset($_POST['submit'])) {

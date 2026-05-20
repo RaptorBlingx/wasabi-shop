@@ -79,7 +79,11 @@ class Wasabi extends Module
         }
 
         $product = $params['object'];
-        if ($this->context->controller::class === Ets_MarketPlaceProductsModuleFrontControllerOverride::class) {
+        if (
+            $this->context->controller
+            && class_exists('Ets_MarketPlaceProductsModuleFrontControllerOverride')
+            && $this->context->controller::class === Ets_MarketPlaceProductsModuleFrontControllerOverride::class
+        ) {
             if (Tools::getValue('product_type') == 3) {
                 $product->is_virtual = true;
                 $product->product_type = 'virtual';

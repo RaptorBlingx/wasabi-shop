@@ -5,11 +5,13 @@ FROM prestashop/prestashop:8.0
 RUN rm -rf /var/www/html &&\
     ln -s /project/src/ /var/www/html
 
+RUN a2enmod rewrite && \
+    sed -ri 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
+
 # # Installazione pacchetti
 RUN docker-php-ext-install mysqli 
 
 WORKDIR /var/www/html
-
 
 
 

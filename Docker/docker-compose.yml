@@ -8,12 +8,13 @@ services:
     volumes:
       - ../:/project/src
     ports:
-      - 8080:80
+      - ${WASABI_HTTP_PORT:-18080}:80
     environment:
       - wasabi_host=wasabi-db
       - wasabi_dbuser=root
       - wasabi_dbpass=root
       - wasabi_dbname=wasabi
+      - wasabi_shop_url=${WASABI_SHOP_URL:-localhost:18080}
       - wasabi_dataspace_hub_url=
 
   db:
