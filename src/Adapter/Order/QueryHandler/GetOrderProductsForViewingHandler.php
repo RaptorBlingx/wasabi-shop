@@ -254,7 +254,7 @@ final class GetOrderProductsForViewingHandler extends AbstractOrderHandler imple
                 $product['product_attribute_id'],
                 $product['product_name'],
                 $product['product_reference'],
-                $product['product_supplier_reference'],
+                (string) ($product['product_supplier_reference'] ?? ''),
                 $product['product_quantity'],
                 $unitPriceFormatted,
                 $totalPriceFormatted,

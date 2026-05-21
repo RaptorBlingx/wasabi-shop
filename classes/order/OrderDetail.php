@@ -776,7 +776,7 @@ class OrderDetailCore extends ObjectModel
         $this->product_upc = empty($product['upc']) ? null : pSQL($product['upc']);
         $this->product_mpn = empty($product['mpn']) ? null : pSQL($product['mpn']);
         $this->product_reference = empty($product['reference']) ? null : pSQL($product['reference']);
-        $this->product_supplier_reference = empty($product['supplier_reference']) ? null : pSQL($product['supplier_reference']);
+        $this->product_supplier_reference = empty($product['supplier_reference']) ? '' : pSQL($product['supplier_reference']);
         $this->product_weight = $product['id_product_attribute'] ? (float) $product['weight_attribute'] : (float) $product['weight'];
         $this->id_warehouse = $id_warehouse;
 

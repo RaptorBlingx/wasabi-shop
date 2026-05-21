@@ -88,7 +88,7 @@ final class GetProductImagesHandler implements GetProductImagesHandlerInterface
                 (int) $image->id,
                 (bool) $image->cover,
                 (int) $image->position,
-                $image->legend,
+                is_array($image->legend) ? $image->legend : [],
                 $this->productImageUrlFactory->getPath($imageId),
                 $this->productImageUrlFactory->getPathByType($imageId, ProductImagePathFactory::IMAGE_TYPE_SMALL_DEFAULT)
             );
