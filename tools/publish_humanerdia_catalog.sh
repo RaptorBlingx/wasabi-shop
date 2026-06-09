@@ -13,23 +13,22 @@ publish_one() {
   local product_slug="$1"
   local artifact=""
   local checksum=""
-  local create_script=""
-  local image_script=""
   local source_dir=""
 
   case "${product_slug}" in
     ovos-skill)
       artifact="HumanEnerDIA-OVOS-skill-v1.0.0.zip"
       checksum="${artifact}.sha256"
-      create_script="create_humanerdia_product.php"
-      image_script="add_humanerdia_product_image.php"
       source_dir="${OVOS_RELEASE_DIR}"
       ;;
     full-stack)
       artifact="HumanEnerDIA-full-stack-v1.0.0.tar.gz"
       checksum="${artifact}.sha256"
-      create_script="create_humanerdia_full_stack_product.php"
-      image_script="add_humanerdia_full_stack_product_image.php"
+      source_dir="${FULL_STACK_RELEASE_DIR}"
+      ;;
+    enms-only)
+      artifact="HumanEnerDIA-EnMS-v1.0.0.tar.gz"
+      checksum="${artifact}.sha256"
       source_dir="${FULL_STACK_RELEASE_DIR}"
       ;;
     *)
@@ -53,20 +52,23 @@ publish_one() {
   sudo install -m 664 -o www-data -g www-data \
     "${source_dir}/${checksum}" "${UPLOAD_DIR}/${checksum}"
 
-  docker exec wasabi-project php "/var/www/html/tools/${create_script}"
-  docker exec wasabi-project php "/var/www/html/tools/${image_script}"
+  docker exec -e HUMANERDIA_PRODUCT_SLUG="${product_slug}" \
+    wasabi-project php "/var/www/html/tools/publish_humanerdia_product.php"
+  docker exec -e HUMANERDIA_PRODUCT_SLUG="${product_slug}" \
+    wasabi-project php "/var/www/html/tools/render_humanerdia_product_image.php"
 }
 
 case "${slug}" in
   all)
     publish_one "ovos-skill"
     publish_one "full-stack"
+    publish_one "enms-only"
     ;;
-  ovos-skill|full-stack)
+  ovos-skill|full-stack|enms-only)
     publish_one "${slug}"
     ;;
   *)
-    echo "Usage: $0 [all|ovos-skill|full-stack]" >&2
+    echo "Usage: $0 [all|ovos-skill|full-stack|enms-only]" >&2
     exit 1
     ;;
 esac

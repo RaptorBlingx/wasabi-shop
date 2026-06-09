@@ -51,13 +51,16 @@ imagestring($im, 5, 610, 55, 'HumanEnerDIA', $white);
 imagestring($im, 5, 305, 325, $config['cover_heading'], $dark);
 imagestring($im, 5, 235, 390, 'Industrial Energy Management', $teal);
 
-if ($config['cover_variant'] === 'full-stack') {
+if ($config['cover_variant'] === 'full-stack' || $config['cover_variant'] === 'enms-only') {
+    $labels = $config['cover_variant'] === 'full-stack'
+        ? ['Portal', 'Analytics', 'OVOS', 'MQTT', 'Grafana']
+        : ['Portal', 'API', 'DB', 'MQTT', 'Grafana'];
     $blocks = [
-        [260, 520, 420, 660, $teal, 'Portal'],
-        [470, 520, 630, 660, $green, 'Analytics'],
-        [680, 520, 840, 660, $teal, 'OVOS'],
-        [365, 715, 525, 855, $green, 'MQTT'],
-        [575, 715, 735, 855, $teal, 'Grafana'],
+        [260, 520, 420, 660, $teal, $labels[0]],
+        [470, 520, 630, 660, $green, $labels[1]],
+        [680, 520, 840, 660, $teal, $labels[2]],
+        [365, 715, 525, 855, $green, $labels[3]],
+        [575, 715, 735, 855, $teal, $labels[4]],
     ];
 
     foreach ($blocks as [$x1, $y1, $x2, $y2, $color, $label]) {
